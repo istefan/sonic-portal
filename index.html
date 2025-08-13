@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SONIC DPS</title>
+
+    <script src="js/color-modes.js"></script>
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="images/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="images/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="images/favicon.ico">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#712cf9">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof bootstrap === 'undefined') {
+                console.error('Bootstrap JS is required but not loaded');
+            }
+        });
+    </script>
+</head>
+<body>
+    <header class="navbar sticky-top bg-white flex-md-nowrap p-1" data-bs-theme="light">
+        <a class="navbar-brand me-0 px-3 fs-6" href="index.html">
+            <img src="images/logo.svg" alt="Vuestic Admin Logo" height="24">
+            <span class="ms-2 brand-text">SONIC DPS</span>
+        </a>
+        <ul class="navbar-nav flex-row ms-auto"> <!-- Added ms-auto to push to right -->
+            <li class="nav-item dropdown user-dropdown">
+                <a class="nav-link px-3 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Account preferences">
+                    <i class="bi bi-person" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="page/contul-meu/index.html">Editare profil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="login.html">Ieșire din cont</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav flex-row d-md-none">
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row"><div class="sidebar p-0 bg-white">
+    <div class="offcanvas-md offcanvas-end bg-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">SONIC DPS</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+            <!-- Section 1 -->
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="index.html">
+                        <i class="bi bi-display" aria-hidden="true"></i>
+                        Panoul Meu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/adrese/index.html">
+                        <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                        Adresele Mele
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        Setări Alerte
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/perioade-calcul/index.html">
+                        <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                        Perioade Calcul
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/info-center/index.html">
+                        <i class="bi bi-info-circle" aria-hidden="true"></i>
+                        Info Center
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/contact/index.html">
+                        <i class="bi bi-envelope" aria-hidden="true"></i>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Section 2 - RAPOARTE -->
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Rapoarte</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/citiri-zilnice/index.html">
+                        <i class="bi bi-calendar-day" aria-hidden="true"></i>
+                        Citiri Zilnice
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/citiri-lunare/index.html">
+                        <i class="bi bi-calendar-week" aria-hidden="true"></i>
+                        Citiri Lunare
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/bloc-manager/index.html">
+                        <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
+                        Export Bloc Manager
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Section 3 - ADMINISTRARE -->
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Administrare</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/contul-meu/index.html">
+                        <i class="bi bi-person-gear" aria-hidden="true"></i>
+                        Contul Meu
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Section 4 - ADMINISTRARE SISTEM -->
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Admin Sistem</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/users/index.html">
+                        <i class="bi bi-people" aria-hidden="true"></i>
+                        Utilizatori
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/settings/index.html">
+                        <i class="bi bi-receipt" aria-hidden="true"></i>
+                        Setari Aplicatie
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<main class="main px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Panoul Meu</h1>
+    </div>
+
+    <!-- #################################################################### -->
+    <!-- ### SECTIUNEA PRINCIPALA - LOC DE MASURARE (BRANSAMENT)           ### -->
+    <!-- #################################################################### -->
+    <div id="mainDashboard">
+        <div class="row">
+            <!-- Main Chart Area -->
+            <div class="col-md-9 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <div class="chart-container flex-grow-1" style="position: relative; height: 420px;">
+                            <canvas class="dashboard-chart-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar Cards -->
+            <div class="col-md-3 mb-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-body-secondary">ADRESA MĂSURARE</h6>
+                        <h4 class="card-title mb-2"><i class="bi bi-geo-alt-fill me-2"></i> Str. Exemplu Apă Rece, Nr. 15B, Bucuresti, Sector 3</h4>
+                        <p class="card-text mb-1">Cod: B12345678</p>
+                        <div class="text-center mt-3">
+                            <a href="page/adrese/index.html" class="btn btn-secondary w-100">Schimbă Adresa</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-3 text-body-secondary">ALEGE PERIOADA</h6>
+                        <div class="btn-group mb-2 w-100">
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">Perioade Predefinite</button>
+                            <ul class="dropdown-menu w-100">
+                                <li><a class="dropdown-item range-this-month" href="#">Luna Curentă</a></li>
+                                <li><a class="dropdown-item range-last-30-days" href="#">Ultimele 30 de Zile</a></li>
+                                <li><a class="dropdown-item range-last-month" href="#">Luna Precedentă</a></li>
+                            </ul>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                            <input type="text" class="form-control form-control-sm dashboard-datepicker" placeholder="Interval customizat">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="card-subtitle text-body-secondary mb-0">ALERTE</h6>
+                            <span class="badge rounded-pill bg-warning p-2" style="font-size: 1.1rem;">4</span>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="page/setari-alerte/index.html" class="btn btn-primary btn-lg w-100">Vezi Toate Alertele</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Sfarsit #mainDashboard -->
+    
+    <!-- Carduri de sumar pentru bransament -->
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">186,4 m³</h3>
+                    <p class="card-text">Consum luna curenta</p>
+                    <p class="card-text text-danger"><i class="bi bi-arrow-up me-1"></i> 23 m³ peste luna precedentă</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">84</h3>
+                    <p class="card-text">Echipamente montate</p>
+                    <p class="card-text text-info"><i class="bi bi-activity me-1"></i> 5,6 m³/echipament</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">6</h3>
+                    <p class="card-text">Consum zero</p>
+                    <p class="card-text text-muted">7% echipamente cu consum zero</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">7</h3> 
+                    <p class="card-text">Alerte</p>
+                    <p class="card-text text-muted"><i class="bi bi-check-circle-fill me-1"></i> 3 Alerte Soluționate, 4 Alerte Active</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #################################################################### -->
+    <!-- ### SECTIUNEA LOCURI DE CONSUM (APARTAMENTE)                     ### -->
+    <!-- #################################################################### -->
+    <h2 class="mb-4">Locurile Mele de Consum</h2>
+    
+    <!-- === APARTAMENT 1 === -->
+    <div id="apartmentDashboard1" class="mb-5">
+        <div class="row">
+            <div class="col-md-9 mb-4">
+                <div class="card h-100"><div class="card-body d-flex flex-column"><div class="chart-container flex-grow-1" style="position: relative; height: 420px;"><canvas class="dashboard-chart-canvas"></canvas></div></div></div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card mb-4"><div class="card-body"><h6 class="card-subtitle mb-2 text-body-secondary">ADRESĂ</h6><h4 class="card-title mb-2"><i class="bi bi-house-door-fill me-2"></i> Str. Exemplu Apă Rece, Nr. 15B, Ap. 1, Bucuresti, Sector 3</h4><p class="card-text mb-1">Cod: A123</p></div></div>
+                <div class="card mb-4"><div class="card-body"><h6 class="card-subtitle mb-3 text-body-secondary">ALEGE PERIOADA</h6><div class="btn-group mb-2 w-100"><button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">Perioade</button><ul class="dropdown-menu w-100"><li><a class="dropdown-item range-this-month" href="#">Luna Curentă</a></li><li><a class="dropdown-item range-last-30-days" href="#">Ultimele 30</a></li><li><a class="dropdown-item range-last-month" href="#">Luna Trecută</a></li></ul></div><div class="input-group"><span class="input-group-text"><i class="bi bi-calendar-event"></i></span><input type="text" class="form-control form-control-sm dashboard-datepicker" placeholder="Interval customizat"></div></div></div>
+                <div class="card mb-4"><div class="card-body"><div class="d-flex justify-content-between align-items-center mb-3"><h6 class="card-subtitle text-body-secondary mb-0">ALERTE</h6><span class="badge rounded-pill bg-danger p-2">1</span></div><div class="text-center mt-4"><a href="#" class="btn btn-primary w-100">Vezi Alerta</a></div></div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- === APARTAMENT 2 === -->
+    <div id="apartmentDashboard2" class="mb-5">
+         <div class="row">
+            <div class="col-md-9 mb-4">
+                <div class="card h-100"><div class="card-body d-flex flex-column"><div class="chart-container flex-grow-1" style="position: relative; height: 420px;"><canvas class="dashboard-chart-canvas"></canvas></div></div></div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card mb-4"><div class="card-body"><h6 class="card-subtitle mb-2 text-body-secondary">ADRESĂ</h6><h4 class="card-title mb-2"><i class="bi bi-house-door-fill me-2"></i> Str. Exemplu Apă Rece, Nr. 15B, Ap. 12, Bucuresti, Sector 3</h4><p class="card-text mb-1">Cod: A456</p></div></div>
+                <div class="card mb-4"><div class="card-body"><h6 class="card-subtitle mb-3 text-body-secondary">ALEGE PERIOADA</h6><div class="btn-group mb-2 w-100"><button class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">Perioade</button><ul class="dropdown-menu w-100"><li><a class="dropdown-item range-this-month" href="#">Luna Curentă</a></li><li><a class="dropdown-item range-last-30-days" href="#">Ultimele 30</a></li><li><a class="dropdown-item range-last-month" href="#">Luna Trecută</a></li></ul></div><div class="input-group"><span class="input-group-text"><i class="bi bi-calendar-event"></i></span><input type="text" class="form-control form-control-sm dashboard-datepicker" placeholder="Interval customizat"></div></div></div>
+                <div class="card mb-4"><div class="card-body"><div class="d-flex justify-content-between align-items-center mb-3"><h6 class="card-subtitle text-body-secondary mb-0">ALERTE</h6><span class="badge rounded-pill bg-secondary p-2">0</span></div><div class="text-center mt-4"><a href="#" class="btn btn-secondary w-100 disabled">Nu sunt alerte</a></div></div></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/dashboard.js" class="astro-vvvwv3sm"></script>
+</body>
+</html>
