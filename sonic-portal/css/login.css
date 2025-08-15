@@ -1,0 +1,107 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #FFF;;
+}
+.login-container {
+    display: flex;
+    height: 100%;
+}
+.blue-sidebar {
+    background-color: #2152E0; /* Approximate blue color from screenshot */
+    width: 30%; /* Adjust as needed to match screenshot proportion */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Align to bottom as in screenshot */
+    padding-bottom: 50px; /* Adjust padding as needed */
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+.blue-sidebar .logo-text {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+.blue-sidebar .logo-text .admin-text {
+    font-size: 0.8em;
+    font-weight: normal;
+    opacity: 0.7;
+}
+.login-form-area {
+    width: 70%; /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.login-card {
+    width: 100%;
+    max-width: 400px; /* Adjust max-width for the form card */
+    padding: 2rem;
+}
+.form-label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #6c757d; /* Bootstrap secondary color for labels */
+    margin-bottom: 0.25rem;
+}
+.form-control {
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+.password-input-group .input-group-text {
+    background-color: white;
+    border-left: none;
+    cursor: pointer;
+}
+.password-input-group .form-control {
+    border-right: none;
+}
+.btn-primary {
+    background-color: #2152E0; /* Match sidebar blue */
+    border-color: #2152E0;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.25rem;
+}
+.btn-primary:hover {
+    background-color: #1a42b3; /* Darker blue on hover */
+    border-color: #1a42b3;
+}
+.form-check-label {
+    font-size: 0.875rem;
+}
+.forgot-password-link {
+    font-size: 0.875rem;
+    color: #2152E0;
+    text-decoration: none;
+}
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 767.98px) { /* For small devices (less than md breakpoint) */
+    .login-container {
+        flex-direction: column;
+    }
+    .blue-sidebar {
+        display: none; /* Hidden on mobile */
+    }
+    .login-form-area {
+        width: 100%;
+        padding: 1rem; /* Add some padding for mobile */
+    }
+    .login-card {
+        max-width: 350px; /* Adjust max-width for better mobile fit */
+        margin: auto; /* Center the card */
+    }
+}

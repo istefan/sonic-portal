@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autentificare - SONIC DPS</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/login.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="blue-sidebar d-none d-md-flex">
+            <div class="logo-text align-self-center">
+                SONIC DPS
+            </div>
+        </div>
+        <div class="login-form-area">
+            <div class="login-card">
+                <div class="text-center mb-4">
+                    <img src="../images/logo.svg" alt="Decor Press Logo" height="48" class="mb-2">
+                    <h3 class="h5">AUTENTIFICARE</h3>
+                </div>
+
+                <!--<div class="alert alert-danger" role="alert">
+                    Mesaj Eroare
+                </div> -->
+
+                <form method="POST" action="login.html">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">UTILIZATOR</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Numele tău de utilizator" value="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">PAROLA</label>
+                        <div class="input-group password-input-group">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Parola ta" required>
+                            <span class="input-group-text" id="togglePassword">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Rămâi autentificat
+                            </label>
+                        </div>
+                        <a href="../lost-password.html" class="forgot-password-link">Ai uitat parola?</a>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Autentificare</button>
+                    </div>
+                </form>
+
+                <!-- LINK NOU PENTRU INREGISTRARE -->
+                <div class="text-center mt-4">
+                    <span class="text-muted">Nu ai cont?</span> <a href="../register.html">Înregistrează-te aici</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function (e) {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        });
+    </script>
+</body>
+</html>

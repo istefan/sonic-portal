@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SONIC DPS</title>
+
+    <script src="../../js/color-modes.js"></script>
+
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="../../css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="../../images/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../images/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="mask-icon" href="../../images/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="../../images/favicon.ico">
+
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#712cf9">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof bootstrap === 'undefined') {
+                console.error('Bootstrap JS is required but not loaded');
+            }
+        });
+    </script>
+</head>
+<body>
+    <header class="navbar sticky-top bg-white flex-md-nowrap p-1" data-bs-theme="light">
+        <a class="navbar-brand me-0 px-3 fs-6" href="../../index.html">
+            <img src="../../images/logo.svg" alt="Vuestic Admin Logo" height="24">
+            <span class="ms-2 brand-text">SONIC DPS</span>
+        </a>
+        <ul class="navbar-nav flex-row ms-auto"> <!-- Added ms-auto to push to right -->
+            <li class="nav-item dropdown user-dropdown">
+                <a class="nav-link px-3 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Account preferences">
+                    <i class="bi bi-person" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="../../page/contul-meu/index.html">Editare profil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="../../login.html">Ieșire din cont</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav flex-row d-md-none">
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row"><div class="sidebar p-0 bg-white">
+    <div class="offcanvas-md offcanvas-end bg-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">SONIC DPS</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+            <!-- Section 1 -->
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " aria-current="page" href="../../index.html">
+                        <i class="bi bi-display" aria-hidden="true"></i>
+                        Panoul Meu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/adrese/index.html">
+                        <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                        Adresele Mele
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        Setări Alerte
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
+                        <i class="bi bi-calendar-check" aria-hidden="true"></i>
+                        Perioade Calcul
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/info-center/index.html">
+                        <i class="bi bi-info-circle" aria-hidden="true"></i>
+                        Info Center
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contact/index.html">
+                        <i class="bi bi-envelope" aria-hidden="true"></i>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Section 2 - RAPOARTE -->
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Rapoarte</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-zilnice/index.html">
+                        <i class="bi bi-calendar-day" aria-hidden="true"></i>
+                        Citiri Zilnice
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-lunare/index.html">
+                        <i class="bi bi-calendar-week" aria-hidden="true"></i>
+                        Citiri Lunare
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bloc-manager/index.html">
+                        <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
+                        Export Bloc Manager
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Section 3 - ADMINISTRARE -->
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Administrare</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contul-meu/index.html">
+                        <i class="bi bi-person-gear" aria-hidden="true"></i>
+                        Contul Meu
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Section 4 - ADMINISTRARE SISTEM -->
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Admin Sistem</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/users/index.html">
+                        <i class="bi bi-people" aria-hidden="true"></i>
+                        Utilizatori
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/settings/index.html">
+                        <i class="bi bi-receipt" aria-hidden="true"></i>
+                        Setari Aplicatie
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<main class="main px-md-4 container-custom-width">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Adrese</h1>
+    </div>
+
+    <div class="row">
+        <!-- Sectiunea pentru Locuri de Masurare (Bransamente) -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Locuri de Măsurare (Branșamente)</h2>
+                    <p class="text-muted small mb-4">Un loc de măsurare este un grup de locuri de consum (apartamente). Adaugă un branșament folosind codul primit de la Decor Press.</p>
+
+                    <!-- Card pentru Adaugare Bransament (stil din screenshot) -->
+                    <div class="card add-address-card-bg mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-2">Adaugă un loc de măsurare nou</h5>
+                            <p class="card-text text-muted mb-3">Asigură-te că introduci codul corect al branșamentului.</p>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdaugaBransament">
+                                <i class="bi bi-plus-circle"></i> Adaugă Loc Masurare
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Exemplu Bransament CURENT (stil din screenshot) -->
+                    <div class="card address-card-dashed mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Str. Libertății, Nr. 24, Bloc C2 <small class="text-muted">(Cod: B12345678)</small></h5>
+                                <span class="badge bg-primary">CURENT</span>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted small">SETĂRI GENERALE ALERTE PENTRU ACEST LOC DE MASURARE:</h6>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="alertZeroB1" checked>
+                                    <label class="form-check-label" for="alertZeroB1">Alertă consum zero/lună pt. locuri de consum</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="alertMediaB1">
+                                    <label class="form-check-label" for="alertMediaB1">Alertă consum peste medie pt. locuri de consum</label>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="../../page/apartamente/index.html" class="btn btn-sm btn-outline-secondary me-2">Locuri Consum</a>
+                                <button type="button" class="btn btn-sm btn-outline-primary" disabled>Setează curent</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemplu Bransament INACTIV (stil din screenshot) -->
+                    <div class="card address-card-dashed mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">B-dul Unirii, Nr. 10, Bloc A5 <small class="text-muted">(Cod: B87654321)</small></h5>
+                            </div>
+                             <div class="mb-3">
+                                <h6 class="text-muted small">SETĂRI GENERALE ALERTE PENTRU ACEST LOC DE MASURARE:</h6>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="alertZeroB2">
+                                    <label class="form-check-label" for="alertZeroB2">Alertă consum zero/lună pt. locuri de consum</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="alertMediaB2" checked>
+                                    <label class="form-check-label" for="alertMediaB2">Alertă consum peste medie pt. locuri de consum</label>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="../../page/apartamente/index.html" class="btn btn-sm btn-outline-secondary me-2">Locuri Consum</a>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Setează curent</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Sectiunea pentru Locurile Mele de Consum (Apartamente) -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Locurile Mele de Consum</h2>
+                    <p class="text-muted small mb-4">Adaugă un loc de consum (apartament) individual. Setările de alertă de aici suprascriu setările generale definite la nivel de branșament.</p>
+
+                    <!-- Card pentru Adaugare Apartament -->
+                    <div class="card add-address-card-bg mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-2">Adaugă un loc de consum nou</h5>
+                            <p class="card-text text-muted mb-3">Asigură-te că introduci codul corect al locului de consum.</p>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdaugaApartament">
+                                <i class="bi bi-plus-circle"></i> Adaugă Loc de Consum
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Exemplu Apartament CURENT -->
+                    <div class="card address-card-dashed mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Str. Libertății, Nr. 24, Bloc C2, Ap. 12 <small class="text-muted">(Cod: A11223344)</small></h5>
+                                <span class="badge bg-primary">CURENT</span>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted small">SETĂRI ALERTE INDIVIDUALE:</h6>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="alertZeroA1" checked>
+                                    <label class="form-check-label" for="alertZeroA1">Alertă consum zero/lună</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="alertMediaA1">
+                                    <label class="form-check-label" for="alertMediaA1">Alertă consum peste medie</label>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-sm btn-outline-primary" disabled>Setează curent</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemplu Apartament INACTIV -->
+                    <div class="card address-card-dashed mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Str. Soarelui, Nr. 5, Ap. 3 <small class="text-muted">(Cod: A55667788)</small></h5>
+                            </div>
+                             <div class="mb-3">
+                                <h6 class="text-muted small">SETĂRI ALERTE INDIVIDUALE:</h6>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="alertZeroA2">
+                                    <label class="form-check-label" for="alertZeroA2">Alertă consum zero/lună</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="alertMediaA2" checked>
+                                    <label class="form-check-label" for="alertMediaA2">Alertă consum peste medie</label>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-sm btn-outline-primary">Setează curent</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Modal pentru Adaugare Bransament -->
+<div class="modal fade" id="modalAdaugaBransament" tabindex="-1" aria-labelledby="modalAdaugaBransamentLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAdaugaBransamentLabel">Adaugă un Loc de Măsurare (Branșament)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="codBransament" class="form-label">Cod Loc Masurare</label>
+                        <input type="text" class="form-control" id="codBransament" placeholder="Introduceți codul unic">
+                        <div class="form-text">Acest cod îl găsiți pe documentele primite de la Decor Press.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+                <button type="button" class="btn btn-primary">Adaugă Loc Masurare</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pentru Adaugare Apartament -->
+<div class="modal fade" id="modalAdaugaApartament" tabindex="-1" aria-labelledby="modalAdaugaApartamentLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAdaugaApartamentLabel">Adaugă un Loc de Consum (Apartament)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="codApartament" class="form-label">Cod Loc de Consum</label>
+                        <input type="text" class="form-control" id="codApartament" placeholder="Introduceți codul unic">
+                        <div class="form-text">Acest cod este specific locului dumneavoastră de consum.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+                <button type="button" class="btn btn-primary">Adaugă Loc de Consum</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </div>
+
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="../../js/dashboard.js" class="astro-vvvwv3sm"></script>
+</body>
+</html>
