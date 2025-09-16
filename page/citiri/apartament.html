@@ -102,7 +102,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/info-center/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/info-center/index.html">
                         <i class="bi bi-info-circle" aria-hidden="true"></i>
                         Info Center
                     </a>
@@ -121,7 +121,7 @@
             </h6>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/citiri/index.html">
                         <i class="bi bi-calendar-day" aria-hidden="true"></i>
                         Raport Citiri
                     </a>
@@ -171,122 +171,218 @@
 
 <main class="main px-md-4"><div class="container-full-width">
 
-    <!-- Antet cu titlu si bara de cautare -->
-    <div class="text-center py-5">
-        <h1 class="display-5 fw-bold">Cum te putem ajuta?</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4 text-muted">Caută în articolele noastre de ajutor pentru a găsi rapid răspunsul.</p>
-        </div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <!-- MODIFICARE: Titlul paginii a fost actualizat pentru apartament -->
+        <h1>Raport citiri pentru: Str. Unirii, Nr. 10, Apartament 3</h1>
     </div>
 
-    <!-- Grid cu carduri pentru categorii de ajutor -->
-    <div class="row g-4 mb-5">
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-                <div class="card-body d-flex align-items-start">
-                    <div>
-                        <h5 class="card-title">Primii Pași</h5>
-                        <p class="text-muted small">Învață cum să adaugi primul tău loc de măsurare sau de consum și cum să navighezi în panoul principal.</p>
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <h5 class="card-title mb-4">Evoluția consumului zilnic</h5>
+                    
+                    <div style="height: 400px;">
+                        <canvas id="dailyConsumptionChart"></canvas>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-                <div class="card-body d-flex align-items-start">
-                    <div>
-                        <h5 class="card-title">Gestionarea Proprietăților</h5>
-                        <p class="text-muted small">Descoperă diferența dintre Regiuni, Locuri de Măsurare (branșamente) și Locuri de Consum (apartamente).</p>
+                    
+                    <div class="mt-5">
+                        <div id="date-slider"></div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-                 <div class="card-body d-flex align-items-start">
-                    <div>
-                        <h5 class="card-title">Rapoarte și Grafice</h5>
-                        <p class="text-muted small">Înțelege cum să interpretezi graficele de consum zilnic și cum să exporți rapoarte lunare detaliate.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-                 <div class="card-body d-flex align-items-start">
-                    <div>
-                        <h5 class="card-title">Setarea Alertelor</h5>
-                        <p class="text-muted small">Află ce înseamnă fiecare alertă critică (SMS) și non-critică (email) și cum le poți personaliza.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-                 <div class="card-body d-flex align-items-start">
-                    <div>
-                        <h5 class="card-title">Perioade de Calcul</h5>
-                        <p class="text-muted small">Configurează zilele specifice pentru generarea rapoartelor lunare, la nivel de cont sau individual.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100">
-                <div class="card-body d-flex align-items-start">
-                    <div>
-                        <h5 class="card-title">Administrarea Contului</h5>
-                        <p class="text-muted small">Ghid pentru modificarea parolei, a numărului de telefon și înțelegerea datelor de contact pentru alerte.</p>
-                    </div>
+
+                    <br><br>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Sectiune de intrebari frecvente (Acordeon) -->
-    <div class="mb-5">
-        <h3 class="mb-4">Întrebări Frecvente</h3>
-        <div class="accordion" id="faqAccordion">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Ce este un "Loc de Măsurare" și un "Loc de Consum"?
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Un <strong>Loc de Măsurare (Branșament)</strong> este punctul principal de intrare a apei într-o clădire (ex: scara unui bloc). Acesta grupează mai multe puncte finale de consum. Un <strong>Loc de Consum</strong> este un punct final, individual (ex: un apartament), care este contorizat separat și face parte dintr-un branșament.
+    <!-- START: Carduri de statistici si descarcare (Neschimbate) -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Sumar pentru perioada selectată</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="mb-0 text-primary">Consum total apă rece:</p>
+                        <p class="mb-0 fw-bold fs-5 text-primary"><span id="totalConsumptionCold">--</span> m³</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0 text-danger">Consum total apă caldă:</p>
+                        <p class="mb-0 fw-bold fs-5 text-danger"><span id="totalConsumptionHot">--</span> m³</p>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="mb-0 text-primary">Consum mediu zilnic (apă rece):</p>
+                        <p class="mb-0 fw-bold fs-5 text-primary"><span id="averageConsumptionCold">--</span> m³ / zi</p>
+                    </div>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0 text-danger">Consum mediu zilnic (apă caldă):</p>
+                        <p class="mb-0 fw-bold fs-5 text-danger"><span id="averageConsumptionHot">--</span> m³ / zi</p>
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Cum funcționează ierarhia alertelor pentru apartamente?
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Setările au prioritate de la specific la general. O setare de alertă definită individual pentru un <strong>apartament</strong> (în pagina de gestionare a apartamentelor) va suprascrie întotdeauna setarea generală definită la nivel de <strong>branșament</strong> (în pagina "Adrese").
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Unde pot vedea consumul total pentru toate proprietățile mele?
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        Pentru a vedea consumul agregat, puteți folosi funcționalitatea de <strong>Regiuni</strong>. Creați o regiune, adăugați în ea toate locurile de măsurare dorite, iar apoi în pagina de rapoarte veți putea vizualiza consumul total pentru întreaga regiune.
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Export Raport Citiri</h5>
+                    <div class="input-group">
+                        <select class="form-select" id="selectMonthExport">
+                            
+                        </select>
+                        <button class="btn btn-primary" type="button">
+                            <i class="bi bi-download me-2"></i> Descarcă (Excel)
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- END: Carduri de statistici si descarcare -->
+
+    <!-- START: Card cu echipamente (Modificat) -->
+    <div class="row">
+        <div class="col-12">
+             <div class="card">
+                <div class="card-header">
+                    <!-- MODIFICARE: Titlul cardului a fost actualizat -->
+                    <h5 class="mb-0">Echipamente instalate în Str. Unirii, Nr. 10, Ap. 3</h5>
+                </div>
+                <!-- MODIFICARE: Lista a fost inlocuita cu un tabel -->
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Serie Contor</th>
+                                <th scope="col">Ultima Citire</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Ultima Transmisie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>012345</td>
+                                <td>145.78 m³</td>
+                                <td><span class="badge bg-success">OK</span></td>
+                                <td>16-09-2025, 10:15</td>
+                            </tr>
+                            <tr>
+                                <td>012346</td>
+                                <td>98.42 m³</td>
+                                <td><span class="badge bg-success">OK</span></td>
+                                <td>16-09-2025, 10:14</td>
+                            </tr>
+                            <tr>
+                                <td>012347</td>
+                                <td>52.11 m³</td>
+                                <td><span class="badge bg-danger">Curgere Inversă</span></td>
+                                <td>15-09-2025, 08:30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+        </div>
+    </div>
+    <!-- END: Card cu echipamente -->
+
 
 </div></main>
+
+<!-- START: Sectiune JavaScript (Neschimbata) -->
+<script>
+function initializeChartAndSlider() {
+    
+    const historicalData = [];
+    const today = new Date();
+    for (let i = 365; i > 0; i--) {
+        const date = new Date();
+        date.setDate(today.getDate() - i + 1);
+        historicalData.push({
+            date: date,
+            apaRece: Math.floor(Math.random() * (5 - 0 + 1)), // Consum mai mic la nivel de ap
+            apaCalda: Math.floor(Math.random() * (3 - 0 + 1))  // Consum mai mic la nivel de ap
+        });
+    }
+
+    const ctx = document.getElementById('dailyConsumptionChart').getContext('2d');
+    const dailyChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: [], datasets: [ { label: 'Consum apă rece (m³)', data: [], backgroundColor: 'rgba(54, 162, 235, 0.7)' }, { label: 'Consum apă caldă (m³)', data: [], backgroundColor: 'rgba(255, 99, 132, 0.7)' } ] },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'Consum (m³)' } }, x: { title: { display: true, text: 'Data' } } },
+            plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } }
+        }
+    });
+
+    function updateChartAndStats(data) {
+        dailyChart.data.labels = data.map(item => item.date.toLocaleDateString('ro-RO', { day: '2-digit', month: 'short' }));
+        dailyChart.data.datasets[0].data = data.map(item => item.apaRece);
+        dailyChart.data.datasets[1].data = data.map(item => item.apaCalda);
+        dailyChart.update();
+
+        const totalConsumptionCold = data.reduce((sum, item) => sum + item.apaRece, 0);
+        const totalConsumptionHot = data.reduce((sum, item) => sum + item.apaCalda, 0);
+        
+        const averageConsumptionCold = data.length > 0 ? totalConsumptionCold / data.length : 0;
+        const averageConsumptionHot = data.length > 0 ? totalConsumptionHot / data.length : 0;
+
+        document.getElementById('totalConsumptionCold').textContent = totalConsumptionCold.toFixed(2);
+        document.getElementById('totalConsumptionHot').textContent = totalConsumptionHot.toFixed(2);
+        document.getElementById('averageConsumptionCold').textContent = averageConsumptionCold.toFixed(2);
+        document.getElementById('averageConsumptionHot').textContent = averageConsumptionHot.toFixed(2);
+    }
+
+    const dateSlider = document.getElementById('date-slider');
+    const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    const startIndex = historicalData.findIndex(d => d.date.getTime() >= firstDayOfMonth.getTime());
+    const endIndex = historicalData.length - 1;
+
+    noUiSlider.create(dateSlider, {
+        start: [startIndex, endIndex],
+        connect: true,
+        step: 1,
+        range: { 'min': 0, 'max': historicalData.length - 1 },
+        tooltips: [
+            { to: (value) => `De la ${historicalData[Math.round(value)].date.toLocaleDateString('ro-RO')}` },
+            { to: (value) => `Până la ${historicalData[Math.round(value)].date.toLocaleDateString('ro-RO')}` }
+        ],
+        pips: {
+            mode: 'steps',
+            density: 3,
+            filter: (value, type) => {
+                const date = historicalData[Math.round(value)].date;
+                return date.getDate() === 1 ? 1 : 0;
+            },
+            format: {
+                to: (value) => historicalData[Math.round(value)].date.toLocaleDateString('ro-RO', { month: 'short', year: '2-digit' })
+            }
+        }
+    });
+
+    dateSlider.noUiSlider.on('update', function (values, handle) {
+        const startIdx = Math.round(values[0]);
+        const endIdx = Math.round(values[1]);
+        const filteredData = historicalData.slice(startIdx, endIdx + 1);
+        updateChartAndStats(filteredData);
+    });
+}
+
+function waitForDependencies() {
+    if (typeof Chart !== 'undefined' && typeof noUiSlider !== 'undefined' && typeof wNumb !== 'undefined') {
+        initializeChartAndSlider();
+    } else {
+        setTimeout(waitForDependencies, 50);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', waitForDependencies);
+</script>
+<!-- END: Sectiune JavaScript -->
 
         </div>
     </div>

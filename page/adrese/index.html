@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
     <link href="../../css/style.css" rel="stylesheet">
     
     <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
@@ -83,15 +84,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
-                        <i class="bi bi-bell" aria-hidden="true"></i>
-                        Setări Alerte
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/regiuni/index.html">
+                        <i class="bi bi-bounding-box" aria-hidden="true"></i>
+                        Regiuni / Zone
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
                         <i class="bi bi-calendar-check" aria-hidden="true"></i>
                         Perioade Calcul
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        Setări Alerte
                     </a>
                 </li>
                 <li class="nav-item">
@@ -114,23 +121,17 @@
             </h6>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-zilnice/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri/index.html">
                         <i class="bi bi-calendar-day" aria-hidden="true"></i>
-                        Citiri Zilnice
+                        Raport Citiri
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-lunare/index.html">
-                        <i class="bi bi-calendar-week" aria-hidden="true"></i>
-                        Citiri Lunare
-                    </a>
-                </li>
-                <li class="nav-item">
+<!--                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bloc-manager/index.html">
                         <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
                         Export Bloc Manager
                     </a>
-                </li>
+                </li> -->
             </ul>
 
             <!-- Section 3 - ADMINISTRARE -->
@@ -182,7 +183,7 @@
                     <h2 class="h4 mb-3">Locuri de Măsurare (Branșamente)</h2>
                     <p class="text-muted small mb-4">Un loc de măsurare este un grup de locuri de consum (apartamente). Adaugă un branșament folosind codul primit de la Decor Press.</p>
 
-                    <!-- Card pentru Adaugare Bransament (stil din screenshot) -->
+                    <!-- Card pentru Adaugare Bransament -->
                     <div class="card add-address-card-bg mb-4">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-2">Adaugă un loc de măsurare nou</h5>
@@ -193,11 +194,11 @@
                         </div>
                     </div>
 
-                    <!-- Exemplu Bransament CURENT (stil din screenshot) -->
+                    <!-- Exemplu Bransament CURENT -->
                     <div class="card address-card-dashed mb-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title mb-0">Str. Libertății, Nr. 24, Bloc C2 <small class="text-muted">(Cod: B12345678)</small></h5>
+                                <h5 class="card-title mb-0"><a href="../../page/citiri/bransament.html" class="text-decoration-none">Str. Libertății, Nr. 24, Bloc C2</a> <small class="text-muted">(Cod: B12345678) Regiune: Zona A Centru</small></h5>
                                 <span class="badge bg-primary">CURENT</span>
                             </div>
                             <div class="mb-3">
@@ -212,17 +213,20 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <a href="../../page/apartamente/index.html" class="btn btn-sm btn-outline-secondary me-2">Locuri Consum</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#modalAtribuieRegiune">
+                                    <i class="bi bi-bounding-box" aria-hidden="true"></i> Regiune
+                                </button>
+                                <a href="../../page/apartamente/index.html" class="btn btn-sm btn-secondary me-2">Locuri Consum</a>
                                 <button type="button" class="btn btn-sm btn-outline-primary" disabled>Setează curent</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Exemplu Bransament INACTIV (stil din screenshot) -->
+                    <!-- Exemplu Bransament INACTIV -->
                     <div class="card address-card-dashed mb-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title mb-0">B-dul Unirii, Nr. 10, Bloc A5 <small class="text-muted">(Cod: B87654321)</small></h5>
+                                <h5 class="card-title mb-0"><a href="../../page/citiri/bransament.html" class="text-decoration-none">B-dul Unirii, Nr. 10, Bloc A5</a> <small class="text-muted">(Cod: B87654321) Regiune: Implicit</small></h5>
                             </div>
                              <div class="mb-3">
                                 <h6 class="text-muted small">SETĂRI GENERALE ALERTE PENTRU ACEST LOC DE MASURARE:</h6>
@@ -236,7 +240,10 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <a href="../../page/apartamente/index.html" class="btn btn-sm btn-outline-secondary me-2">Locuri Consum</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#modalAtribuieRegiune">
+                                    <i class="bi bi-bounding-box" aria-hidden="true"></i> Regiune
+                                </button>
+                                <a href="../../page/apartamente/index.html" class="btn btn-sm btn-secondary me-2">Locuri Consum</a>
                                 <button type="button" class="btn btn-sm btn-outline-primary">Setează curent</button>
                             </div>
                         </div>
@@ -268,7 +275,7 @@
                     <div class="card address-card-dashed mb-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title mb-0">Str. Libertății, Nr. 24, Bloc C2, Ap. 12 <small class="text-muted">(Cod: A11223344)</small></h5>
+                                <h5 class="card-title mb-0"><a href="../../page/citiri/apartament.html" class="text-decoration-none">Str. Libertății, Nr. 24, Bloc C2, Ap. 12</a> <small class="text-muted">(Cod: A11223344)</small></h5>
                                 <span class="badge bg-primary">CURENT</span>
                             </div>
                             <div class="mb-3">
@@ -284,29 +291,6 @@
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="button" class="btn btn-sm btn-outline-primary" disabled>Setează curent</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Exemplu Apartament INACTIV -->
-                    <div class="card address-card-dashed mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title mb-0">Str. Soarelui, Nr. 5, Ap. 3 <small class="text-muted">(Cod: A55667788)</small></h5>
-                            </div>
-                             <div class="mb-3">
-                                <h6 class="text-muted small">SETĂRI ALERTE INDIVIDUALE:</h6>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="alertZeroA2">
-                                    <label class="form-check-label" for="alertZeroA2">Alertă consum zero/lună</label>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="alertMediaA2" checked>
-                                    <label class="form-check-label" for="alertMediaA2">Alertă consum peste medie</label>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-sm btn-outline-primary">Setează curent</button>
                             </div>
                         </div>
                     </div>
@@ -368,12 +352,44 @@
     </div>
 </div>
 
+<!-- MODIFICARE: Noul modal pentru atribuirea regiunii a fost adaugat aici -->
+<div class="modal fade" id="modalAtribuieRegiune" tabindex="-1" aria-labelledby="modalAtribuieRegiuneLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAtribuieRegiuneLabel">Atribuie o Regiune</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted small mb-3">Mai multe locuri de măsurare pot fi grupate pe regiuni pentru a avea un raport al consumului pe regiune.</p>
+                <form>
+                    <div class="mb-3">
+                        <label for="selectRegiune" class="form-label">Selectează Regiunea</label>
+                        <select class="form-select" id="selectRegiune">
+                            <option selected>Alege o regiune...</option>
+                            <option value="1">Regiunea Centru</option>
+                            <option value="2">Regiunea Nord</option>
+                            <option value="3">Regiunea Sud-Est</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+                <button type="button" class="btn btn-primary">Salvează</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
         </div>
     </div>
 
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
     <script src="../../js/dashboard.js" class="astro-vvvwv3sm"></script>

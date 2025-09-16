@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
     <link href="../../css/style.css" rel="stylesheet">
     
     <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
@@ -83,15 +84,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/setari-alerte/index.html">
-                        <i class="bi bi-bell" aria-hidden="true"></i>
-                        Setări Alerte
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/regiuni/index.html">
+                        <i class="bi bi-bounding-box" aria-hidden="true"></i>
+                        Regiuni / Zone
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
                         <i class="bi bi-calendar-check" aria-hidden="true"></i>
                         Perioade Calcul
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        Setări Alerte
                     </a>
                 </li>
                 <li class="nav-item">
@@ -114,23 +121,17 @@
             </h6>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-zilnice/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri/index.html">
                         <i class="bi bi-calendar-day" aria-hidden="true"></i>
-                        Citiri Zilnice
+                        Raport Citiri
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-lunare/index.html">
-                        <i class="bi bi-calendar-week" aria-hidden="true"></i>
-                        Citiri Lunare
-                    </a>
-                </li>
-                <li class="nav-item">
+<!--                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bloc-manager/index.html">
                         <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
                         Export Bloc Manager
                     </a>
-                </li>
+                </li> -->
             </ul>
 
             <!-- Section 3 - ADMINISTRARE -->
@@ -171,33 +172,182 @@
 <main class="main px-md-4"><div class="container-custom-width">
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <h1>Setari Alerte</h1>
+        <h1>Setări Alerte</h1>
     </div>
-
 
     <div class="row">
         
+        <!-- START: Card Contacte Prioritare -->
         <div class="col-md-12 mb-4">
             <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Contacte Prioritare pentru Alerte</h5>
+                </div>
                 <div class="card-body">
+                    <p class="card-text text-muted small">
+                        Dacă doriți ca alertele să fie trimise către o altă adresă de email sau un alt număr de telefon (de exemplu, către un administrator tehnic), le puteți introduce mai jos. Dacă aceste câmpuri sunt lăsate goale, se vor folosi datele din pagina "Contul Meu".
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="alertEmail" class="form-label">Adresă de email pentru alerte</label>
+                            <input type="email" class="form-control" id="alertEmail" placeholder="exemplu@domeniu.com">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="alertTelefon" class="form-label">Număr de telefon pentru alerte SMS</label>
+                            <input type="tel" class="form-control" id="alertTelefon" placeholder="07xx xxx xxx">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Card Contacte Prioritare -->
 
-                    Content goes here
+        <!-- START: Card Alerte Critice (SMS) -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Alerte Critice (Notificări prin SMS)</h5>
+                </div>
+                <div class="card-body">
+                     <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="smsActiv" checked>
+                        <label class="form-check-label" for="smsActiv"><strong>Activează alertele critice prin SMS</strong></label>
+                    </div>
+                    <hr>
+
+                    <!-- Alerta Teava Sparta -->
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alertaBurst" checked>
+                            <label class="form-check-label" for="alertaBurst">Alertă Țeavă Spartă (Burst)</label>
+                        </div>
+                        <p class="text-muted small ms-4">Se declanșează la un consum de peste 250 litri/oră, timp de 60 de minute. Indică o defecțiune majoră pe instalație.</p>
+                    </div>
+
+                     <!-- Alerta Scurgere Continua -->
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alertaLeakage" checked>
+                            <label class="form-check-label" for="alertaLeakage">Alertă Scurgere Continuă (Leakage)</label>
+                        </div>
+                        <p class="text-muted small ms-4">Se declanșează la un consum de peste 25 litri/oră, timp de 24 de ore consecutive. Indică o defecțiune minoră (ex: rezervor WC defect).</p>
+                    </div>
+
+                    <!-- Alerta Inghet -->
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alertaFreeze" checked>
+                            <label class="form-check-label" for="alertaFreeze">Alertă Îngheț (Freeze)</label>
+                        </div>
+                        <p class="text-muted small ms-4">Se declanșează dacă temperatura apei înregistrată de contor scade sub 5°C. Indică un risc de deteriorare a contorului și a instalației.</p>
+                    </div>
+
+                    <!-- Alerta Frauda -->
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alertaTamper">
+                            <label class="form-check-label" for="alertaTamper">Alertă Fraudă (Tamper)</label>
+                        </div>
+                        <p class="text-muted small ms-4">Se declanșează dacă se deschide capacul contorului. Indică o posibilă tentativă de fraudare.</p>
+                    </div>
+
+                     <!-- Alerta Curgere Inversa -->
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alertaBackflow">
+                            <label class="form-check-label" for="alertaBackflow">Alertă Curgere Inversă (Backflow)</label>
+                        </div>
+                        <p class="text-muted small ms-4">Se declanșează dacă se detectează un flux de apă în sens invers. Indică o problemă de presiune sau o instalare incorectă.</p>
+                    </div>
 
                 </div>
             </div>
+        </div>
+        <!-- END: Card Alerte Critice -->
+
+        <!-- START: Card Alerte Non-Critice (Email) -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Alerte Non-Critice (Notificări prin Email)</h5>
+                </div>
+                <div class="card-body">
+                    
+                    <!-- Alerta Baterie Slaba -->
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alertaBaterie" checked>
+                            <label class="form-check-label" for="alertaBaterie">Alertă Baterie Slabă (Low Battery)</label>
+                        </div>
+                        <p class="text-muted small ms-4">Veți fi notificat când bateria unui contor este pe punctul de a se epuiza, pentru a putea planifica înlocuirea acestuia.</p>
+                    </div>
+
+                    <!-- Alerta Consum Zero X Zile -->
+                    <div class="mb-3">
+                         <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alertaConsumZeroZile">
+                            <label class="form-check-label" for="alertaConsumZeroZile">Alertă consum zero pentru o perioadă de zile (la nivel de apartament)</label>
+                        </div>
+                        <div class="row ms-2 mt-2">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" value="3" min="1">
+                                    <span class="input-group-text">zile</span>
+                                </div>
+                                <div class="form-text">Utilă pentru a monitoriza apartamentele în care locuiesc persoane vulnerabile.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alerta Consum Zero/Luna -->
+                     <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alertaConsumZeroLuna" checked>
+                            <label class="form-check-label" for="alertaConsumZeroLuna">Alertă consum zero într-o lună (la nivel de apartament sau branșament)</label>
+                        </div>
+                         <p class="text-muted small ms-4">Veți fi notificat dacă un loc de consum sau un întreg branșament nu înregistrează consum pe parcursul unei luni calendaristice.</p>
+                    </div>
+
+                     <!-- Alerta Consum Peste Medie -->
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alertaConsumMedie" checked>
+                            <label class="form-check-label" for="alertaConsumMedie">Alertă consum cu X% mai mare decât media ultimelor 3 luni</label>
+                        </div>
+                        <div class="row ms-2 mt-2">
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" value="20" min="1">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                 <div class="form-text">Utilă pentru a identifica din timp posibile pierderi sau modificări ale tiparului de consum.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- END: Card Alerte Non-Critice -->
+
+         <!-- Buton de Salvare -->
+        <div class="d-flex justify-content-end mb-4">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle me-2"></i>Salvează Modificările
+            </button>
         </div>
 
     </div>
 
 </div></main>
 
-
-
         </div>
     </div>
 
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
     <script src="../../js/dashboard.js" class="astro-vvvwv3sm"></script>

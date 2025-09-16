@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -13,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
     <link href="css/style.css" rel="stylesheet">
     
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png" sizes="180x180">
@@ -82,15 +84,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="page/setari-alerte/index.html">
-                        <i class="bi bi-bell" aria-hidden="true"></i>
-                        Setări Alerte
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/regiuni/index.html">
+                        <i class="bi bi-bounding-box" aria-hidden="true"></i>
+                        Regiuni / Zone
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 " href="page/perioade-calcul/index.html">
                         <i class="bi bi-calendar-check" aria-hidden="true"></i>
                         Perioade Calcul
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        Setări Alerte
                     </a>
                 </li>
                 <li class="nav-item">
@@ -113,23 +121,17 @@
             </h6>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="page/citiri-zilnice/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="page/citiri/index.html">
                         <i class="bi bi-calendar-day" aria-hidden="true"></i>
-                        Citiri Zilnice
+                        Raport Citiri
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="page/citiri-lunare/index.html">
-                        <i class="bi bi-calendar-week" aria-hidden="true"></i>
-                        Citiri Lunare
-                    </a>
-                </li>
-                <li class="nav-item">
+<!--                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 " href="page/bloc-manager/index.html">
                         <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
                         Export Bloc Manager
                     </a>
-                </li>
+                </li> -->
             </ul>
 
             <!-- Section 3 - ADMINISTRARE -->
@@ -183,7 +185,7 @@
                         <p class="hero-subtitle">
                             Monitorizare inteligentă în timp real a consumului de apă. Date precise, alerte instantanee și eficiență maximă, direct în panoul dumneavoastră.
                         </p>
-                        <a href="page/citiri-zilnice/index.html" class="btn btn-outline-light btn-lg mt-3">Vezi Consumul</a>
+                        <a href="page/citiri/index.html" class="btn btn-outline-light btn-lg mt-3">Vezi Consumul</a>
                     </div>
                 </div>
             </div>
@@ -197,7 +199,7 @@
                 <div class="card-body">
                     <h3 class="card-title">2</h3>
                     <p class="card-text">Locuri de măsurare (branșamente)</p>
-                    <a href="page/adrese/index.html" class="fp-link">Mergeți la locuri de măsurare &rarr;</a>
+                    <a href="" class="fp-link">Mergeți la locuri de măsurare &rarr;</a>
                 </div>
             </div>
         </div>
@@ -206,7 +208,7 @@
                 <div class="card-body">
                     <h3 class="card-title">84</h3>
                     <p class="card-text">Locuri de consum (apartamente)</p>
-                    <a href="page/adrese/index.html#loc-consum" class="fp-link">Mergeți la locuri de consum &rarr;</a>
+                    <a href="" class="fp-link">Mergeți la locuri de consum &rarr;</a>
                 </div>
             </div>
         </div>
@@ -215,7 +217,7 @@
                 <div class="card-body">
                     <h3 class="card-title">264</h3>
                     <p class="card-text">Echipamente de măsură</p>
-                    <a href="page/citiri-zilnice/index.html" class="fp-link">Vizualizați citiri zilnice &rarr;</a>
+                    <a href="" class="fp-link">Vizualizați Citiri &rarr;</a>
                 </div>
             </div>
         </div>
@@ -224,7 +226,7 @@
                 <div class="card-body">
                     <h3 class="card-title">7</h3> 
                     <p class="card-text">Alerte active</p>
-                    <a href="page/alerte/index.html" class="fp-link">Mergeți la alerte &rarr;</a>
+                    <a href="" class="fp-link">Mergeți la alerte &rarr;</a>
                 </div>
             </div>
         </div>
@@ -256,7 +258,7 @@
                         <h6 class="card-subtitle mb-2 text-body-secondary">LOC DE MĂSURARE ACTIV</h6>
                         <h5 class="card-title mb-2"><i class="bi bi-building-fill me-2"></i> Str. Nițu Vasile, nr. 57, Bucuresti, Sector 4</h5>
                         <p class="card-text mb-1">Cod: 36FC403C</p>
-                        <a href="page/adrese/index.html" class="btn btn-outline-secondary btn-sm w-100 mt-3">Modifică locația activă</a>
+                        <a href="" class="btn btn-outline-secondary btn-sm w-100 mt-3">Modifică locația activă</a>
                     </div>
                 </div>
                 
@@ -266,7 +268,7 @@
                         <h6 class="card-subtitle mb-2 text-body-secondary">LOC DE CONSUM ACTIV</h6>
                         <h5 class="card-title mb-2"><i class="bi bi-house-door-fill me-2"></i> Str. Nițu Vasile, nr. 57, Bucuresti, Sector 4 - Decor Press</h5>
                         <p class="card-text mb-1">Cod: 7R5PXY1Z</p>
-                        <a href="page/adrese/index.html#loc-consum" class="btn btn-outline-secondary btn-sm w-100 mt-3">Modifică locația activă</a>
+                        <a href="" class="btn btn-outline-secondary btn-sm w-100 mt-3">Modifică locația activă</a>
                     </div>
                 </div>
             </div>
@@ -438,6 +440,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
     <script src="js/dashboard.js" class="astro-vvvwv3sm"></script>

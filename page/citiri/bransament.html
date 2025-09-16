@@ -121,13 +121,13 @@
             </h6>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/citiri/index.html">
                         <i class="bi bi-calendar-day" aria-hidden="true"></i>
                         Raport Citiri
                     </a>
                 </li>
 <!--                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/bloc-manager/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bloc-manager/index.html">
                         <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
                         Export Bloc Manager
                     </a>
@@ -169,30 +169,212 @@
     </div>
 </div>
 
-<main class="main px-md-4"><div class="container-custom-width">
+<main class="main px-md-4"><div class="container-full-width">
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <h1>Export Bloc Manager</h1>
+        <!-- Titlul paginii este specific bransamentului -->
+        <h1>Raport citiri pentru: Str. Unirii, Nr. 10</h1>
     </div>
 
-
     <div class="row">
-        
         <div class="col-md-12 mb-4">
             <div class="card">
                 <div class="card-body">
 
-                    Content goes here
+                    <h5 class="card-title mb-4">Evoluția consumului zilnic</h5>
+                    
+                    <div style="height: 400px;">
+                        <canvas id="dailyConsumptionChart"></canvas>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <div id="date-slider"></div>
+                    </div>
 
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- START: Carduri de statistici si descarcare -->
+    <div class="row">
+        <!-- Card 1: Statistici perioada selectata (MODIFICAT) -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Sumar pentru perioada selectată</h5>
+                    <!-- Consum total detaliat -->
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="mb-0 text-primary">Consum total apă rece:</p>
+                        <p class="mb-0 fw-bold fs-5 text-primary"><span id="totalConsumptionCold">--</span> m³</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0 text-danger">Consum total apă caldă:</p>
+                        <p class="mb-0 fw-bold fs-5 text-danger"><span id="totalConsumptionHot">--</span> m³</p>
+                    </div>
+                    <hr>
+                    <!-- Consum mediu detaliat -->
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="mb-0 text-primary">Consum mediu zilnic (apă rece):</p>
+                        <p class="mb-0 fw-bold fs-5 text-primary"><span id="averageConsumptionCold">--</span> m³ / zi</p>
+                    </div>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0 text-danger">Consum mediu zilnic (apă caldă):</p>
+                        <p class="mb-0 fw-bold fs-5 text-danger"><span id="averageConsumptionHot">--</span> m³ / zi</p>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Card 2: Descarcare raport (Neschimbat) -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Export Raport Citiri</h5>
+                    <div class="input-group">
+                        <select class="form-select" id="selectMonthExport">
+                            
+                        </select>
+                        <button class="btn btn-primary" type="button">
+                            <i class="bi bi-download me-2"></i> Descarcă (Excel)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- END: Carduri de statistici si descarcare -->
+
+    <!-- START: Card cu locuri de consum -->
+    <div class="row">
+        <div class="col-12">
+             <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Locuri de consum în Str. Unirii, Nr. 10</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Apartament 1
+                        <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Apartament 2
+                        <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Apartament 3
+                        <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                    </li>
+                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Apartament 4
+                        <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END: Card cu locuri de consum -->
+
 
 </div></main>
 
+<!-- START: Sectiune JavaScript -->
+<script>
+function initializeChartAndSlider() {
+    
+    const historicalData = [];
+    const today = new Date();
+    for (let i = 365; i > 0; i--) {
+        const date = new Date();
+        date.setDate(today.getDate() - i + 1);
+        historicalData.push({
+            date: date,
+            apaRece: Math.floor(Math.random() * (16 - 3 + 1)) + 3,
+            apaCalda: Math.floor(Math.random() * (10 - 2 + 1)) + 2
+        });
+    }
 
+    const ctx = document.getElementById('dailyConsumptionChart').getContext('2d');
+    const dailyChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: [], datasets: [ { label: 'Consum apă rece (m³)', data: [], backgroundColor: 'rgba(54, 162, 235, 0.7)' }, { label: 'Consum apă caldă (m³)', data: [], backgroundColor: 'rgba(255, 99, 132, 0.7)' } ] },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'Consum (m³)' } }, x: { title: { display: true, text: 'Data' } } },
+            plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } }
+        }
+    });
+
+    // MODIFICARE: Logica de calcul si actualizare a statisticilor a fost detaliata
+    function updateChartAndStats(data) {
+        // Actualizam graficul
+        dailyChart.data.labels = data.map(item => item.date.toLocaleDateString('ro-RO', { day: '2-digit', month: 'short' }));
+        dailyChart.data.datasets[0].data = data.map(item => item.apaRece);
+        dailyChart.data.datasets[1].data = data.map(item => item.apaCalda);
+        dailyChart.update();
+
+        // Calculam statisticile separat pentru apa rece si calda
+        const totalConsumptionCold = data.reduce((sum, item) => sum + item.apaRece, 0);
+        const totalConsumptionHot = data.reduce((sum, item) => sum + item.apaCalda, 0);
+        
+        const averageConsumptionCold = data.length > 0 ? totalConsumptionCold / data.length : 0;
+        const averageConsumptionHot = data.length > 0 ? totalConsumptionHot / data.length : 0;
+
+        // Actualizam elementele HTML corespunzatoare cu noile ID-uri
+        document.getElementById('totalConsumptionCold').textContent = totalConsumptionCold.toFixed(2);
+        document.getElementById('totalConsumptionHot').textContent = totalConsumptionHot.toFixed(2);
+        document.getElementById('averageConsumptionCold').textContent = averageConsumptionCold.toFixed(2);
+        document.getElementById('averageConsumptionHot').textContent = averageConsumptionHot.toFixed(2);
+    }
+
+    const dateSlider = document.getElementById('date-slider');
+    const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    const startIndex = historicalData.findIndex(d => d.date.getTime() >= firstDayOfMonth.getTime());
+    const endIndex = historicalData.length - 1;
+
+    noUiSlider.create(dateSlider, {
+        start: [startIndex, endIndex],
+        connect: true,
+        step: 1,
+        range: { 'min': 0, 'max': historicalData.length - 1 },
+        tooltips: [
+            { to: (value) => `De la ${historicalData[Math.round(value)].date.toLocaleDateString('ro-RO')}` },
+            { to: (value) => `Până la ${historicalData[Math.round(value)].date.toLocaleDateString('ro-RO')}` }
+        ],
+        pips: {
+            mode: 'steps',
+            density: 3,
+            filter: (value, type) => {
+                const date = historicalData[Math.round(value)].date;
+                return date.getDate() === 1 ? 1 : 0;
+            },
+            format: {
+                to: (value) => historicalData[Math.round(value)].date.toLocaleDateString('ro-RO', { month: 'short', year: '2-digit' })
+            }
+        }
+    });
+
+    dateSlider.noUiSlider.on('update', function (values, handle) {
+        const startIdx = Math.round(values[0]);
+        const endIdx = Math.round(values[1]);
+        const filteredData = historicalData.slice(startIdx, endIdx + 1);
+        updateChartAndStats(filteredData);
+    });
+}
+
+function waitForDependencies() {
+    if (typeof Chart !== 'undefined' && typeof noUiSlider !== 'undefined' && typeof wNumb !== 'undefined') {
+        initializeChartAndSlider();
+    } else {
+        setTimeout(waitForDependencies, 50);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', waitForDependencies);
+</script>
+<!-- END: Sectiune JavaScript -->
 
         </div>
     </div>

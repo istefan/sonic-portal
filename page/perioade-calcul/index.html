@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
     <link href="../../css/style.css" rel="stylesheet">
     
     <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
@@ -83,15 +84,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
-                        <i class="bi bi-bell" aria-hidden="true"></i>
-                        Setări Alerte
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/regiuni/index.html">
+                        <i class="bi bi-bounding-box" aria-hidden="true"></i>
+                        Regiuni / Zone
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/perioade-calcul/index.html">
                         <i class="bi bi-calendar-check" aria-hidden="true"></i>
                         Perioade Calcul
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        Setări Alerte
                     </a>
                 </li>
                 <li class="nav-item">
@@ -114,23 +121,17 @@
             </h6>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-zilnice/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri/index.html">
                         <i class="bi bi-calendar-day" aria-hidden="true"></i>
-                        Citiri Zilnice
+                        Raport Citiri
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-lunare/index.html">
-                        <i class="bi bi-calendar-week" aria-hidden="true"></i>
-                        Citiri Lunare
-                    </a>
-                </li>
-                <li class="nav-item">
+<!--                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bloc-manager/index.html">
                         <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
                         Export Bloc Manager
                     </a>
-                </li>
+                </li> -->
             </ul>
 
             <!-- Section 3 - ADMINISTRARE -->
@@ -174,30 +175,257 @@
         <h1>Perioade Calcul</h1>
     </div>
 
+    <!-- START: Paragraf explicativ -->
+    <div class="alert alert-secondary" role="alert">
+        <h5 class="alert-heading">Cum funcționează perioadele de calcul</h5>
+        <p class="mb-0">
+            Rapoartele standard lunare sunt generate considerând perioada de la prima până la ultima zi a lunii. Dacă doriți ca rapoartele să fie generate în funcție de o altă dată (de exemplu, data la care citește furnizorul principal de apă), puteți seta acest lucru aici.
+        </p>
+        <hr>
+        <p class="mb-0 small">
+            <strong>Ierarhia setărilor este următoarea:</strong>
+        </p>
+        <ul class="small">
+            <li>O <strong>dată specifică</strong> setată pentru o anumită lună la un loc de măsurare are prioritatea cea mai mare.</li>
+            <li>Dacă nu există o dată specifică, se va folosi <strong>data generală</strong> setată pentru acel loc de măsurare.</li>
+            <li>Dacă nici aceasta nu este setată, se va folosi <strong>data generală la nivel de cont</strong>.</li>
+            <li>Dacă nicio dată nu este configurată, se va folosi ciclul lunar standard (prima zi a lunii).</li>
+        </ul>
+    </div>
+    <!-- END: Paragraf explicativ -->
 
     <div class="row">
         
+        <!-- Card pentru setarea datei generale la nivel de cont -->
         <div class="col-md-12 mb-4">
             <div class="card">
                 <div class="card-body">
+                    <h5 class="card-title mb-3">Setare Generală la Nivel de Cont</h5>
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <label for="ziuaGeneralaCont" class="form-label">Ziua lunii pentru generarea rapoartelor:</label>
+                        </div>
+                        <div class="col-md-3">
+                             <select class="form-select" id="ziuaGeneralaCont">
+                                                                    <option value="1" >1</option>
+                                                                    <option value="2" >2</option>
+                                                                    <option value="3" >3</option>
+                                                                    <option value="4" >4</option>
+                                                                    <option value="5" >5</option>
+                                                                    <option value="6" >6</option>
+                                                                    <option value="7" selected>7</option>
+                                                                    <option value="8" >8</option>
+                                                                    <option value="9" >9</option>
+                                                                    <option value="10" >10</option>
+                                                                    <option value="11" >11</option>
+                                                                    <option value="12" >12</option>
+                                                                    <option value="13" >13</option>
+                                                                    <option value="14" >14</option>
+                                                                    <option value="15" >15</option>
+                                                                    <option value="16" >16</option>
+                                                                    <option value="17" >17</option>
+                                                                    <option value="18" >18</option>
+                                                                    <option value="19" >19</option>
+                                                                    <option value="20" >20</option>
+                                                                    <option value="21" >21</option>
+                                                                    <option value="22" >22</option>
+                                                                    <option value="23" >23</option>
+                                                                    <option value="24" >24</option>
+                                                                    <option value="25" >25</option>
+                                                                    <option value="26" >26</option>
+                                                                    <option value="27" >27</option>
+                                                                    <option value="28" >28</option>
+                                                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    Content goes here
+        <!-- Card pentru setari individuale pe loc de masurare -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Setări Individuale pe Loc de Măsurare</h5>
+                    <div class="mb-4">
+                        <label for="selectLocMasurare" class="form-label">Selectează un loc de măsurare pentru a-l configura:</label>
+                        <select class="form-select" id="selectLocMasurare">
+                            <option value="1" selected>Str. Libertății, Nr. 24, Bloc C2 (B12345678)</option>
+                            <option value="2">B-dul Unirii, Nr. 10, Bloc A5 (B87654321)</option>
+                        </select>
+                    </div>
 
+                    <hr>
+
+                    <!-- Sectiunea de configurare pentru locatia selectata -->
+                    <div id="configuratieLocMasurare">
+                        <h6 class="text-muted mb-3">Configurare pentru: Str. Libertății, Nr. 24, Bloc C2</h6>
+                        
+                        <!-- Setare generala pentru locatia selectata -->
+                        <div class="row align-items-center mb-4">
+                            <div class="col-md-4">
+                                <label for="ziuaGeneralaLoc" class="form-label">Setează o dată generală pentru acest loc de măsurare (opțional):</label>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" id="ziuaGeneralaLoc">
+                                    <option selected>Niciuna (folosește data de cont)</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>
+                                                                            <option value="6">6</option>
+                                                                            <option value="7">7</option>
+                                                                            <option value="8">8</option>
+                                                                            <option value="9">9</option>
+                                                                            <option value="10">10</option>
+                                                                            <option value="11">11</option>
+                                                                            <option value="12">12</option>
+                                                                            <option value="13">13</option>
+                                                                            <option value="14">14</option>
+                                                                            <option value="15">15</option>
+                                                                            <option value="16">16</option>
+                                                                            <option value="17">17</option>
+                                                                            <option value="18">18</option>
+                                                                            <option value="19">19</option>
+                                                                            <option value="20">20</option>
+                                                                            <option value="21">21</option>
+                                                                            <option value="22">22</option>
+                                                                            <option value="23">23</option>
+                                                                            <option value="24">24</option>
+                                                                            <option value="25">25</option>
+                                                                            <option value="26">26</option>
+                                                                            <option value="27">27</option>
+                                                                            <option value="28">28</option>
+                                                                    </select>
+                            </div>
+                        </div>
+
+                        <!-- Setari specifice pe urmatoarele 12 luni -->
+                        <p class="small text-muted">Mai jos, poți seta o dată specifică pentru fiecare lună (de ex., data anunțată de furnizor). Aceasta va suprascrie orice setare generală.</p>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Lună</th>
+                                        <th>An</th>
+                                        <th>Setează o zi specifică</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                                                        <tr>
+                                        <td>Septembrie</td>
+                                        <td>2025</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Octombrie</td>
+                                        <td>2025</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Noiembrie</td>
+                                        <td>2025</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Decembrie</td>
+                                        <td>2025</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Ianuarie</td>
+                                        <td>2026</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Februarie</td>
+                                        <td>2026</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Martie</td>
+                                        <td>2026</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Aprilie</td>
+                                        <td>2026</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Mai</td>
+                                        <td>2026</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Iunie</td>
+                                        <td>2026</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>Iulie</td>
+                                        <td>2026</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                        <tr>
+                                        <td>August</td>
+                                        <td>2026</td>
+                                        <td>
+                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
+                                        </td>
+                                    </tr>
+                                                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
 
+    <!-- Nota finala si butonul de salvare -->
+    <p class="small text-muted fst-italic mb-3">
+        * Notă: Dacă Decor Press realizează serviciul de calcul al consumurilor, se vor utiliza citirile din data stabilită conform setărilor de mai sus.
+    </p>
+    <div class="d-flex justify-content-end mb-4">
+        <button type="button" class="btn btn-primary">
+            <i class="bi bi-check-circle me-2"></i>Salvează Toate Modificările
+        </button>
+    </div>
+
 </div></main>
-
-
 
         </div>
     </div>
 
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
     <script src="../../js/dashboard.js" class="astro-vvvwv3sm"></script>

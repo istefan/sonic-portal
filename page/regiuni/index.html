@@ -84,7 +84,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/regiuni/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/regiuni/index.html">
                         <i class="bi bi-bounding-box" aria-hidden="true"></i>
                         Regiuni / Zone
                     </a>
@@ -127,7 +127,7 @@
                     </a>
                 </li>
 <!--                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/bloc-manager/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bloc-manager/index.html">
                         <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
                         Export Bloc Manager
                     </a>
@@ -172,26 +172,117 @@
 <main class="main px-md-4"><div class="container-custom-width">
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <h1>Export Bloc Manager</h1>
+        <h1>Regiuni</h1>
     </div>
 
-
     <div class="row">
-        
+        <!-- Secțiunea pentru Gestionarea Regiunilor -->
         <div class="col-md-12 mb-4">
             <div class="card">
                 <div class="card-body">
+                    <h2 class="h4 mb-3">Gestionare Regiuni / Zone</h2>
+                    <!-- MODIFICAT: Descrierea a fost actualizata pentru a reflecta managementul pe regiuni. -->
+                    <p class="text-muted small mb-4">Locurile de Măsurare (Branșamentele) pot fi grupate pe regiuni pentru a vizualiza consumul. Puteți genera o regiune nouă, care va primi un cod unic, sau puteți adăuga o regiune existentă folosind un cod primit de la alt utilizator.</p>
 
-                    Content goes here
+                    <!-- Card pentru Adaugare Regiune -->
+                    <div class="card add-address-card-bg mb-4">
+                        <div class="card-body text-center">
+                            <!-- MODIFICAT: Titlul si textul butonului se refera acum la Regiuni. -->
+                            <h5 class="card-title mb-2">Adaugă o regiune nouă</h5>
+                            <p class="card-text text-muted mb-3">Creați o regiune nouă sau adăugați una existentă folosind un cod.</p>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdaugaRegiune">
+                                <i class="bi bi-plus-circle"></i> Adaugă Regiune
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Exemplu Regiune 1 -->
+                    <div class="card address-card-dashed mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Regiunea A <small class="text-muted">(Cod: R12345678)</small></h5>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="../../page/citiri/zona.html" class="btn btn-sm btn-outline-secondary me-2">Raport Citiri</a>
+                                <button type="button" class="btn btn-sm btn-outline-danger" onclick="return confirm('Sunteți sigur că doriți să ștergeți această regiune?');">Șterge</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemplu Regiune 2 -->
+                    <div class="card address-card-dashed mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Regiunea B <small class="text-muted">(Cod: R87654321)</small></h5>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="../../page/citiri/zona.html" class="btn btn-sm btn-outline-secondary me-2">Raport Citiri</a>
+                                <button type="button" class="btn btn-sm btn-outline-danger" onclick="return confirm('Sunteți sigur că doriți să ștergeți această regiune?');">Șterge</button>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
 
     </div>
-
 </div></main>
 
+
+<div class="modal fade" id="modalAdaugaRegiune" tabindex="-1" aria-labelledby="modalAdaugaRegiuneLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAdaugaRegiuneLabel">Adaugă o Regiune</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- Navigare cu Tab-uri pentru a alege actiunea -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="creeaza-tab" data-bs-toggle="tab" data-bs-target="#creeaza" type="button" role="tab" aria-controls="creeaza" aria-selected="true">Creează Regiune Nouă</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="adauga-cod-tab" data-bs-toggle="tab" data-bs-target="#adauga-cod" type="button" role="tab" aria-controls="adauga-cod" aria-selected="false">Adaugă cu Cod</button>
+                    </li>
+                </ul>
+
+                <!-- Continutul Tab-urilor -->
+                <div class="tab-content" id="myTabContent">
+                    
+                    <!-- Tab 1: Formular pentru crearea unei regiuni noi -->
+                    <div class="tab-pane fade show active" id="creeaza" role="tabpanel" aria-labelledby="creeaza-tab" tabindex="0">
+                        <form class="mt-3">
+                            <div class="mb-3">
+                                <label for="numeRegiune" class="form-label">Nume Regiune</label>
+                                <input type="text" class="form-control" id="numeRegiune" placeholder="Ex: Asociația Blocuri Centru">
+                                <div class="form-text">Alegeți un nume descriptiv pentru noua regiune.</div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Tab 2: Formular pentru adaugarea unei regiuni existente cu cod -->
+                    <div class="tab-pane fade" id="adauga-cod" role="tabpanel" aria-labelledby="adauga-cod-tab" tabindex="0">
+                        <form class="mt-3">
+                             <div class="mb-3">
+                                <label for="codRegiune" class="form-label">Cod Regiune</label>
+                                <input type="text" class="form-control" id="codRegiune" placeholder="Introduceți codul primit">
+                                <div class="form-text">Introduceți codul regiunii pe care l-ați primit de la un alt utilizator.</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+                <button type="button" class="btn btn-primary">Salvează</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
         </div>

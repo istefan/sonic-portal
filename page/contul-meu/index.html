@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
     <link href="../../css/style.css" rel="stylesheet">
     
     <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
@@ -83,15 +84,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
-                        <i class="bi bi-bell" aria-hidden="true"></i>
-                        Setări Alerte
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/regiuni/index.html">
+                        <i class="bi bi-bounding-box" aria-hidden="true"></i>
+                        Regiuni / Zone
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
                         <i class="bi bi-calendar-check" aria-hidden="true"></i>
                         Perioade Calcul
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                        Setări Alerte
                     </a>
                 </li>
                 <li class="nav-item">
@@ -114,23 +121,17 @@
             </h6>
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-zilnice/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri/index.html">
                         <i class="bi bi-calendar-day" aria-hidden="true"></i>
-                        Citiri Zilnice
+                        Raport Citiri
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri-lunare/index.html">
-                        <i class="bi bi-calendar-week" aria-hidden="true"></i>
-                        Citiri Lunare
-                    </a>
-                </li>
-                <li class="nav-item">
+<!--                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bloc-manager/index.html">
                         <i class="bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
                         Export Bloc Manager
                     </a>
-                </li>
+                </li> -->
             </ul>
 
             <!-- Section 3 - ADMINISTRARE -->
@@ -174,119 +175,65 @@
         <h1>Contul Meu</h1>
     </div>
 
-
     <div class="row">
-        
         <div class="col-md-12 mb-4">
             <div class="card">
                 <div class="card-body">
+                    <form>
+                        <!-- Sectiunea de Informatii Personale -->
+                        <h5 class="card-title mb-3">Informații Personale</h5>
+                        <div class="mb-3">
+                            <label for="numePrenume" class="form-label">Nume și Prenume</label>
+                            <input type="text" class="form-control" id="numePrenume" value="Popescu Ion">
+                        </div>
+                        
+                        <hr class="my-4">
 
-                    <!-- Billing address section, structured like "My cards" -->
-                    <h2 class="h4 mb-3">Adrese de facturare</h2>
-
-                    <div class="row"> <!-- Using Bootstrap grid for address cards -->
-
-                        <!-- Add New Address Card -->
-                        <div class="col-md-12 mb-4">
-                            <!-- Added custom class for the specific background -->
-                            <div class="card add-address-card-bg">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title mb-2">Adaugă adresă nouă</h5>
-                                    <p class="card-text text-muted mb-3">Asigură-te că informațiile sunt corecte pentru procesarea comenzilor.</p>
-                                    <button type="button" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Adaugă adresă</button>
-                                </div>
+                        <!-- Sectiunea de Informatii de Contact -->
+                        <h5 class="card-title mb-3">Informații de Contact</h5>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Adresă de email (Nume utilizator)</label>
+                            <input type="email" class="form-control" id="email" value="ion.popescu@email.com" disabled readonly>
+                            <div class="form-text">
+                                Adresa de email este utilizată ca nume de utilizator și nu poate fi modificată. Pentru a primi alerte pe o altă adresă, vă rugăm să o configurați în pagina de 
+                                <a href="../../page/setari-alerte/index.html">Setări Alerte</a>. Dacă nicio altă adresă nu este setată, alertele vor fi trimise aici.
                             </div>
                         </div>
 
-                        <!-- Home Address Card -->
-                        <div class="col-md-12 mb-4">
-                            <div class="card address-card-dashed"> <!-- Added custom class for dashed border -->
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h5 class="card-title mb-0">Adresă casă</h5>
-                                        <span class="badge bg-primary">CURENTA</span>
-                                    </div>
-                                    <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-sm btn-outline-primary me-2" disabled>Setează curent</button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger ms-2"><i class="bi bi-trash-fill"></i></button>
-                                    </div>
-                                </div>
+                        <div class="mb-3">
+                            <label for="telefon" class="form-label">Număr de telefon</label>
+                            <input type="tel" class="form-control" id="telefon" value="0722123456">
+                             <div class="form-text">
+                                Alertele critice prin SMS vor fi trimise la acest număr, dacă nu este specificat un altul în pagina de 
+                                <a href="../../page/setari-alerte/index.html">Setări Alerte</a>.
                             </div>
                         </div>
 
-                        <!-- Office Address Card -->
-                        <div class="col-md-12 mb-4">
-                            <div class="card address-card-dashed"> <!-- Added custom class for dashed border -->
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h5 class="card-title mb-0">Adresă birou</h5>
-                                    </div>
-                                    <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-sm btn-outline-primary me-2">Setează curent</button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger ms-2"><i class="bi bi-trash-fill"></i></button>
-                                    </div>
-                                </div>
-                            </div>
+                        <hr class="my-4">
+
+                        <!-- Sectiunea de Schimbare Parola -->
+                        <h5 class="card-title mb-3">Schimbare Parolă</h5>
+                        <div class="mb-3">
+                            <label for="parolaCurenta" class="form-label">Parola Curentă</label>
+                            <input type="password" class="form-control" id="parolaCurenta">
+                        </div>
+                        <div class="mb-3">
+                            <label for="parolaNoua" class="form-label">Parola Nouă</label>
+                            <input type="password" class="form-control" id="parolaNoua">
+                        </div>
+                         <div class="mb-3">
+                            <label for="confirmareParola" class="form-label">Confirmare Parolă Nouă</label>
+                            <input type="password" class="form-control" id="confirmareParola">
+                        </div>
+                        
+                        <!-- Butonul de Salvare -->
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle me-2"></i>Salvează Modificările
+                            </button>
                         </div>
 
-                </div>
-            </div>
-        </div>
-
-        <br><br>
-        
-        <div class="col-md-12 mb-4">
-            <div class="card">
-                <div class="card-body">
-
-                    <!-- Billing address section, structured like "My cards" -->
-                    <h2 class="h4 mb-3">Adrese de facturare</h2>
-
-                    <div class="row"> <!-- Using Bootstrap grid for address cards -->
-
-                        <!-- Add New Address Card -->
-                        <div class="col-md-12 mb-4">
-                            <!-- Added custom class for the specific background -->
-                            <div class="card add-address-card-bg">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title mb-2">Adaugă adresă nouă</h5>
-                                    <p class="card-text text-muted mb-3">Asigură-te că informațiile sunt corecte pentru procesarea comenzilor.</p>
-                                    <button type="button" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Adaugă adresă</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Home Address Card -->
-                        <div class="col-md-12 mb-4">
-                            <div class="card address-card-dashed"> <!-- Added custom class for dashed border -->
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h5 class="card-title mb-0">Adresă casă</h5>
-                                        <span class="badge bg-primary">CURENTA</span>
-                                    </div>
-                                    <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-sm btn-outline-primary me-2" disabled>Setează curent</button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger ms-2"><i class="bi bi-trash-fill"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Office Address Card -->
-                        <div class="col-md-12 mb-4">
-                            <div class="card address-card-dashed"> <!-- Added custom class for dashed border -->
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h5 class="card-title mb-0">Adresă birou</h5>
-                                    </div>
-                                    <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-sm btn-outline-primary me-2">Setează curent</button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger ms-2"><i class="bi bi-trash-fill"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    </form>
                 </div>
             </div>
         </div>
@@ -294,13 +241,13 @@
 
 </div></main>
 
-
-
         </div>
     </div>
 
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
     <script src="../../js/dashboard.js" class="astro-vvvwv3sm"></script>
