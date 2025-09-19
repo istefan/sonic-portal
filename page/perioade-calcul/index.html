@@ -175,7 +175,7 @@
         <h1>Perioade Calcul</h1>
     </div>
 
-    <!-- START: Paragraf explicativ -->
+    <!-- START: Paragraf explicativ (Neschimbat) -->
     <div class="alert alert-secondary" role="alert">
         <h5 class="alert-heading">Cum funcționează perioadele de calcul</h5>
         <p class="mb-0">
@@ -201,41 +201,19 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-3">Setare Generală la Nivel de Cont</h5>
-                    <div class="row align-items-center">
-                        <div class="col-md-4">
-                            <label for="ziuaGeneralaCont" class="form-label">Ziua lunii pentru generarea rapoartelor:</label>
+                    <!-- MODIFICARE: Campuri duplicate pentru Apa Rece si Apa Calda -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="ziGeneralaContRece" class="form-label">Ziua lunii pentru rapoarte (Apă Rece):</label>
+                            <select class="form-select" id="ziGeneralaContRece">
+                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7" selected>7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
+                            </select>
                         </div>
-                        <div class="col-md-3">
-                             <select class="form-select" id="ziuaGeneralaCont">
-                                                                    <option value="1" >1</option>
-                                                                    <option value="2" >2</option>
-                                                                    <option value="3" >3</option>
-                                                                    <option value="4" >4</option>
-                                                                    <option value="5" >5</option>
-                                                                    <option value="6" >6</option>
-                                                                    <option value="7" selected>7</option>
-                                                                    <option value="8" >8</option>
-                                                                    <option value="9" >9</option>
-                                                                    <option value="10" >10</option>
-                                                                    <option value="11" >11</option>
-                                                                    <option value="12" >12</option>
-                                                                    <option value="13" >13</option>
-                                                                    <option value="14" >14</option>
-                                                                    <option value="15" >15</option>
-                                                                    <option value="16" >16</option>
-                                                                    <option value="17" >17</option>
-                                                                    <option value="18" >18</option>
-                                                                    <option value="19" >19</option>
-                                                                    <option value="20" >20</option>
-                                                                    <option value="21" >21</option>
-                                                                    <option value="22" >22</option>
-                                                                    <option value="23" >23</option>
-                                                                    <option value="24" >24</option>
-                                                                    <option value="25" >25</option>
-                                                                    <option value="26" >26</option>
-                                                                    <option value="27" >27</option>
-                                                                    <option value="28" >28</option>
-                                                            </select>
+                        <div class="col-md-6">
+                            <label for="ziGeneralaContCalda" class="form-label">Ziua lunii pentru rapoarte (Apă Caldă):</label>
+                            <select class="form-select" id="ziGeneralaContCalda">
+                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7" selected>7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -257,157 +235,63 @@
 
                     <hr>
 
-                    <!-- Sectiunea de configurare pentru locatia selectata -->
                     <div id="configuratieLocMasurare">
                         <h6 class="text-muted mb-3">Configurare pentru: Str. Libertății, Nr. 24, Bloc C2</h6>
                         
-                        <!-- Setare generala pentru locatia selectata -->
+                        <p class="small text-muted">Setează o dată generală pentru acest loc de măsurare (opțional):</p>
+                        <!-- MODIFICARE: Campuri duplicate pentru Apa Rece si Apa Calda -->
                         <div class="row align-items-center mb-4">
-                            <div class="col-md-4">
-                                <label for="ziuaGeneralaLoc" class="form-label">Setează o dată generală pentru acest loc de măsurare (opțional):</label>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select" id="ziuaGeneralaLoc">
+                            <div class="col-md-6">
+                                <label for="ziGeneralaLocRece" class="form-label">Dată generală (Apă Rece):</label>
+                                <select class="form-select" id="ziGeneralaLocRece">
                                     <option selected>Niciuna (folosește data de cont)</option>
-                                                                            <option value="1">1</option>
-                                                                            <option value="2">2</option>
-                                                                            <option value="3">3</option>
-                                                                            <option value="4">4</option>
-                                                                            <option value="5">5</option>
-                                                                            <option value="6">6</option>
-                                                                            <option value="7">7</option>
-                                                                            <option value="8">8</option>
-                                                                            <option value="9">9</option>
-                                                                            <option value="10">10</option>
-                                                                            <option value="11">11</option>
-                                                                            <option value="12">12</option>
-                                                                            <option value="13">13</option>
-                                                                            <option value="14">14</option>
-                                                                            <option value="15">15</option>
-                                                                            <option value="16">16</option>
-                                                                            <option value="17">17</option>
-                                                                            <option value="18">18</option>
-                                                                            <option value="19">19</option>
-                                                                            <option value="20">20</option>
-                                                                            <option value="21">21</option>
-                                                                            <option value="22">22</option>
-                                                                            <option value="23">23</option>
-                                                                            <option value="24">24</option>
-                                                                            <option value="25">25</option>
-                                                                            <option value="26">26</option>
-                                                                            <option value="27">27</option>
-                                                                            <option value="28">28</option>
-                                                                    </select>
+                                    <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ziGeneralaLocCalda" class="form-label">Dată generală (Apă Caldă):</label>
+                                <select class="form-select" id="ziGeneralaLocCalda">
+                                    <option selected>Niciuna (folosește data de cont)</option>
+                                    <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
+                                </select>
                             </div>
                         </div>
 
-                        <!-- Setari specifice pe urmatoarele 12 luni -->
-                        <p class="small text-muted">Mai jos, poți seta o dată specifică pentru fiecare lună (de ex., data anunțată de furnizor). Aceasta va suprascrie orice setare generală.</p>
+                        <p class="small text-muted">Mai jos, poți seta o dată specifică pentru fiecare lună. Aceasta va suprascrie orice setare generală.</p>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Lună</th>
                                         <th>An</th>
-                                        <th>Setează o zi specifică</th>
+                                        <!-- MODIFICARE: Coloane separate pentru Apa Rece si Apa Calda -->
+                                        <th>Zi specifică (Apă Rece)</th>
+                                        <th>Zi specifică (Apă Caldă)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                                                        <tr>
-                                        <td>Septembrie</td>
-                                        <td>2025</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Octombrie</td>
-                                        <td>2025</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Noiembrie</td>
-                                        <td>2025</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Decembrie</td>
-                                        <td>2025</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Ianuarie</td>
-                                        <td>2026</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Februarie</td>
-                                        <td>2026</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Martie</td>
-                                        <td>2026</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Aprilie</td>
-                                        <td>2026</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Mai</td>
-                                        <td>2026</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Iunie</td>
-                                        <td>2026</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>Iulie</td>
-                                        <td>2026</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                        <tr>
-                                        <td>August</td>
-                                        <td>2026</td>
-                                        <td>
-                                            <input type="number" class="form-control" min="1" max="31" placeholder="Niciuna (folosește data generală)">
-                                        </td>
-                                    </tr>
-                                                                    </tbody>
+                                    <!-- MODIFICARE: Lista de luni este acum statica -->
+                                    <tr><td>Septembrie</td><td>2025</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Octombrie</td><td>2025</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Noiembrie</td><td>2025</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Decembrie</td><td>2025</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Ianuarie</td><td>2026</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Februarie</td><td>2026</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Martie</td><td>2026</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Aprilie</td><td>2026</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Mai</td><td>2026</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Iunie</td><td>2026</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>Iulie</td><td>2026</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                    <tr><td>August</td><td>2026</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- Nota finala si butonul de salvare -->
     <p class="small text-muted fst-italic mb-3">
         * Notă: Dacă Decor Press realizează serviciul de calcul al consumurilor, se vor utiliza citirile din data stabilită conform setărilor de mai sus.
     </p>
