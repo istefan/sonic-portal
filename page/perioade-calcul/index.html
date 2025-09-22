@@ -175,20 +175,19 @@
         <h1>Perioade Calcul</h1>
     </div>
 
-    <!-- START: Paragraf explicativ (Neschimbat) -->
+    <!-- START: Paragraf explicativ (MODIFICAT) -->
     <div class="alert alert-secondary" role="alert">
         <h5 class="alert-heading">Cum funcționează perioadele de calcul</h5>
         <p class="mb-0">
-            Rapoartele standard lunare sunt generate considerând perioada de la prima până la ultima zi a lunii. Dacă doriți ca rapoartele să fie generate în funcție de o altă dată (de exemplu, data la care citește furnizorul principal de apă), puteți seta acest lucru aici.
+            Rapoartele standard lunare sunt generate considerând perioada de la prima până la ultima zi a lunii. Dacă doriți ca rapoartele să fie generate în funcție de o altă dată (de exemplu, data la care citește furnizorul principal de apă), puteți seta acest lucru aici pentru fiecare loc de măsurare.
         </p>
         <hr>
         <p class="mb-0 small">
             <strong>Ierarhia setărilor este următoarea:</strong>
         </p>
         <ul class="small">
-            <li>O <strong>dată specifică</strong> setată pentru o anumită lună la un loc de măsurare are prioritatea cea mai mare.</li>
-            <li>Dacă nu există o dată specifică, se va folosi <strong>data generală</strong> setată pentru acel loc de măsurare.</li>
-            <li>Dacă nici aceasta nu este setată, se va folosi <strong>data generală la nivel de cont</strong>.</li>
+            <li>O <strong>dată specifică</strong> setată pentru o anumită lună are prioritatea cea mai mare.</li>
+            <li>Dacă nu există o dată specifică, se va folosi <strong>data generală</strong> setată pentru locul de măsurare.</li>
             <li>Dacă nicio dată nu este configurată, se va folosi ciclul lunar standard (prima zi a lunii).</li>
         </ul>
     </div>
@@ -196,29 +195,7 @@
 
     <div class="row">
         
-        <!-- Card pentru setarea datei generale la nivel de cont -->
-        <div class="col-md-12 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title mb-3">Setare Generală la Nivel de Cont</h5>
-                    <!-- MODIFICARE: Campuri duplicate pentru Apa Rece si Apa Calda -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="ziGeneralaContRece" class="form-label">Ziua lunii pentru rapoarte (Apă Rece):</label>
-                            <select class="form-select" id="ziGeneralaContRece">
-                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7" selected>7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="ziGeneralaContCalda" class="form-label">Ziua lunii pentru rapoarte (Apă Caldă):</label>
-                            <select class="form-select" id="ziGeneralaContCalda">
-                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7" selected>7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- MODIFICARE: Sectiunea de setari generale la nivel de cont a fost ELIMINATA -->
 
         <!-- Card pentru setari individuale pe loc de masurare -->
         <div class="col-md-12 mb-4">
@@ -239,19 +216,18 @@
                         <h6 class="text-muted mb-3">Configurare pentru: Str. Libertății, Nr. 24, Bloc C2</h6>
                         
                         <p class="small text-muted">Setează o dată generală pentru acest loc de măsurare (opțional):</p>
-                        <!-- MODIFICARE: Campuri duplicate pentru Apa Rece si Apa Calda -->
                         <div class="row align-items-center mb-4">
                             <div class="col-md-6">
                                 <label for="ziGeneralaLocRece" class="form-label">Dată generală (Apă Rece):</label>
                                 <select class="form-select" id="ziGeneralaLocRece">
-                                    <option selected>Niciuna (folosește data de cont)</option>
+                                    <option selected>Niciuna (folosește ciclul lunar standard)</option>
                                     <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="ziGeneralaLocCalda" class="form-label">Dată generală (Apă Caldă):</label>
                                 <select class="form-select" id="ziGeneralaLocCalda">
-                                    <option selected>Niciuna (folosește data de cont)</option>
+                                    <option selected>Niciuna (folosește ciclul lunar standard)</option>
                                     <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
                                 </select>
                             </div>
@@ -264,13 +240,11 @@
                                     <tr>
                                         <th>Lună</th>
                                         <th>An</th>
-                                        <!-- MODIFICARE: Coloane separate pentru Apa Rece si Apa Calda -->
                                         <th>Zi specifică (Apă Rece)</th>
                                         <th>Zi specifică (Apă Caldă)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- MODIFICARE: Lista de luni este acum statica -->
                                     <tr><td>Septembrie</td><td>2025</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
                                     <tr><td>Octombrie</td><td>2025</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
                                     <tr><td>Noiembrie</td><td>2025</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Niciuna"></td></tr>
