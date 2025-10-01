@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -172,120 +171,109 @@
 <main class="main px-md-4"><div class="container-custom-width">
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <h1>Regiuni</h1>
+        <div>
+            <h1 class="h2">Gestionare Acces Regiuni</h1>
+            <p class="text-muted">Aici puteți vizualiza și revoca accesul utilizatorilor la regiunile create de dumneavoastră.</p>
+        </div>
+        <a href="../../page/regiuni/index.html" class="btn btn-secondary">
+            <i class="bi bi-arrow-left me-2"></i>Înapoi la Regiuni
+        </a>
     </div>
 
     <div class="row">
-        <!-- Secțiunea pentru Gestionarea Regiunilor -->
         <div class="col-md-12 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="h4 mb-3">Gestionare Regiuni / Zone</h2>
-                    <!-- MODIFICARE: Descrierea a fost actualizata pentru a reflecta noile functionalitati -->
-                    <p class="text-muted small mb-4">
-                        Locurile de Măsurare (Branșamentele) pot fi grupate pe regiuni. Puteți crea o regiune nouă (devenind proprietarul ei) și partaja codul unic cu alți utilizatori, sau puteți adăuga o regiune existentă folosind un cod primit. Proprietarul unei regiuni poate vizualiza și gestiona utilizatorii care au acces la datele acesteia.
-                    </p>
+            <!-- START: Acordeon pentru fiecare regiune detinuta -->
+            <div class="accordion" id="accordionRegiuni">
 
-                    <!-- Card pentru Adaugare Regiune (Neschimbat) -->
-                    <div class="card add-address-card-bg mb-4">
-                        <div class="card-body text-center">
-                            <h5 class="card-title mb-2">Adaugă o regiune nouă</h5>
-                            <p class="card-text text-muted mb-3">Creați o regiune nouă sau adăugați una existentă folosind un cod.</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdaugaRegiune">
-                                <i class="bi bi-plus-circle"></i> Adaugă Regiune
-                            </button>
+                <!-- Exemplu Card Acordeon pentru Regiunea A -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingRegiuneA">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegiuneA" aria-expanded="true" aria-controls="collapseRegiuneA">
+                            <div class="d-flex justify-content-between w-100 me-3">
+                                <span>Regiunea A <small class="text-muted">(Cod: R12345678)</small></span>
+                                <span class="badge bg-primary rounded-pill">2 Membri</span>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseRegiuneA" class="accordion-collapse collapse show" aria-labelledby="headingRegiuneA" data-bs-parent="#accordionRegiuni">
+                        <div class="accordion-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>Popescu Ion</strong>
+                                        <br>
+                                        <small class="text-muted">ion.popescu@email.com</small>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Sunteți sigur că doriți să revocați accesul pentru acest utilizator?');">
+                                        <i class="bi bi-person-x me-1"></i> Revocă Acces
+                                    </button>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>Ionescu Vasile</strong>
+                                        <br>
+                                        <small class="text-muted">vasile.ionescu@email.com</small>
+                                    </div>
+                                     <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Sunteți sigur că doriți să revocați accesul pentru acest utilizator?');">
+                                        <i class="bi bi-person-x me-1"></i> Revocă Acces
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
-                    <!-- Exemplu Regiune 1 (Proprietar) -->
-                    <div class="card address-card-dashed mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="card-title mb-0">Regiunea A <small class="text-muted">(Cod: R12345678)</small></h5>
-                                <span class="badge bg-success">PROPRIETAR</span>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <!-- MODIFICARE: Stilul butonului a fost schimbat in primary -->
-                                <a href="../../page/citiri/zona.html" class="btn btn-sm btn-primary me-2">Raport Citiri</a>
-                                <!-- MODIFICARE: Buton nou pentru gestionarea membrilor -->
-                                <a href="../../page/regiuni/members.html" class="btn btn-sm btn-outline-secondary me-2">Membri Regiune</a>
-                                <button type="button" class="btn btn-sm btn-outline-danger" onclick="return confirm('Sunteți sigur că doriți să ștergeți această regiune? Acțiunea este ireversibilă.');">Șterge</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Exemplu Regiune 2 (Membru) -->
-                    <div class="card address-card-dashed mb-3">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div>
-                                    <h5 class="card-title mb-0">Regiunea B <small class="text-muted">(Cod: R87654321)</small></h5>
-                                    <small class="text-muted">Regiune partajată de Popescu Ion</small>
-                                </div>
-                                <span class="badge bg-secondary">MEMBRU</span>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <!-- MODIFICARE: Stilul butonului a fost schimbat in primary -->
-                                <a href="../../page/citiri/zona.html" class="btn btn-sm btn-primary me-2">Raport Citiri</a>
-                                <!-- Butonul "Sterge" este inlocuit cu "Paraseste" -->
-                                <button type="button" class="btn btn-sm btn-outline-danger" onclick="return confirm('Sunteți sigur că doriți să părăsiți această regiune?');">Părăsește</button>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </div>
 
+                <!-- Exemplu Card Acordeon pentru Regiunea C -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingRegiuneC">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegiuneC" aria-expanded="false" aria-controls="collapseRegiuneC">
+                             <div class="d-flex justify-content-between w-100 me-3">
+                                <span>Regiunea C <small class="text-muted">(Cod: R55566677)</small></span>
+                                <span class="badge bg-primary rounded-pill">1 Membru</span>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseRegiuneC" class="accordion-collapse collapse" aria-labelledby="headingRegiuneC" data-bs-parent="#accordionRegiuni">
+                         <div class="accordion-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                     <div>
+                                        <strong>Georgescu Maria</strong>
+                                        <br>
+                                        <small class="text-muted">maria.g@email.com</small>
+                                    </div>
+                                     <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Sunteți sigur că doriți să revocați accesul pentru acest utilizator?');">
+                                        <i class="bi bi-person-x me-1"></i> Revocă Acces
+                                    </button>
+                                </li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exemplu Card Acordeon pentru o regiune fara membri -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingRegiuneD">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegiuneD" aria-expanded="false" aria-controls="collapseRegiuneD">
+                             <div class="d-flex justify-content-between w-100 me-3">
+                                <span>Regiunea Litoral <small class="text-muted">(Cod: R99887766)</small></span>
+                                <span class="badge bg-secondary rounded-pill">0 Membri</span>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapseRegiuneD" class="accordion-collapse collapse" aria-labelledby="headingRegiuneD" data-bs-parent="#accordionRegiuni">
+                         <div class="accordion-body">
+                           <p class="text-muted text-center mb-0">Această regiune nu este partajată cu niciun alt utilizator.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- END: Acordeon -->
+        </div>
     </div>
 </div></main>
-
-
-<!-- Modalul pentru adaugare regiune (Neschimbat) -->
-<div class="modal fade" id="modalAdaugaRegiune" tabindex="-1" aria-labelledby="modalAdaugaRegiuneLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalAdaugaRegiuneLabel">Adaugă o Regiune</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="creeaza-tab" data-bs-toggle="tab" data-bs-target="#creeaza" type="button" role="tab" aria-controls="creeaza" aria-selected="true">Creează Regiune Nouă</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="adauga-cod-tab" data-bs-toggle="tab" data-bs-target="#adauga-cod" type="button" role="tab" aria-controls="adauga-cod" aria-selected="false">Adaugă cu Cod</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="creeaza" role="tabpanel" aria-labelledby="creeaza-tab" tabindex="0">
-                        <form class="mt-3">
-                            <div class="mb-3">
-                                <label for="numeRegiune" class="form-label">Nume Regiune</label>
-                                <input type="text" class="form-control" id="numeRegiune" placeholder="Ex: Asociația Blocuri Centru">
-                                <div class="form-text">Alegeți un nume descriptiv pentru noua regiune.</div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="adauga-cod" role="tabpanel" aria-labelledby="adauga-cod-tab" tabindex="0">
-                        <form class="mt-3">
-                             <div class="mb-3">
-                                <label for="codRegiune" class="form-label">Cod Regiune</label>
-                                <input type="text" class="form-control" id="codRegiune" placeholder="Introduceți codul primit">
-                                <div class="form-text">Introduceți codul regiunii pe care l-ați primit de la un alt utilizator.</div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
-                <button type="button" class="btn btn-primary">Salvează</button>
-            </div>
-        </div>
-    </div>
-</div>
 
         </div>
     </div>
