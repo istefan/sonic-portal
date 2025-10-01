@@ -91,7 +91,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/perioade-calcul/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
                         <i class="bi bi-calendar-check" aria-hidden="true"></i> Perioade Calcul
                     </a>
                 </li>
@@ -122,7 +122,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bilant/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/bilant/index.html">
                         <i class="bi bi-pie-chart" aria-hidden="true"></i> Bilanț Neînchideri Apă
                     </a>
                 </li>
@@ -173,19 +173,17 @@
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <div>
-            <h1>Perioade Calcul și Valori Facturate</h1>
-            <p class="text-muted mb-0">
-                Configurați data citirii și introduceți valoarea facturată de furnizor (în m³) pentru fiecare lună. Aceste date sunt esențiale pentru generarea raportului "Bilanț Neînchideri Apă".
-            </p>
+            <h1>Bilanț Neînchideri Apă</h1>
+            <!-- MODIFICARE: Textul explicativ a fost actualizat -->
+            <p class="text-muted mb-0">Pentru un calcul corect al bilanțului, asigurați-vă că ați încărcat valorile facturate în secțiunea <a href="../../page/furnizori/index.html">Facturi Furnizori</a>.</p>
         </div>
     </div>
 
-    <!-- START: Filtru Loc de Masurare si An -->
+    <!-- START: Filtru Loc de Masurare (Neschimbat) -->
     <div class="card mb-4">
         <div class="card-body">
-            <div class="row align-items-end g-3">
-                <!-- MODIFICARE: Layout-ul coloanelor a fost ajustat -->
-                <div class="col-lg-7">
+            <div class="row align-items-end">
+                <div class="col-lg-9">
                     <label for="selectLocMasurare" class="form-label">Filtrează după Loc de Măsurare:</label>
                     <select id="selectLocMasurare" placeholder="Caută și selectează o adresă..." autocomplete="off">
                         <option value="1">Str. Libertății, Nr. 24, Bloc C2</option>
@@ -193,77 +191,197 @@
                         <option value="3">Aleea Trandafirilor, Nr. 5</option>
                     </select>
                 </div>
-                <!-- MODIFICARE: Dropdown-ul pentru an a fost mutat aici -->
-                <div class="col-lg-3">
-                    <label for="selectAn" class="form-label">Selectează Anul:</label>
-                    <select class="form-select" id="selectAn">
-                        <option>2025</option>
-                        <option>2024</option>
-                        <option>2023</option>
-                    </select>
-                </div>
-                <div class="col-lg-2 d-flex justify-content-end">
-                     <button class="btn btn-primary w-100"><i class="bi bi-eye me-2"></i>Afișează</button>
+                <div class="col-lg-3 d-flex justify-content-end mt-3 mt-lg-0">
+                    <button class="btn btn-primary me-2 flex-grow-1"><i class="bi bi-funnel me-2"></i>Aplică</button>
+                    <button class="btn btn-success flex-grow-1"><i class="bi bi-file-earmark-excel me-2"></i>Exportă</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- END: Filtru Loc de Masurare si An -->
+    <!-- END: Filtru Loc de Masurare -->
 
-    <!-- Card principal pentru introducerea datelor -->
-    <div class="card">
-        <div class="card-header">
-            <h5 class="mb-0">Date lunare pentru: Str. Libertății, Nr. 24, Bloc C2 (Anul 2025)</h5>
+    <div class="row mb-4">
+        <!-- Grafic Apa Rece -->
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted mb-3">Neînchidere Apă Rece</h5>
+                    <div style="height: 250px; position: relative;">
+                        <canvas id="bilantChartRece"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- Grafic Apa Calda -->
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted mb-3">Neînchidere Apă Caldă</h5>
+                     <div style="height: 250px; position: relative;">
+                        <canvas id="bilantChartCalda"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODIFICARE: Sectiunea de selectie a perioadei a fost complet refacuta -->
+    <div class="card mb-4">
         <div class="card-body">
+            <h5 class="card-title">Alege perioada pentru calcularea bilanțului de neînchideri</h5>
+            <div class="row g-3 align-items-end">
+                <div class="col-md-5">
+                    <label for="selectStartMonth" class="form-label">De La</label>
+                    <select class="form-select" id="selectStartMonth"></select>
+                </div>
+                <div class="col-md-5">
+                     <label for="selectEndMonth" class="form-label">Până La</label>
+                     <select class="form-select" id="selectEndMonth"></select>
+                </div>
+                <div class="col-md-2">
+                    <button id="setarePerioadaBtn" class="btn btn-primary w-100">Setează Perioada</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabel cu neinchideri detaliate -->
+    <div class="card">
+        <!-- MODIFICARE: Adaugat card-body pentru padding -->
+        <div class="card-body">
+            <h5 class="mb-3" id="tabelTitlu">Neînchideri lunare detaliate</h5>
             <div class="table-responsive">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th scope="col">Lună</th>
-                            <th scope="col">Zi Citire AR</th>
-                            <th scope="col">Valoare Facturată AR (m³)</th>
-                            <th scope="col">Zi Citire AC</th>
-                            <th scope="col">Valoare Facturată AC (m³)</th>
+                            <th>Perioada Calcul</th>
+                            <th>AR Facturată m³</th>
+                            <th>AR Contoare m³</th>
+                            <th>AR Diferență m³</th>
+                            <th>AC Facturată m³</th>
+                            <th>AC Contoare m³</th>
+                            <th>AC Diferență m³</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr><td>Ianuarie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Februarie</td><td><input type="number" class="form-control" min="1" max="28" placeholder="Ziua (1-28)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="28" placeholder="Ziua (1-28)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Martie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Aprilie</td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Mai</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Iunie</td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Iulie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>August</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Septembrie</td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Octombrie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Noiembrie</td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Decembrie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
+                    <tbody id="bilantTabelBody">
+                        <!-- Continutul va fi generat dinamic de JavaScript -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
-    <!-- MODIFICARE: Nota a fost adaugata aici -->
-    <p class="small text-muted fst-italic mt-3">
-        * Notă: Dacă Decor Press realizează serviciul de calcul al consumurilor, se vor utiliza citirile din data stabilită conform setărilor de mai sus.
-    </p>
-    <div class="d-flex justify-content-end my-4">
-        <button type="button" class="btn btn-primary btn-lg">
-            <i class="bi bi-check-circle me-2"></i>Salvează Modificările
-        </button>
-    </div>
-
 </div></main>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof TomSelect !== 'undefined') {
-        new TomSelect("#selectLocMasurare",{ create: false });
+function initializeBilantPage() {
+    
+    // --- PASUL 1: SURSA DE DATE CENTRALA ---
+    // In productie, aceste date vor veni de la un API.
+    const bilantData = [
+        { perioada: "Octombrie 2024", id: "2024-10", arFact: 50.10, arCont: 48.90, acFact: 35.00, acCont: 33.50 },
+        { perioada: "Noiembrie 2024", id: "2024-11", arFact: 53.63, arCont: 53.28, acFact: 37.09, acCont: 36.34 },
+        { perioada: "Decembrie 2024", id: "2024-12", arFact: 66.64, arCont: 47.35, acFact: 41.99, acCont: 35.97 },
+        { perioada: "Ianuarie 2025", id: "2025-01", arFact: 51.36, arCont: 51.03, acFact: 36.45, acCont: 43.10 },
+        { perioada: "Februarie 2025", id: "2025-02", arFact: 50.03, arCont: 52.60, acFact: 36.43, acCont: 38.54 },
+        { perioada: "Martie 2025", id: "2025-03", arFact: 49.15, arCont: 48.90, acFact: 34.32, acCont: 34.81 },
+        { perioada: "Aprilie 2025", id: "2025-04", arFact: 67.30, arCont: 58.23, acFact: 39.34, acCont: 36.44 },
+        { perioada: "Mai 2025", id: "2025-05", arFact: 64.06, arCont: 59.38, acFact: 68.24, acCont: 34.35 },
+        { perioada: "Iunie 2025", id: "2025-06", arFact: 68.30, arCont: 65.05, acFact: 28.72, acCont: 30.51 },
+        { perioada: "Iulie 2025", id: "2025-07", arFact: 60.14, arCont: 53.22, acFact: 28.42, acCont: 25.15 },
+        { perioada: "August 2025", id: "2025-08", arFact: 56.25, arCont: 54.35, acFact: 23.92, acCont: 22.76 },
+        { perioada: "Septembrie 2025", id: "2025-09", arFact: 58.00, arCont: 55.50, acFact: 25.00, acCont: 24.00 }
+    ];
+
+    // --- PASUL 2: INITIALIZARE GRAFICE (goale initial) ---
+    const createDoughnutChart = (canvasId) => {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        return new Chart(ctx, {
+            type: 'doughnut', data: { labels: [], datasets: [{ data: [], backgroundColor: [] }] },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '60%', /* mai gros */ plugins: { legend: { position: 'bottom' } } }
+        });
+    };
+    const chartRece = createDoughnutChart('bilantChartRece');
+    const chartCalda = createDoughnutChart('bilantChartCalda');
+
+    // --- PASUL 3: FUNCTIILE DE ACTUALIZARE ---
+    function updateDoughnutChart(chartInstance, totalFacturat, totalContoare, color1, color2) {
+        const total = totalFacturat;
+        const neinchidere = total - totalContoare;
+        
+        const procentContoare = total > 0 ? (totalContoare / total * 100) : 0;
+        const procentNeinchidere = total > 0 ? (neinchidere / total * 100) : 0;
+
+        chartInstance.data.labels = [`Contoare: ${procentContoare.toFixed(2)}%`, `Neînchidere: ${procentNeinchidere.toFixed(2)}%`];
+        chartInstance.data.datasets[0].data = [procentContoare, procentNeinchidere];
+        chartInstance.data.datasets[0].backgroundColor = [color1, color2];
+        chartInstance.update();
     }
-});
+
+    function updateDisplay(startPeriodId, endPeriodId) {
+        // Filtrare date
+        const startIndex = bilantData.findIndex(d => d.id === startPeriodId);
+        const endIndex = bilantData.findIndex(d => d.id === endPeriodId);
+        const filteredData = bilantData.slice(startIndex, endIndex + 1);
+
+        // Actualizare titlu tabel
+        document.getElementById('tabelTitlu').textContent = `Neînchideri lunare detaliate pentru perioada ${filteredData[0].perioada} - ${filteredData[filteredData.length-1].perioada}`;
+
+        // Actualizare tabel
+        const tabelBody = document.getElementById('bilantTabelBody');
+        tabelBody.innerHTML = filteredData.map(row => `
+            <tr>
+                <td>${row.perioada}</td>
+                <td>${row.arFact.toFixed(2)}</td>
+                <td>${row.arCont.toFixed(2)}</td>
+                <td>${(row.arFact - row.arCont).toFixed(2)}</td>
+                <td>${row.acFact.toFixed(2)}</td>
+                <td>${row.acCont.toFixed(2)}</td>
+                <td>${(row.acFact - row.acCont).toFixed(2)}</td>
+            </tr>
+        `).join('');
+
+        // Calcul totaluri si actualizare grafice
+        const totalArFact = filteredData.reduce((sum, row) => sum + row.arFact, 0);
+        const totalArCont = filteredData.reduce((sum, row) => sum + row.arCont, 0);
+        const totalAcFact = filteredData.reduce((sum, row) => sum + row.acFact, 0);
+        const totalAcCont = filteredData.reduce((sum, row) => sum + row.acCont, 0);
+
+        updateDoughnutChart(chartRece, totalArFact, totalArCont, 'rgba(54, 162, 235, 0.8)', 'rgba(201, 203, 207, 0.8)');
+        updateDoughnutChart(chartCalda, totalAcFact, totalAcCont, 'rgba(255, 99, 132, 0.8)', 'rgba(201, 203, 207, 0.8)');
+    }
+
+    // --- PASUL 4: CONFIGURARE SELECTOARE DE LUNI ---
+    const startMonthSelect = document.getElementById('selectStartMonth');
+    const endMonthSelect = document.getElementById('selectEndMonth');
+    
+    bilantData.forEach(item => {
+        startMonthSelect.innerHTML += `<option value="${item.id}">${item.perioada}</option>`;
+        endMonthSelect.innerHTML += `<option value="${item.id}">${item.perioada}</option>`;
+    });
+
+    // Setare valori implicite (ultimele 12 luni)
+    const defaultStartIndex = Math.max(0, bilantData.length - 12);
+    startMonthSelect.value = bilantData[defaultStartIndex].id;
+    endMonthSelect.value = bilantData[bilantData.length - 1].id;
+
+    // Adaugare event listener pe buton
+    document.getElementById('setarePerioadaBtn').addEventListener('click', () => {
+        updateDisplay(startMonthSelect.value, endMonthSelect.value);
+    });
+
+    // Incarcare date initiale
+    updateDisplay(startMonthSelect.value, endMonthSelect.value);
+}
+
+function waitForDependencies() {
+    if (typeof Chart !== 'undefined' && typeof TomSelect !== 'undefined') {
+        initializeBilantPage();
+        new TomSelect("#selectLocMasurare",{ create: false });
+    } else {
+        setTimeout(waitForDependencies, 50);
+    }
+}
+document.addEventListener('DOMContentLoaded', waitForDependencies);
 </script>
 
         </div>

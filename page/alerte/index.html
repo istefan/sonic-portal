@@ -91,7 +91,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/perioade-calcul/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
                         <i class="bi bi-calendar-check" aria-hidden="true"></i> Perioade Calcul
                     </a>
                 </li>
@@ -133,7 +133,7 @@
                 </li>
                  <!-- MODIFICARE: Link nou adaugat -->
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/alerte/index.html">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/alerte/index.html">
                         <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Raport Alerte
                     </a>
                 </li>
@@ -172,98 +172,159 @@
 <main class="main px-md-4"><div class="container-full-width">
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-        <div>
-            <h1>Perioade Calcul și Valori Facturate</h1>
-            <p class="text-muted mb-0">
-                Configurați data citirii și introduceți valoarea facturată de furnizor (în m³) pentru fiecare lună. Aceste date sunt esențiale pentru generarea raportului "Bilanț Neînchideri Apă".
-            </p>
-        </div>
+        <h1>Raport Alerte</h1>
+        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalExplicatiiAlerte">
+            <i class="bi bi-info-circle me-2"></i>Explicații Alerte
+        </button>
     </div>
 
-    <!-- START: Filtru Loc de Masurare si An -->
+    <!-- START: Filtru Loc de Masurare -->
     <div class="card mb-4">
         <div class="card-body">
-            <div class="row align-items-end g-3">
-                <!-- MODIFICARE: Layout-ul coloanelor a fost ajustat -->
-                <div class="col-lg-7">
+            <div class="row align-items-end">
+                <div class="col-lg-9">
                     <label for="selectLocMasurare" class="form-label">Filtrează după Loc de Măsurare:</label>
-                    <select id="selectLocMasurare" placeholder="Caută și selectează o adresă..." autocomplete="off">
+                    <select id="selectLocMasurare" placeholder="Implicit: toate locațiile..." autocomplete="off">
+                        <option value="">Toate locațiile</option>
                         <option value="1">Str. Libertății, Nr. 24, Bloc C2</option>
                         <option value="2">B-dul Unirii, Nr. 10, Bloc A5</option>
                         <option value="3">Aleea Trandafirilor, Nr. 5</option>
                     </select>
                 </div>
-                <!-- MODIFICARE: Dropdown-ul pentru an a fost mutat aici -->
-                <div class="col-lg-3">
-                    <label for="selectAn" class="form-label">Selectează Anul:</label>
-                    <select class="form-select" id="selectAn">
-                        <option>2025</option>
-                        <option>2024</option>
-                        <option>2023</option>
-                    </select>
-                </div>
-                <div class="col-lg-2 d-flex justify-content-end">
-                     <button class="btn btn-primary w-100"><i class="bi bi-eye me-2"></i>Afișează</button>
+                <div class="col-lg-3 d-flex justify-content-end mt-3 mt-lg-0">
+                    <button class="btn btn-primary me-2 flex-grow-1"><i class="bi bi-funnel me-2"></i>Aplică</button>
+                    <button class="btn btn-success flex-grow-1"><i class="bi bi-file-earmark-excel me-2"></i>Exportă</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- END: Filtru Loc de Masurare si An -->
+    <!-- END: Filtru Loc de Masurare -->
 
-    <!-- Card principal pentru introducerea datelor -->
-    <div class="card">
-        <div class="card-header">
-            <h5 class="mb-0">Date lunare pentru: Str. Libertății, Nr. 24, Bloc C2 (Anul 2025)</h5>
+    <div class="row">
+        <!-- Card pentru Alerte Active -->
+        <div class="col-md-12 mb-4">
+            <!-- MODIFICARE: Stil subtil, cu bordura rosie, dar fara fundal agresiv -->
+            <div class="card border-danger">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-danger">Alerte Active (3)</h5>
+                </div>
+                <!-- MODIFICARE: Tabelul este acum in card-body pentru a avea padding -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 1%;"><span class="badge bg-danger fs-6">CRITIC</span></td>
+                                    <td>
+                                        <strong>Scurgere Continuă (Leakage)</strong>
+                                        <p class="mb-0 text-muted small">Str. Libertății, Nr. 24, Bloc C2, Ap. 12 | Bucătărie, Apă Rece | Serie: AR-012345</p>
+                                    </td>
+                                    <td class="text-end text-muted small">De la: 15-09-2025, 11:30</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge bg-danger fs-6">CRITIC</span></td>
+                                    <td>
+                                        <strong>Îngheț (Freeze)</strong>
+                                        <p class="mb-0 text-muted small">B-dul Unirii, Nr. 10, Bloc A5, Ap. 2 | Baie, Apă Caldă | Serie: AC-678910</p>
+                                    </td>
+                                    <td class="text-end text-muted small">De la: 16-09-2025, 04:15</td>
+                                </tr>
+                                 <tr>
+                                    <td><span class="badge bg-warning text-dark fs-6">ATENȚIE</span></td>
+                                    <td>
+                                        <strong>Baterie Slabă (Low Battery)</strong>
+                                        <p class="mb-0 text-muted small">Str. Libertății, Nr. 24, Bloc C2, Ap. 5 | Baie, Apă Rece | Serie: AR-112233</p>
+                                    </td>
+                                    <td class="text-end text-muted small">De la: 10-09-2025, 18:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">Lună</th>
-                            <th scope="col">Zi Citire AR</th>
-                            <th scope="col">Valoare Facturată AR (m³)</th>
-                            <th scope="col">Zi Citire AC</th>
-                            <th scope="col">Valoare Facturată AC (m³)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Ianuarie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Februarie</td><td><input type="number" class="form-control" min="1" max="28" placeholder="Ziua (1-28)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="28" placeholder="Ziua (1-28)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Martie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Aprilie</td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Mai</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Iunie</td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Iulie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>August</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Septembrie</td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Octombrie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Noiembrie</td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="30" placeholder="Ziua (1-30)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                        <tr><td>Decembrie</td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td><td><input type="number" class="form-control" min="1" max="31" placeholder="Ziua (1-31)"></td><td><input type="number" class="form-control" min="0" step="0.01" placeholder="Valoare facturată"></td></tr>
-                    </tbody>
-                </table>
+
+        <!-- Card pentru Istoric Alerte -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Istoric Alerte (Rezolvate)</h5>
+                    <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-earmark-excel me-2"></i>Exportă Istoric</button>
+                </div>
+                <!-- MODIFICARE: Tabelul este acum in card-body pentru a avea padding -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                         <table class="table table-hover mb-0">
+                            <tbody>
+                                <tr class="text-muted">
+                                    <td style="width: 1%;"><span class="badge bg-secondary fs-6">REZOLVAT</span></td>
+                                    <td>
+                                        <strong>Curgere Inversă (Backflow)</strong>
+                                        <p class="mb-0 small">B-dul Unirii, Nr. 10, Bloc A5, Ap. 8 | Bucătărie, Apă Caldă | Serie: AC-445566</p>
+                                    </td>
+                                    <td class="text-end small">05-09-2025, 14:00 - 05-09-2025, 14:30</td>
+                                </tr>
+                            </tbody>
+                         </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- MODIFICARE: Nota a fost adaugata aici -->
-    <p class="small text-muted fst-italic mt-3">
-        * Notă: Dacă Decor Press realizează serviciul de calcul al consumurilor, se vor utiliza citirile din data stabilită conform setărilor de mai sus.
-    </p>
-    <div class="d-flex justify-content-end my-4">
-        <button type="button" class="btn btn-primary btn-lg">
-            <i class="bi bi-check-circle me-2"></i>Salvează Modificările
-        </button>
-    </div>
-
 </div></main>
 
+<!-- Modal cu explicatii (Neschimbat, dar am ajustat titlurile pentru consistenta) -->
+<div class="modal fade" id="modalExplicatiiAlerte" tabindex="-1" aria-labelledby="modalExplicatiiAlerteLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalExplicatiiAlerteLabel">Ghid Alerte Contoare</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <h5 class="text-danger">Alerte Critice</h5>
+        <p class="text-muted small">Aceste alerte indică probleme urgente care necesită atenție imediată și sunt notificate, de regulă, prin SMS.</p>
+        <hr>
+        <p><strong><i class="bi bi-droplet-half text-danger"></i> Țeavă Spartă (Burst)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Un consum foarte mare și brusc (peste 250 litri/oră) care durează cel puțin o oră. Indică o defecțiune majoră.<br><strong>Soluție:</strong> Verificați imediat instalația interioară și opriți alimentarea cu apă a locației. Contactați un instalator de urgență.</p>
+
+        <p><strong><i class="bi bi-thermometer-snow text-danger"></i> Îngheț (Freeze)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Temperatura apei a scăzut sub 5°C, existând risc de spargere a contorului și a instalației.<br><strong>Soluție:</strong> Protejați termic contorul și țevile expuse.</p>
+
+        <p><strong><i class="bi bi-tools text-danger"></i> Fraudă (Tamper)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Capacul contorului a fost deschis sau s-a intervenit neautorizat asupra lui.<br><strong>Soluție:</strong> Verificați vizual integritatea sigiliului și contactați administratorul.</p>
+        
+        <h5 class="text-warning mt-4">Alerte de Atenționare</h5>
+        <p class="text-muted small">Aceste alerte sunt informative, indică posibile probleme non-urgente și sunt notificate, de regulă, prin Email.</p>
+        <hr>
+
+        <p><strong><i class="bi bi-droplet text-warning"></i> Scurgere Continuă (Leakage)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Un consum mic, dar constant (peste 25 litri/oră) care durează cel puțin 24 de ore. Indică o defecțiune minoră (ex: rezervor WC defect).<br><strong>Soluție:</strong> Verificați toate sursele de apă pentru a identifica sursa scurgerii.</p>
+
+        <p><strong><i class="bi bi-arrow-left-right text-warning"></i> Curgere Inversă (Backflow)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Apa circulă în sens invers. Poate indica un bypass între circuitele de apă rece/caldă (baterie defectă).<br><strong>Soluție:</strong> Se recomandă instalarea unei supape de sens după contor.</p>
+
+        <p><strong><i class="bi bi-battery-half text-warning"></i> Baterie Slabă (Low Battery)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Bateria internă a contorului este aproape epuizată.<br><strong>Soluție:</strong> Planificați înlocuirea contorului.</p>
+
+         <p><strong><i class="bi bi-slash-circle text-warning"></i> Contor Gol (Dry)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Contorul nu detectează prezența apei. Poate indica o oprire a alimentării cu apă.<br><strong>Soluție:</strong> Verificați dacă alimentarea cu apă este oprită.</p>
+
+        <p><strong><i class="bi bi-exclamation-octagon text-warning"></i> Eroare Permanentă (Permanent Error)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Contorul a detectat o eroare hardware internă.<br><strong>Soluție:</strong> Contorul trebuie înlocuit.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Închide</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof TomSelect !== 'undefined') {
-        new TomSelect("#selectLocMasurare",{ create: false });
-    }
-});
+// Initializam dropdown-ul cu functie de cautare
+new TomSelect("#selectLocMasurare",{ create: false });
 </script>
 
         </div>
