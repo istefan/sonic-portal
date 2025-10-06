@@ -1,6 +1,6 @@
 # Sonic Portal - Export HTML
 
-Acest folder contine exportul static (HTML, CSS, JS) al portalului, generat la data de 2025-10-01 15:22:47.
+Acest folder contine exportul static (HTML, CSS, JS) al portalului, generat la data de 2025-10-06 15:31:16.
 
 ## Structura
 
