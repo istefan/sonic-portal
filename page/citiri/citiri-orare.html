@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SONIC GRID</title>
+
+    <script src="../../js/color-modes.js"></script>
+
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
+    <link href="../../css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="../../images/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../images/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="mask-icon" href="../../images/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="../../images/favicon.ico">
+
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#712cf9">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof bootstrap === 'undefined') {
+                console.error('Bootstrap JS is required but not loaded');
+            }
+        });
+    </script>
+</head>
+<body>
+    <header class="navbar sticky-top bg-white flex-md-nowrap p-1" data-bs-theme="light">
+        <a class="navbar-brand me-0 px-3 fs-6 d-flex align-items-center" href="../../index.html">
+            <img src="../../images/sonic-grid-logo-color.svg" alt="SONIC GRID" height="30">
+        </a>
+        <ul class="navbar-nav flex-row ms-auto"> <!-- Added ms-auto to push to right -->
+            <li class="nav-item dropdown user-dropdown">
+                <a class="nav-link px-3 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Account preferences">
+                    <i class="bi bi-person" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="../../page/contul-meu/index.html">Editare profil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="../../login.html">Ieșire din cont</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav flex-row d-md-none">
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row"><div class="sidebar p-0 bg-white">
+    <div class="offcanvas-md offcanvas-end bg-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">SONIC GRID</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+            
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " aria-current="page" href="../../index.html">
+                        <i class="bi bi-display" aria-hidden="true"></i> Panoul Meu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/adrese/index.html">
+                        <i class="bi bi-geo-alt" aria-hidden="true"></i> Adresele Mele
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/regiuni/index.html">
+                        <i class="bi bi-bounding-box" aria-hidden="true"></i> Regiuni / Zone
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
+                        <i class="bi bi-calendar-check" aria-hidden="true"></i> Perioade Citiri
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i> Setări Alerte
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/info-center/index.html">
+                        <i class="bi bi-info-circle" aria-hidden="true"></i> Info Center
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contact/index.html">
+                        <i class="bi bi-envelope" aria-hidden="true"></i> Contact
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Rapoarte</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/citiri/index.html">
+                        <i class="bi bi-calendar-day" aria-hidden="true"></i> Raport Citiri
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bilant/index.html">
+                        <i class="bi bi-pie-chart" aria-hidden="true"></i> Bilanț Neînchideri Apă
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/estimari/index.html">
+                        <i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Estimări Consum
+                    </a>
+                </li>
+                 <!-- MODIFICARE: Link nou adaugat -->
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/alerte/index.html">
+                        <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Raport Alerte
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Administrare</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contul-meu/index.html">
+                        <i class="bi bi-person-gear" aria-hidden="true"></i> Contul Meu
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Admin Sistem</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/users/index.html">
+                        <i class="bi bi-people" aria-hidden="true"></i> Utilizatori
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/settings/index.html">
+                        <i class="bi bi-receipt" aria-hidden="true"></i> Setari Aplicatie
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<main class="main px-md-4"><div class="container-full-width">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Citiri orare: Str. Unirii, Nr. 10, Apartament 3</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="card-title mb-0">Evoluția consumului pe ore</h5>
+                        <span id="slider-label" class="fw-bold small text-primary">Ultimele 24 ore</span>
+                    </div>
+                    
+                    <div style="height: 400px;">
+                        <canvas id="hourlyConsumptionChart"></canvas>
+                    </div>
+                    
+                    <!-- Slider: fereastra glisanta de 24h peste 30 zile -->
+                    <div class="mt-4">
+                        <div id="hours-slider"></div>
+                    </div>
+
+                    <br><br>
+                    <div class="mt-4">
+                        <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-primary d-inline-flex align-items-center gap-1">
+                            <i class="bi bi-arrow-left"></i> Înapoi la consum zilnic
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- START: Card cu echipamente -->
+    <div class="row">
+        <div class="col-12">
+             <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Echipamente instalate în Str. Unirii, Nr. 10, Ap. 3</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Serie Contor</th>
+                                <th scope="col">Incapere</th>
+                                <th scope="col">Tip</th>
+                                <th scope="col">Ultima Citire</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Ultima Transmisie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>012345</td>
+                                <td>Baie</td>
+                                <td>Apa Rece</td>
+                                <td>145.78 m³</td>
+                                <td><span class="badge bg-success">OK</span></td>
+                                <td>16-09-2025, 10:15</td>
+                            </tr>
+                            <tr>
+                                <td>012346</td>
+                                <td>Bucatarie</td>
+                                <td>Apa Rece</td>
+                                <td>98.42 m³</td>
+                                <td><span class="badge bg-success">OK</span></td>
+                                <td>16-09-2025, 10:14</td>
+                            </tr>
+                            <tr>
+                                <td>012347</td>
+                                <td>WC Serviciu</td>
+                                <td>Apa Rece</td>
+                                <td>52.11 m³</td>
+                                <td><span class="badge bg-danger">Curgere Inversă</span></td>
+                                <td>15-09-2025, 08:30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+        </div>
+    </div>
+    <!-- END: Card cu echipamente -->
+
+
+</div></main>
+
+<!-- START: Sectiune JavaScript -->
+<script>
+function initializeHourlyChart() {
+    
+    // Generam date simulate pentru ultimele 30 de zile (720 ore) la ore fixe
+    const TOTAL_HOURS = 30 * 24; // 720 ore
+    const WINDOW_SIZE = 24;      // fereastra fixa de 24 ore
+    const hourlyData = [];
+    const now = new Date();
+    
+    // Rotunjim la ora fixa curenta (fara minute/secunde)
+    const currentHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), 0, 0);
+    
+    for (let i = TOTAL_HOURS - 1; i >= 0; i--) {
+        const dt = new Date(currentHour.getTime() - i * 3600 * 1000);
+        const hour = dt.getHours();
+        
+        // Simulam un pattern realist: consum mai mare dimineata si seara
+        let baseRece, baseCalda;
+        if (hour >= 6 && hour <= 9) {
+            baseRece = 0.08 + Math.random() * 0.12;
+            baseCalda = 0.06 + Math.random() * 0.10;
+        } else if (hour >= 18 && hour <= 22) {
+            baseRece = 0.06 + Math.random() * 0.10;
+            baseCalda = 0.05 + Math.random() * 0.08;
+        } else if (hour >= 0 && hour <= 5) {
+            baseRece = Math.random() * 0.02;
+            baseCalda = Math.random() * 0.01;
+        } else {
+            baseRece = 0.02 + Math.random() * 0.06;
+            baseCalda = 0.01 + Math.random() * 0.04;
+        }
+        
+        hourlyData.push({
+            date: dt,
+            apaRece: parseFloat(baseRece.toFixed(3)),
+            apaCalda: parseFloat(baseCalda.toFixed(3))
+        });
+    }
+
+    const ctx = document.getElementById('hourlyConsumptionChart').getContext('2d');
+    const hourlyChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Consum apă rece (m³)',
+                    data: [],
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.08)',
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: 'Consum apă caldă (m³)',
+                    data: [],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.08)',
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                    tension: 0.3,
+                    fill: true
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Consum (m³)' }
+                },
+                x: {
+                    title: { display: true, text: 'Ora' },
+                    ticks: {
+                        maxRotation: 45,
+                        minRotation: 0
+                    }
+                }
+            },
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            // Afisam data completa in tooltip
+                            const idx = tooltipItems[0].dataIndex;
+                            const startIdx = Math.round(document.getElementById('hours-slider').noUiSlider.get());
+                            const item = hourlyData[startIdx + idx];
+                            if (item) {
+                                return item.date.toLocaleString('ro-RO', {
+                                    weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                                });
+                            }
+                            return tooltipItems[0].label;
+                        },
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.parsed.y.toFixed(3) + ' m³';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    /**
+     * Actualizeaza graficul pentru fereastra de 24h incepand de la startIndex
+     */
+    function updateChart(startIndex) {
+        const windowData = hourlyData.slice(startIndex, startIndex + WINDOW_SIZE);
+        
+        // Etichetele: ora fixa, cu data cand se schimba ziua
+        hourlyChart.data.labels = windowData.map((item, i) => {
+            const h = item.date.getHours().toString().padStart(2, '0') + ':00';
+            // Afisam data la prima ora sau cand se trece la o zi noua (00:00)
+            if (i === 0 || item.date.getHours() === 0) {
+                const dayStr = item.date.toLocaleDateString('ro-RO', { day: '2-digit', month: 'short' });
+                return dayStr + '\n' + h;
+            }
+            return h;
+        });
+        
+        hourlyChart.data.datasets[0].data = windowData.map(item => item.apaRece);
+        hourlyChart.data.datasets[1].data = windowData.map(item => item.apaCalda);
+        
+        hourlyChart.update('none'); // fara animatie pentru scroll fluid
+
+        // Actualizare label
+        if (windowData.length > 0) {
+            const from = windowData[0].date;
+            const to = windowData[windowData.length - 1].date;
+            const opts = { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' };
+            document.getElementById('slider-label').textContent = 
+                from.toLocaleString('ro-RO', opts) + '  —  ' + to.toLocaleString('ro-RO', opts);
+        }
+    }
+
+    // Initializam slider-ul: pozitia reprezinta indexul de start al ferestrei de 24h
+    // Slider-ul merge de la 0 (cele mai vechi 24h) la TOTAL_HOURS - WINDOW_SIZE (ultimele 24h)
+    const slider = document.getElementById('hours-slider');
+    const maxStart = TOTAL_HOURS - WINDOW_SIZE; // 696
+
+    noUiSlider.create(slider, {
+        start: [maxStart],              // implicit: ultimele 24 ore (dreapta)
+        connect: [true, false],
+        step: 1,
+        range: {
+            'min': 0,
+            'max': maxStart
+        },
+        // Tooltip cu data de start a ferestrei
+        tooltips: [
+            {
+                to: function(value) {
+                    const idx = Math.round(value);
+                    const dt = hourlyData[idx].date;
+                    return dt.toLocaleDateString('ro-RO', { day: '2-digit', month: 'short', year: 'numeric' });
+                }
+            }
+        ],
+        // Marcaje pe slider: la fiecare zi (fiecare 24 ore)
+        pips: {
+            mode: 'steps',
+            density: 3,
+            filter: function(value) {
+                const idx = Math.round(value);
+                if (idx >= 0 && idx < hourlyData.length) {
+                    // Afisam pip mare doar cand e inceputul unei zile noi
+                    const dt = hourlyData[idx].date;
+                    if (dt.getHours() === 0) return 1; // pip mare cu eticheta
+                }
+                return 0; // fara pip
+            },
+            format: {
+                to: function(value) {
+                    const idx = Math.round(value);
+                    if (idx >= 0 && idx < hourlyData.length) {
+                        return hourlyData[idx].date.toLocaleDateString('ro-RO', { day: '2-digit', month: 'short' });
+                    }
+                    return '';
+                }
+            }
+        }
+    });
+
+    slider.noUiSlider.on('update', function(values) {
+        const startIdx = Math.round(values[0]);
+        updateChart(startIdx);
+    });
+}
+
+function waitForDependencies() {
+    if (typeof Chart !== 'undefined' && typeof noUiSlider !== 'undefined' && typeof wNumb !== 'undefined') {
+        initializeHourlyChart();
+    } else {
+        setTimeout(waitForDependencies, 50);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', waitForDependencies);
+</script>
+<!-- END: Sectiune JavaScript -->
+
+        </div>
+    </div>
+
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
+    <script src="../../js/dashboard.js" class="astro-vvvwv3sm"></script>
+    <script src="../../js/onboarding.js"></script>
+</body>
+</html>

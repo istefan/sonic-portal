@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SONIC GRID</title>
+
+    <script src="../../js/color-modes.js"></script>
+
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
+    <link href="../../css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="../../images/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../images/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="mask-icon" href="../../images/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="../../images/favicon.ico">
+
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#712cf9">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof bootstrap === 'undefined') {
+                console.error('Bootstrap JS is required but not loaded');
+            }
+        });
+    </script>
+</head>
+<body>
+    <header class="navbar sticky-top bg-white flex-md-nowrap p-1" data-bs-theme="light">
+        <a class="navbar-brand me-0 px-3 fs-6 d-flex align-items-center" href="../../index.html">
+            <img src="../../images/sonic-grid-logo-color.svg" alt="SONIC GRID" height="30">
+        </a>
+        <ul class="navbar-nav flex-row ms-auto"> <!-- Added ms-auto to push to right -->
+            <li class="nav-item dropdown user-dropdown">
+                <a class="nav-link px-3 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Account preferences">
+                    <i class="bi bi-person" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="../../page/contul-meu/index.html">Editare profil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="../../login.html">Ieșire din cont</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav flex-row d-md-none">
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+<!-- Resurse pentru dropdown-ul cu cautare (Tom Select) -->
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+<div class="sidebar p-0 bg-white">
+    <div class="offcanvas-md offcanvas-end bg-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">SONIC GRID</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+            
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " aria-current="page" href="../../index.html">
+                        <i class="bi bi-display" aria-hidden="true"></i> Panoul Meu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/adrese/index.html">
+                        <i class="bi bi-geo-alt" aria-hidden="true"></i> Adresele Mele
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/regiuni/index.html">
+                        <i class="bi bi-bounding-box" aria-hidden="true"></i> Regiuni / Zone
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
+                        <i class="bi bi-calendar-check" aria-hidden="true"></i> Perioade Citiri
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i> Setări Alerte
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/info-center/index.html">
+                        <i class="bi bi-info-circle" aria-hidden="true"></i> Info Center
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contact/index.html">
+                        <i class="bi bi-envelope" aria-hidden="true"></i> Contact
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Rapoarte</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri/index.html">
+                        <i class="bi bi-calendar-day" aria-hidden="true"></i> Raport Citiri
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bilant/index.html">
+                        <i class="bi bi-pie-chart" aria-hidden="true"></i> Bilanț Neînchideri Apă
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/estimari/index.html">
+                        <i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Estimări Consum
+                    </a>
+                </li>
+                 <!-- MODIFICARE: Link nou adaugat -->
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/alerte/index.html">
+                        <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Raport Alerte
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Administrare</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contul-meu/index.html">
+                        <i class="bi bi-person-gear" aria-hidden="true"></i> Contul Meu
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Admin Sistem</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/users/index.html">
+                        <i class="bi bi-people" aria-hidden="true"></i> Utilizatori
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/settings/index.html">
+                        <i class="bi bi-receipt" aria-hidden="true"></i> Setari Aplicatie
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<main class="main px-md-4"><div class="container-full-width">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Raport Alerte</h1>
+        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalExplicatiiAlerte">
+            <i class="bi bi-info-circle me-2"></i>Explicații Alerte
+        </button>
+    </div>
+
+    <!-- START: Filtru Loc de Masurare -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row align-items-end">
+                <div class="col-lg-9">
+                    <label for="selectLocMasurare" class="form-label">Filtrează după Loc de Măsurare:</label>
+                    <select id="selectLocMasurare" placeholder="Implicit: toate locațiile..." autocomplete="off">
+                        <option value="">Toate locațiile</option>
+                        <option value="1">Str. Libertății, Nr. 24, Bloc C2</option>
+                        <option value="2">B-dul Unirii, Nr. 10, Bloc A5</option>
+                        <option value="3">Aleea Trandafirilor, Nr. 5</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 d-flex justify-content-end mt-3 mt-lg-0">
+                    <button class="btn btn-primary me-2 flex-grow-1"><i class="bi bi-funnel me-2"></i>Aplică</button>
+                    <button class="btn btn-success flex-grow-1"><i class="bi bi-file-earmark-excel me-2"></i>Exportă</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Filtru Loc de Masurare -->
+
+    <div class="row">
+        <!-- Card pentru Alerte Active -->
+        <div class="col-md-12 mb-4">
+            <!-- MODIFICARE: Stil subtil, cu bordura rosie, dar fara fundal agresiv -->
+            <div class="card border-danger">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-danger">Alerte Active (3)</h5>
+                </div>
+                <!-- MODIFICARE: Tabelul este acum in card-body pentru a avea padding -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 1%;"><span class="badge bg-danger fs-6">CRITIC</span></td>
+                                    <td>
+                                        <strong>Scurgere Continuă (Leakage)</strong>
+                                        <p class="mb-0 text-muted small">Str. Libertății, Nr. 24, Bloc C2, Ap. 12 | Bucătărie, Apă Rece | Serie: AR-012345</p>
+                                    </td>
+                                    <td class="text-end text-muted small">De la: 15-09-2025, 11:30</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge bg-danger fs-6">CRITIC</span></td>
+                                    <td>
+                                        <strong>Îngheț (Freeze)</strong>
+                                        <p class="mb-0 text-muted small">B-dul Unirii, Nr. 10, Bloc A5, Ap. 2 | Baie, Apă Caldă | Serie: AC-678910</p>
+                                    </td>
+                                    <td class="text-end text-muted small">De la: 16-09-2025, 04:15</td>
+                                </tr>
+                                 <tr>
+                                    <td><span class="badge bg-warning text-dark fs-6">ATENȚIE</span></td>
+                                    <td>
+                                        <strong>Baterie Slabă (Low Battery)</strong>
+                                        <p class="mb-0 text-muted small">Str. Libertății, Nr. 24, Bloc C2, Ap. 5 | Baie, Apă Rece | Serie: AR-112233</p>
+                                    </td>
+                                    <td class="text-end text-muted small">De la: 10-09-2025, 18:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card pentru Istoric Alerte -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Istoric Alerte (Rezolvate)</h5>
+                    <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-earmark-excel me-2"></i>Exportă Istoric</button>
+                </div>
+                <!-- MODIFICARE: Tabelul este acum in card-body pentru a avea padding -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                         <table class="table table-hover mb-0">
+                            <tbody>
+                                <tr class="text-muted">
+                                    <td style="width: 1%;"><span class="badge bg-secondary fs-6">REZOLVAT</span></td>
+                                    <td>
+                                        <strong>Curgere Inversă (Backflow)</strong>
+                                        <p class="mb-0 small">B-dul Unirii, Nr. 10, Bloc A5, Ap. 8 | Bucătărie, Apă Caldă | Serie: AC-445566</p>
+                                    </td>
+                                    <td class="text-end small">05-09-2025, 14:00 - 05-09-2025, 14:30</td>
+                                </tr>
+                            </tbody>
+                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></main>
+
+<!-- Modal cu explicatii (Neschimbat, dar am ajustat titlurile pentru consistenta) -->
+<div class="modal fade" id="modalExplicatiiAlerte" tabindex="-1" aria-labelledby="modalExplicatiiAlerteLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalExplicatiiAlerteLabel">Ghid Alerte Contoare</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <h5 class="text-danger">Alerte Critice</h5>
+        <p class="text-muted small">Aceste alerte indică probleme urgente care necesită atenție imediată și sunt notificate, de regulă, prin SMS.</p>
+        <hr>
+        <p><strong><i class="bi bi-droplet-half text-danger"></i> Țeavă Spartă (Burst)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Un consum foarte mare și brusc (peste 250 litri/oră) care durează cel puțin o oră. Indică o defecțiune majoră.<br><strong>Soluție:</strong> Verificați imediat instalația interioară și opriți alimentarea cu apă a locației. Contactați un instalator de urgență.</p>
+
+        <p><strong><i class="bi bi-thermometer-snow text-danger"></i> Îngheț (Freeze)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Temperatura apei a scăzut sub 5°C, existând risc de spargere a contorului și a instalației.<br><strong>Soluție:</strong> Protejați termic contorul și țevile expuse.</p>
+
+        <p><strong><i class="bi bi-tools text-danger"></i> Fraudă (Tamper)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Capacul contorului a fost deschis sau s-a intervenit neautorizat asupra lui.<br><strong>Soluție:</strong> Verificați vizual integritatea sigiliului și contactați administratorul.</p>
+        
+        <h5 class="text-warning mt-4">Alerte de Atenționare</h5>
+        <p class="text-muted small">Aceste alerte sunt informative, indică posibile probleme non-urgente și sunt notificate, de regulă, prin Email.</p>
+        <hr>
+
+        <p><strong><i class="bi bi-droplet text-warning"></i> Scurgere Continuă (Leakage)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Un consum mic, dar constant (peste 25 litri/oră) care durează cel puțin 24 de ore. Indică o defecțiune minoră (ex: rezervor WC defect).<br><strong>Soluție:</strong> Verificați toate sursele de apă pentru a identifica sursa scurgerii.</p>
+
+        <p><strong><i class="bi bi-arrow-left-right text-warning"></i> Curgere Inversă (Backflow)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Apa circulă în sens invers. Poate indica un bypass între circuitele de apă rece/caldă (baterie defectă).<br><strong>Soluție:</strong> Se recomandă instalarea unei supape de sens după contor.</p>
+
+        <p><strong><i class="bi bi-battery-half text-warning"></i> Baterie Slabă (Low Battery)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Bateria internă a contorului este aproape epuizată.<br><strong>Soluție:</strong> Planificați înlocuirea contorului.</p>
+
+         <p><strong><i class="bi bi-slash-circle text-warning"></i> Contor Gol (Dry)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Contorul nu detectează prezența apei. Poate indica o oprire a alimentării cu apă.<br><strong>Soluție:</strong> Verificați dacă alimentarea cu apă este oprită.</p>
+
+        <p><strong><i class="bi bi-exclamation-octagon text-warning"></i> Eroare Permanentă (Permanent Error)</strong></p>
+        <p class="small"><strong>Ce înseamnă:</strong> Contorul a detectat o eroare hardware internă.<br><strong>Soluție:</strong> Contorul trebuie înlocuit.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Închide</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Initializam dropdown-ul cu functie de cautare
+new TomSelect("#selectLocMasurare",{ create: false });
+</script>
+
+        </div>
+    </div>
+
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
+    <script src="../../js/dashboard.js" class="astro-vvvwv3sm"></script>
+    <script src="../../js/onboarding.js"></script>
+</body>
+</html>

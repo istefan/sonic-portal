@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SONIC GRID</title>
+
+    <script src="../../js/color-modes.js"></script>
+
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
+    <link href="../../css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="../../images/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../images/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="mask-icon" href="../../images/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="../../images/favicon.ico">
+
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#712cf9">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof bootstrap === 'undefined') {
+                console.error('Bootstrap JS is required but not loaded');
+            }
+        });
+    </script>
+</head>
+<body>
+    <header class="navbar sticky-top bg-white flex-md-nowrap p-1" data-bs-theme="light">
+        <a class="navbar-brand me-0 px-3 fs-6 d-flex align-items-center" href="../../index.html">
+            <img src="../../images/sonic-grid-logo-color.svg" alt="SONIC GRID" height="30">
+        </a>
+        <ul class="navbar-nav flex-row ms-auto"> <!-- Added ms-auto to push to right -->
+            <li class="nav-item dropdown user-dropdown">
+                <a class="nav-link px-3 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Account preferences">
+                    <i class="bi bi-person" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="../../page/contul-meu/index.html">Editare profil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="../../login.html">Ieșire din cont</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav flex-row d-md-none">
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row"><div class="sidebar p-0 bg-white">
+    <div class="offcanvas-md offcanvas-end bg-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">SONIC GRID</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+            
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " aria-current="page" href="../../index.html">
+                        <i class="bi bi-display" aria-hidden="true"></i> Panoul Meu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/adrese/index.html">
+                        <i class="bi bi-geo-alt" aria-hidden="true"></i> Adresele Mele
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/regiuni/index.html">
+                        <i class="bi bi-bounding-box" aria-hidden="true"></i> Regiuni / Zone
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
+                        <i class="bi bi-calendar-check" aria-hidden="true"></i> Perioade Citiri
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i> Setări Alerte
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/info-center/index.html">
+                        <i class="bi bi-info-circle" aria-hidden="true"></i> Info Center
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contact/index.html">
+                        <i class="bi bi-envelope" aria-hidden="true"></i> Contact
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Rapoarte</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/citiri/index.html">
+                        <i class="bi bi-calendar-day" aria-hidden="true"></i> Raport Citiri
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bilant/index.html">
+                        <i class="bi bi-pie-chart" aria-hidden="true"></i> Bilanț Neînchideri Apă
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/estimari/index.html">
+                        <i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Estimări Consum
+                    </a>
+                </li>
+                 <!-- MODIFICARE: Link nou adaugat -->
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/alerte/index.html">
+                        <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Raport Alerte
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Administrare</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contul-meu/index.html">
+                        <i class="bi bi-person-gear" aria-hidden="true"></i> Contul Meu
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Admin Sistem</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/users/index.html">
+                        <i class="bi bi-people" aria-hidden="true"></i> Utilizatori
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/settings/index.html">
+                        <i class="bi bi-receipt" aria-hidden="true"></i> Setari Aplicatie
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ONBOARDING WIZARD OVERLAY (Desktop Only) -->
+<div id="onboarding-overlay" class="onboarding-overlay" style="display:none;" aria-hidden="true"></div>
+<div id="onboarding-tooltip" class="onboarding-tooltip" style="display:none;" role="dialog" aria-modal="true" aria-label="Ghid de utilizare">
+  <div class="onboarding-tooltip-inner">
+    <div class="onboarding-tooltip-arrow"></div>
+    <div class="onboarding-header">
+      <div class="onboarding-step-badge"><span id="onboarding-step-current">1</span>/<span id="onboarding-step-total">9</span></div>
+      <button class="onboarding-close" id="onboarding-close" title="Inchide"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <h5 class="onboarding-title" id="onboarding-title">Adresele Mele</h5>
+    <p class="onboarding-body" id="onboarding-body"></p>
+    <div class="onboarding-progress"><div class="onboarding-progress-bar" id="onboarding-progress-bar"></div></div>
+    <div class="onboarding-actions">
+      <button class="btn btn-sm btn-outline-secondary" id="onboarding-prev" style="display:none;"><i class="bi bi-arrow-left me-1"></i> Inapoi</button>
+      <button class="btn btn-sm btn-primary ms-auto" id="onboarding-next">Urmatorul <i class="bi bi-arrow-right ms-1"></i></button>
+    </div>
+  </div>
+</div>
+
+<main class="main p-md-4"><div class="container-full-width">
+
+  <!-- Hero -->
+  <div class="info-hero text-center py-5 mb-4">
+    <div class="info-hero-badge mb-3"><i class="bi bi-info-circle-fill me-1"></i> Ghid de utilizare SONIC GRID</div>
+    <h1 class="display-5 fw-bold mb-2">Cum functioneaza portalul?</h1>
+    <div class="col-lg-6 mx-auto"><p class="lead mb-4 text-muted">Toate informatiile de care ai nevoie pentru a utiliza la maximum platforma de SONIC GRID</p></div>
+    <div class="d-none d-md-flex justify-content-center">
+      <button id="start-tour-btn" class="btn btn-tour btn-lg"><i class="bi bi-stars me-2"></i>Porneste Ghidul Interactiv<span class="btn-tour-badge">Recomandat</span></button>
+    </div>
+    <p class="text-muted small mt-2 d-none d-md-block">Ghidul iti explica pas cu pas fiecare sectiune din meniu</p>
+  </div>
+
+  <!-- Sectiunile portalului -->
+  <h2 class="fw-bold mb-1">Sectiunile portalului</h2>
+  <p class="text-muted mb-4">Faceti click pe o sectiune pentru a afla mai multe detalii.</p>
+
+  <div class="row g-4 mb-5">
+
+    <!-- Adresele Mele -->
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card h-100" onclick="toggleInfoCard(this)" role="button" tabindex="0">
+        <h5 class="info-card-title"><i class="bi bi-geo-alt"></i> Adresele Mele</h5>
+        <p class="info-card-desc">Gestioneaza locurile de masurare (bransamente) si locurile de consum (apartamente).</p>
+        <div class="info-card-expand"><hr class="my-3">
+          <p class="small text-muted mb-1"><strong>Reprezentantii asociatiilor / firmele de facility management</strong> pot adauga un loc de masurare (bransament) folosind codul unic oferit de Decor Press. Odata adaugat, au acces la rapoartele tuturor apartamentelor si echipamentelor din acel bransament.</p>
+          <p class="small text-muted mb-1"><strong>Locatarii</strong> pot adauga un loc de consum (apartament) folosind codul unic primit de la Decor Press sau de la reprezentantul asociatiei.</p>
+          <p class="small text-muted mb-0">Din aceasta sectiune, managerii de bransament pot accesa pagina <strong>Locuri de Consum</strong> pentru a genera invitatii cu coduri pentru locatari.</p>
+        </div>
+        <div class="info-card-chevron"><i class="bi bi-chevron-down"></i></div>
+      </div>
+    </div>
+
+    <!-- Regiuni -->
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card h-100" onclick="toggleInfoCard(this)" role="button" tabindex="0">
+        <h5 class="info-card-title"><i class="bi bi-bounding-box"></i> Regiuni / Zone</h5>
+        <p class="info-card-desc">Grupeaza bransamentele pe zone geografice sau administrative si deleaga accesul echipei.</p>
+        <div class="info-card-expand"><hr class="my-3">
+          <p class="small text-muted mb-1">Creeaza regiuni pentru a grupa bransamentele. Din <strong>Adresele Mele</strong> poti aloca fiecare bransament la o regiune.</p>
+          <p class="small text-muted mb-1">Poti oferi <strong>codul de regiune</strong> altor utilizatori (ex: angajati ai firmelor de administrare). Acestia vor accesa toate bransamentele din regiune fara a introduce codul fiecaruia individual.</p>
+          <p class="small text-muted mb-0">Drepturile pot fi <strong>retrase oricand</strong> de utilizatorul care a creat regiunea.</p>
+        </div>
+        <div class="info-card-chevron"><i class="bi bi-chevron-down"></i></div>
+      </div>
+    </div>
+
+    <!-- Perioade Citiri -->
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card h-100" onclick="toggleInfoCard(this)" role="button" tabindex="0">
+        <h5 class="info-card-title"><i class="bi bi-calendar-check"></i> Perioade Citiri</h5>
+        <p class="info-card-desc">Configureaza datele de citire ale furnizorului si valorile facturate pentru fiecare luna.</p>
+        <div class="info-card-expand"><hr class="my-3">
+          <p class="small text-muted mb-1">Contoarele transmit citiri <strong>zilnice</strong> (sau chiar <strong>orare</strong>). Furnizorul citeste de regula o data pe luna.</p>
+          <p class="small text-muted mb-1">Poti seta o <strong>data generala de citire</strong> sau date individuale pe luni. Poti introduce si valorile facturate de furnizor.</p>
+          <p class="small text-muted mb-0">Aceste setari permit monitorizarea <strong>bilantului neinchiderilor la apa</strong> &mdash; suma contoarelor din bransament vs. citirea furnizorului.</p>
+        </div>
+        <div class="info-card-chevron"><i class="bi bi-chevron-down"></i></div>
+      </div>
+    </div>
+
+    <!-- Setari Alerte -->
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card h-100" onclick="toggleInfoCard(this)" role="button" tabindex="0">
+        <h5 class="info-card-title"><i class="bi bi-bell"></i> Setari Alerte</h5>
+        <p class="info-card-desc">Configureaza notificarile SMS si email pentru situatii critice sau anomalii de consum.</p>
+        <div class="info-card-expand"><hr class="my-3">
+          <ul class="small text-muted mb-0 ps-3">
+            <li><strong>Date de contact</strong> &mdash; email si telefon pentru alerte, daca difera fata de contul principal.</li>
+            <li><strong>Alerte critice (SMS instant)</strong> &mdash; teava sparta, inghet.</li>
+            <li><strong>Alerte zilnice (email)</strong> &mdash; curgere inversa, curgere continua, frauda.</li>
+            <li><strong>Alerte lunare (email)</strong> &mdash; consum zero sau cu X% mai mare fata de media pe 3 luni (implicit 50%, configurabil).</li>
+            <li><strong>Alerta consum zero X zile</strong> &mdash; monitorizare persoane vulnerabile; daca nu exista consum N zile, primesti notificare (implicit 3 zile, disponibil doar la nivel de apartament).</li>
+          </ul>
+        </div>
+        <div class="info-card-chevron"><i class="bi bi-chevron-down"></i></div>
+      </div>
+    </div>
+
+    <!-- Raport Citiri -->
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card h-100" onclick="toggleInfoCard(this)" role="button" tabindex="0">
+        <h5 class="info-card-title"><i class="bi bi-calendar-day"></i> Raport Citiri</h5>
+        <p class="info-card-desc">Genereaza rapoarte de consum la nivel de regiune, bransament sau apartament.</p>
+        <div class="info-card-expand"><hr class="my-3">
+          <ul class="small text-muted mb-0 ps-3">
+            <li><strong>Raport Regiune</strong> &mdash; consum de la data la data pentru fiecare bransament dintr-o regiune.</li>
+            <li><strong>Raport Bransament</strong> &mdash; citiri la o zi specifica, consum intr-o perioada, citiri/consumuri zilnice. Include si toate apartamentele.</li>
+            <li><strong>Raport Apartament</strong> &mdash; aceleasi tipuri de rapoarte, exclusive pentru un apartament anume.</li>
+          </ul>
+        </div>
+        <div class="info-card-chevron"><i class="bi bi-chevron-down"></i></div>
+      </div>
+    </div>
+
+    <!-- Bilant Neinchideri Apa -->
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card h-100" onclick="toggleInfoCard(this)" role="button" tabindex="0">
+        <h5 class="info-card-title"><i class="bi bi-pie-chart"></i> Bilant Neinchideri Apa</h5>
+        <p class="info-card-desc">Compara volumul facturat de furnizor cu suma contoarelor la data citirii.</p>
+        <div class="info-card-expand"><hr class="my-3">
+          <p class="small text-muted mb-0">Raportul afiseaza la nivel de bransament <strong>volumul facturat de furnizor</strong> la data de citire si <strong>suma contoarelor</strong> din bransament la aceeasi data. Este necesara configurarea datelor de citire in <strong>Perioade Citiri</strong>.</p>
+        </div>
+        <div class="info-card-chevron"><i class="bi bi-chevron-down"></i></div>
+      </div>
+    </div>
+
+    <!-- Estimari Consum -->
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card h-100" onclick="toggleInfoCard(this)" role="button" tabindex="0">
+        <h5 class="info-card-title"><i class="bi bi-graph-up-arrow"></i> Estimari Consum</h5>
+        <p class="info-card-desc">Previzioneaza consumul la finalul lunii pe baza mediei zilnice din luna curenta.</p>
+        <div class="info-card-expand"><hr class="my-3">
+          <p class="small text-muted mb-0">Pentru fiecare bransament se calculeaza automat o <strong>estimare a consumului</strong> la finalul lunii, bazata pe media consumului zilnic din luna in curs. Util pentru anticiparea costurilor.</p>
+        </div>
+        <div class="info-card-chevron"><i class="bi bi-chevron-down"></i></div>
+      </div>
+    </div>
+
+    <!-- Raport Alerte -->
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card h-100" onclick="toggleInfoCard(this)" role="button" tabindex="0">
+        <h5 class="info-card-title"><i class="bi bi-exclamation-triangle"></i> Raport Alerte</h5>
+        <p class="info-card-desc">Vizualizeaza alertele active si istoricul celor rezolvate la nivelul contului.</p>
+        <div class="info-card-expand"><hr class="my-3">
+          <p class="small text-muted mb-1">Prioritare sunt <strong>alertele critice</strong> (ex: teava sparta, inghet). La fiecare transmisie, contorul verifica daca alerta mai este activa.</p>
+          <p class="small text-muted mb-0">Cand situatia este rezolvata (contorul transmite status OK), alerta se muta automat in <strong>istoricul alertelor rezolvate</strong>.</p>
+        </div>
+        <div class="info-card-chevron"><i class="bi bi-chevron-down"></i></div>
+      </div>
+    </div>
+
+    <!-- Contul Meu -->
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card h-100" onclick="toggleInfoCard(this)" role="button" tabindex="0">
+        <h5 class="info-card-title"><i class="bi bi-person-gear"></i> Contul Meu</h5>
+        <p class="info-card-desc">Actualizeaza datele personale si schimba parola contului.</p>
+        <div class="info-card-expand"><hr class="my-3">
+          <p class="small text-muted mb-1">Poti modifica <strong>numele, prenumele si numarul de telefon</strong> si poti schimba parola.</p>
+          <p class="small text-muted mb-0"><strong>Adresa de email</strong> nu poate fi modificata deoarece este unica in sistem si serveste drept identificator de utilizator.</p>
+        </div>
+        <div class="info-card-chevron"><i class="bi bi-chevron-down"></i></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Flux de utilizare recomandat -->
+  <div class="mb-5">
+    <h2 class="fw-bold mb-1">Flux de utilizare recomandat</h2>
+    <p class="text-muted mb-4">Pasi recomandati pentru a configura portalul de la zero.</p>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-dot bg-primary"><span>1</span></div>
+        <div class="timeline-content"><h6 class="fw-bold mb-1">Adauga un Loc de Masurare (Bransament)</h6>
+          <p class="small text-muted mb-0">Folosind codul unic primit de la Decor Press, adauga bransamentul in sectiunea <strong>Adresele Mele</strong>. Acesta este punctul central al monitorizarii.</p></div>
+      </div>
+      <div class="timeline-item"><div class="timeline-dot bg-purple"><span>2</span></div>
+        <div class="timeline-content"><h6 class="fw-bold mb-1">Creeaza Regiuni (optional)</h6>
+          <p class="small text-muted mb-0">Daca gestionezi mai multe bransamente, grupeaza-le in <strong>Regiuni</strong> si ofera acces echipei tale prin coduri de regiune.</p></div>
+      </div>
+      <div class="timeline-item"><div class="timeline-dot bg-teal"><span>3</span></div>
+        <div class="timeline-content"><h6 class="fw-bold mb-1">Invita Locatarii</h6>
+          <p class="small text-muted mb-0">Din <strong>Locuri de Consum</strong> (accesibil din Adresele Mele), genereaza coduri de invitatie pentru fiecare apartament.</p></div>
+      </div>
+      <div class="timeline-item"><div class="timeline-dot bg-orange"><span>4</span></div>
+        <div class="timeline-content"><h6 class="fw-bold mb-1">Configureaza Perioadele de Citire</h6>
+          <p class="small text-muted mb-0">Seteaza data de citire a furnizorului in <strong>Perioade Citiri</strong> pentru a activa raportul de bilant neinchideri.</p></div>
+      </div>
+      <div class="timeline-item"><div class="timeline-dot bg-success"><span>5</span></div>
+        <div class="timeline-content"><h6 class="fw-bold mb-1">Activeaza Alertele</h6>
+          <p class="small text-muted mb-0">In <strong>Setari Alerte</strong>, configureaza notificarile SMS si email conform preferintelor tale.</p></div>
+      </div>
+      <div class="timeline-item"><div class="timeline-dot bg-primary"><span>6</span></div>
+        <div class="timeline-content"><h6 class="fw-bold mb-1">Monitorizeaza si Analizeaza</h6>
+          <p class="small text-muted mb-0">Foloseste sectiunile <strong>Raport Citiri</strong>, <strong>Bilant</strong>, <strong>Estimari</strong> si <strong>Raport Alerte</strong> pentru monitorizare continua.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intrebari Frecvente -->
+  <div class="mb-5">
+    <h2 class="fw-bold mb-1">Intrebari Frecvente</h2>
+    <p class="text-muted mb-4">Raspunsuri la cele mai comune intrebari despre utilizarea platformei.</p>
+    <div class="accordion faq-accordion" id="faqAccordion">
+
+      <div class="accordion-item faq-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            <i class="bi bi-question-circle-fill faq-icon me-3"></i>Ce este un "Loc de Masurare" si un "Loc de Consum"?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body faq-body">
+            <p>Un <strong>Loc de Masurare (Bransament)</strong> este punctul principal de intrare a apei intr-o cladire (ex: scara unui bloc). Acesta grupeaza mai multe puncte finale de consum si este echipat cu un contor inteligent cu ultrasunete.</p>
+            <p class="mb-0">Un <strong>Loc de Consum (Apartament)</strong> este un punct final individual, contorizat separat, care face parte dintr-un bransament. Locatarii primesc acces exclusiv la datele proprii.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            <i class="bi bi-question-circle-fill faq-icon me-3"></i>De unde obtin codul unic pentru a adauga un bransament?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body faq-body">
+            <p class="mb-0">Codul unic este furnizat de <strong>Decor Press Servicii Instalatii SRL</strong> la momentul instalarii echipamentelor de contorizare. Daca nu il ai la dispozitie, te rugam sa contactezi echipa noastra prin sectiunea <strong>Contact</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            <i class="bi bi-question-circle-fill faq-icon me-3"></i>Cum functioneaza sistemul de Regiuni?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body faq-body">
+            <p>Regiunile permit <strong>gruparea bransamentelor</strong> si delegarea accesului. De exemplu, o firma de facility management poate crea mai multe regiuni si distribui coduri angajatilor pentru accesul la bransamentele aferente zonei lor.</p>
+            <p class="mb-0">Utilizatorul care creeaza o regiune poate <strong>retrage drepturile</strong> oricand, fara a afecta alte regiuni sau utilizatori.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            <i class="bi bi-question-circle-fill faq-icon me-3"></i>Ce inseamna "Bilantul Neinchiderilor la Apa"?
+          </button>
+        </h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body faq-body">
+            <p>Bilantul neinchiderilor reprezinta <strong>diferenta</strong> dintre volumul total citit de furnizor la bransament si suma individuala a consumurilor inregistrate de contoarele apartamentelor la aceeasi data.</p>
+            <p class="mb-0">O diferenta semnificativa poate indica pierderi in instalatii comune sau alte probleme. Pentru a utiliza aceasta functie, este necesara configurarea datelor de citire in <strong>Perioade Citiri</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+            <i class="bi bi-question-circle-fill faq-icon me-3"></i>Ce tipuri de alerte poate transmite sistemul?
+          </button>
+        </h2>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body faq-body">
+            <div class="row g-3">
+              <div class="col-sm-6"><div class="faq-alert-card faq-alert-critical"><div class="fw-bold mb-1"><i class="bi bi-lightning-fill me-1"></i> Critice (SMS instant)</div><ul class="small mb-0 ps-3"><li>Teava sparta</li><li>Inghet detectat</li></ul></div></div>
+              <div class="col-sm-6"><div class="faq-alert-card faq-alert-daily"><div class="fw-bold mb-1"><i class="bi bi-envelope-fill me-1"></i> Zilnice (email)</div><ul class="small mb-0 ps-3"><li>Curgere inversa</li><li>Curgere continua</li><li>Frauda detectata</li></ul></div></div>
+              <div class="col-sm-6"><div class="faq-alert-card faq-alert-monthly"><div class="fw-bold mb-1"><i class="bi bi-calendar-fill me-1"></i> Lunare (email)</div><ul class="small mb-0 ps-3"><li>Consum zero</li><li>Consum cu X% mai mare fata de media pe 3 luni</li></ul></div></div>
+              <div class="col-sm-6"><div class="faq-alert-card faq-alert-special"><div class="fw-bold mb-1"><i class="bi bi-heart-fill me-1"></i> Speciale (apartamente)</div><ul class="small mb-0 ps-3"><li>Consum zero pentru N zile (monitorizare persoane vulnerabile)</li></ul></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+            <i class="bi bi-question-circle-fill faq-icon me-3"></i>Cat de des se actualizeaza datele de consum?
+          </button>
+        </h2>
+        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body faq-body">
+            <p class="mb-0">Contoarele inteligente cu ultrasunete transmit date prin reteaua <strong>LoRaWAN</strong> cel putin o data pe zi. Anumite tipuri de contoare ofera citiri <strong>orare</strong>. Datele sunt disponibile in portal imediat dupa transmisie.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+            <i class="bi bi-question-circle-fill faq-icon me-3"></i>Pot schimba adresa de email a contului meu?
+          </button>
+        </h2>
+        <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body faq-body">
+            <p class="mb-0"><strong>Nu</strong>, adresa de email nu poate fi modificata deoarece este unica in sistem si functioneaza ca identificator de utilizator. Daca ai nevoie de o modificare de urgenta, contacteaza echipa Decor Press prin sectiunea <strong>Contact</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item faq-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+            <i class="bi bi-question-circle-fill faq-icon me-3"></i>Cum functioneaza alertele pentru persoane vulnerabile?
+          </button>
+        </h2>
+        <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body faq-body">
+            <p>Alerta <strong>"Consum Zero N Zile"</strong> este disponibila exclusiv la nivel de apartament. Daca un apartament nu inregistreaza niciun consum timp de N zile consecutive (implicit 3 zile, configurabil), utilizatorul care administreaza bransamentul primeste o notificare.</p>
+            <p class="mb-0">Aceasta functie este utila pentru <strong>monitorizarea persoanelor varstnice sau vulnerabile</strong> care locuiesc singure, oferind un nivel suplimentar de siguranta.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <div class="info-contact-cta mb-5">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h4 class="fw-bold mb-1" style="color:#fff;">Nu ai gasit raspunsul cautat?</h4>
+        <p class="mb-0" style="color:rgba(255,255,255,0.85);">Echipa Decor Press este disponibila pentru a te ajuta cu orice intrebare legata de platforma sau de echipamentele de contorizare.</p>
+      </div>
+      <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <a href="../../page/contact/index.html" class="btn btn-light btn-lg fw-bold"><i class="bi bi-envelope-fill me-2"></i> Contacteaza-ne</a>
+      </div>
+    </div>
+  </div>
+
+</div></main>
+
+        </div>
+    </div>
+
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
+    <script src="../../js/dashboard.js" class="astro-vvvwv3sm"></script>
+    <script src="../../js/onboarding.js"></script>
+</body>
+</html>
+
+<script>
+function toggleInfoCard(card){
+  var isExpanded = card.classList.contains('expanded');
+  document.querySelectorAll('.info-card.expanded').forEach(function(c){ c.classList.remove('expanded'); });
+  if (!isExpanded) card.classList.add('expanded');
+}
+
+document.querySelectorAll('.info-card').forEach(function(card){
+  card.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleInfoCard(card);
+    }
+  });
+});
+</script>
