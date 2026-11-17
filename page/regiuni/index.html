@@ -204,6 +204,10 @@
                                 <a href="../../page/citiri/zona.html" class="btn btn-sm btn-primary me-2">Raport Citiri</a>
                                 <!-- MODIFICARE: Buton nou pentru gestionarea membrilor -->
                                 <a href="../../page/regiuni/members.html" class="btn btn-sm btn-outline-secondary me-2">Membri Regiune</a>
+                                <!-- Buton Editeaza: deschide modalul de editare, precompletat cu datele regiunii -->
+                                <button type="button" class="btn btn-sm btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#modalEditeazaRegiune" data-region-name="Regiunea A" data-region-code="R12345678">
+                                    <i class="bi bi-pencil" aria-hidden="true"></i> Editează
+                                </button>
                                 <button type="button" class="btn btn-sm btn-outline-danger" onclick="return confirm('Sunteți sigur că doriți să ștergeți această regiune? Acțiunea este ireversibilă.');">Șterge</button>
                             </div>
                         </div>
@@ -222,6 +226,10 @@
                             <div class="d-flex justify-content-end">
                                 <!-- MODIFICARE: Stilul butonului a fost schimbat in primary -->
                                 <a href="../../page/citiri/zona.html" class="btn btn-sm btn-primary me-2">Raport Citiri</a>
+                                <!-- Buton Editeaza: deschide modalul de editare, precompletat cu datele regiunii -->
+                                <button type="button" class="btn btn-sm btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#modalEditeazaRegiune" data-region-name="Regiunea B" data-region-code="R87654321">
+                                    <i class="bi bi-pencil" aria-hidden="true"></i> Editează
+                                </button>
                                 <!-- Butonul "Sterge" este inlocuit cu "Paraseste" -->
                                 <button type="button" class="btn btn-sm btn-outline-danger" onclick="return confirm('Sunteți sigur că doriți să părăsiți această regiune?');">Părăsește</button>
                             </div>
@@ -281,6 +289,48 @@
         </div>
     </div>
 </div>
+
+<!-- Modal editare regiune (comun pentru toate regiunile; datele vin din atributele data-region-* ale butonului) -->
+<div class="modal fade" id="modalEditeazaRegiune" tabindex="-1" aria-labelledby="modalEditeazaRegiuneLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEditeazaRegiuneLabel">Editează Regiunea</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="editNumeRegiune" class="form-label">Nume Regiune</label>
+                        <input type="text" class="form-control" id="editNumeRegiune" placeholder="Ex: Asociația Blocuri Centru">
+                        <div class="form-text">Numele este vizibil pentru toți membrii regiunii.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCodRegiune" class="form-label">Cod Regiune</label>
+                        <input type="text" class="form-control" id="editCodRegiune" readonly>
+                        <div class="form-text">Codul unic nu poate fi modificat.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+                <button type="button" class="btn btn-primary">Salvează</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Precompleteaza modalul de editare cu datele regiunii pe care s-a dat click
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('modalEditeazaRegiune');
+    modal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        document.getElementById('editNumeRegiune').value = button.getAttribute('data-region-name') || '';
+        document.getElementById('editCodRegiune').value = button.getAttribute('data-region-code') || '';
+    });
+});
+</script>
 
         </div>
     </div>

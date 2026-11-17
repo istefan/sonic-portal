@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SONIC GRID</title>
+
+    <script src="../../js/color-modes.js"></script>
+
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" />
+    <link href="../../css/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="../../images/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../../images/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="mask-icon" href="../../images/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="../../images/favicon.ico">
+
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#712cf9">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof bootstrap === 'undefined') {
+                console.error('Bootstrap JS is required but not loaded');
+            }
+        });
+    </script>
+</head>
+<body>
+    <header class="navbar sticky-top bg-white flex-md-nowrap p-1" data-bs-theme="light">
+        <a class="navbar-brand me-0 px-3 fs-6 d-flex align-items-center" href="../../index.html">
+            <img src="../../images/sonic-grid-logo-color.svg" alt="SONIC GRID" height="30">
+        </a>
+        <ul class="navbar-nav flex-row ms-auto"> <!-- Added ms-auto to push to right -->
+            <li class="nav-item dropdown user-dropdown">
+                <a class="nav-link px-3 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Account preferences">
+                    <i class="bi bi-person" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="../../page/contul-meu/index.html">Editare profil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="../../login.html">Ieșire din cont</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav flex-row d-md-none">
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row"><div class="sidebar p-0 bg-white">
+    <div class="offcanvas-md offcanvas-end bg-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">SONIC GRID</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+            
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " aria-current="page" href="../../index.html">
+                        <i class="bi bi-display" aria-hidden="true"></i> Panoul Meu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/adrese/index.html">
+                        <i class="bi bi-geo-alt" aria-hidden="true"></i> Adresele Mele
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/regiuni/index.html">
+                        <i class="bi bi-bounding-box" aria-hidden="true"></i> Regiuni / Zone
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/perioade-calcul/index.html">
+                        <i class="bi bi-calendar-check" aria-hidden="true"></i> Perioade Citiri
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/setari-alerte/index.html">
+                        <i class="bi bi-bell" aria-hidden="true"></i> Setări Alerte
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/info-center/index.html">
+                        <i class="bi bi-info-circle" aria-hidden="true"></i> Info Center
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contact/index.html">
+                        <i class="bi bi-envelope" aria-hidden="true"></i> Contact
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Rapoarte</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active" href="../../page/citiri/index.html">
+                        <i class="bi bi-calendar-day" aria-hidden="true"></i> Raport Citiri
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/bilant/index.html">
+                        <i class="bi bi-pie-chart" aria-hidden="true"></i> Bilanț Neînchideri Apă
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/estimari/index.html">
+                        <i class="bi bi-graph-up-arrow" aria-hidden="true"></i> Estimări Consum
+                    </a>
+                </li>
+                 <!-- MODIFICARE: Link nou adaugat -->
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/alerte/index.html">
+                        <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Raport Alerte
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Administrare</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/contul-meu/index.html">
+                        <i class="bi bi-person-gear" aria-hidden="true"></i> Contul Meu
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Admin Sistem</span>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/users/index.html">
+                        <i class="bi bi-people" aria-hidden="true"></i> Utilizatori
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 " href="../../page/settings/index.html">
+                        <i class="bi bi-receipt" aria-hidden="true"></i> Setari Aplicatie
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<main class="main px-md-4"><div class="container-full-width">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center gap-2 pt-3 pb-2 mb-3">
+        <h1>Raport energie termică pentru: Str. Unirii, Nr. 10, Apartament 3</h1>
+
+        <!-- Buton Inapoi: revine la pagina precedenta; fara istoric -> hub-ul Raport Citiri -->
+        <a href="../../page/citiri/index.html" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 text-nowrap flex-shrink-0" onclick="if (document.referrer && history.length > 1) { history.back(); return false; }">
+            <i class="bi bi-arrow-left"></i> Înapoi
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                        <h5 class="card-title mb-0">Evoluția consumului zilnic de energie termică</h5>
+                        <span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span>
+                    </div>
+
+                    <div style="height: 400px;">
+                        <canvas id="dailyConsumptionChart"></canvas>
+                    </div>
+
+                    <div class="mt-5">
+                        <div id="date-slider"></div>
+                    </div>
+
+                    <br><br>
+                    <p class="text-muted small mb-0"><i class="bi bi-info-circle me-1"></i>Contoarele de energie termică transmit o citire pe zi. Pentru acest tip de echipament nu sunt disponibile citiri orare.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- START: Carduri de statistici si descarcare -->
+    <div class="row">
+        <!-- Card 1: Statistici perioada selectata -->
+        <div class="col-md-5 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Sumar pentru perioada selectată</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="mb-0 equip-text-termic">Consum total energie termică:</p>
+                        <p class="mb-0 fw-bold fs-5 equip-text-termic"><span id="totalConsumptionHeat">--</span> MWh</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0 equip-text-termic">Consum mediu zilnic:</p>
+                        <p class="mb-0 fw-bold fs-5 equip-text-termic"><span id="averageConsumptionHeat">--</span> MWh / zi</p>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="mb-0 text-muted">Index la începutul perioadei:</p>
+                        <p class="mb-0 fw-bold"><span id="indexStartHeat">--</span> MWh</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0 text-muted">Index la sfârșitul perioadei:</p>
+                        <p class="mb-0 fw-bold"><span id="indexEndHeat">--</span> MWh</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Export Raport Citiri (cu datepicker) -->
+        <div class="col-md-7 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">RAPOARTE CITIRI</h5>
+
+                    <!-- Tip raport: 4 butoane de selectie (stilul .report-btn-grid este in css/style.css) -->
+                    <div class="report-btn-grid cols-2" role="group" id="exportReportTypeGroup">
+                        <div>
+                            <input type="radio" class="btn-check" name="exportReportType" id="exportTypeDate" value="date" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="exportTypeDate">
+                                <i class="bi bi-calendar-event me-1"></i> Alege Data
+                            </label>
+                        </div>
+
+                        <div>
+                            <input type="radio" class="btn-check" name="exportReportType" id="exportTypePeriod" value="period" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="exportTypePeriod">
+                                <i class="bi bi-calendar-range me-1"></i> Alege Perioada
+                            </label>
+                        </div>
+
+                        <div>
+                            <input type="radio" class="btn-check" name="exportReportType" id="exportTypeZilnice" value="zilnice" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="exportTypeZilnice">
+                                <i class="bi bi-calendar-week me-1"></i> Citiri Zilnice
+                            </label>
+                        </div>
+
+                        <div>
+                            <input type="radio" class="btn-check" name="exportReportType" id="exportTypeConsumuriZilnice" value="consumuri_zilnice" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="exportTypeConsumuriZilnice">
+                                <i class="bi bi-calendar-week me-1"></i> Consumuri Zilnice
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Wrapper 1: Alege Data - un singur datepicker -->
+                    <div id="wrapperDate">
+                        <div class="mb-3">
+                            <label for="exportSingleDate" class="form-label small mb-1">Selectează data</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                <input type="text" class="form-control" id="exportSingleDate" placeholder="Alege data..." readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wrapper 2: Alege Perioada - De la / Pana la -->
+                    <div id="wrapperPeriod" style="display: none;">
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label for="exportDateFrom" class="form-label small mb-1">De la</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                    <input type="text" class="form-control" id="exportDateFrom" placeholder="Alege data..." readonly>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="exportDateTo" class="form-label small mb-1">Până la</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                    <input type="text" class="form-control" id="exportDateTo" placeholder="Alege data..." readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wrapper 3: Citiri Zilnice - De la / Pana la -->
+                    <div id="wrapperZilnice" style="display: none;">
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label for="exportZilniceFrom" class="form-label small mb-1">De la</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                    <input type="text" class="form-control" id="exportZilniceFrom" placeholder="Alege data..." readonly>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="exportZilniceTo" class="form-label small mb-1">Până la</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                    <input type="text" class="form-control" id="exportZilniceTo" placeholder="Alege data..." readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wrapper 4: Consumuri Zilnice - De la / Pana la -->
+                    <div id="wrapperConsumuriZilnice" style="display: none;">
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label for="exportConsumuriZilniceFrom" class="form-label small mb-1">De la</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                    <input type="text" class="form-control" id="exportConsumuriZilniceFrom" placeholder="Alege data..." readonly>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="exportConsumuriZilniceTo" class="form-label small mb-1">Până la</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                    <input type="text" class="form-control" id="exportConsumuriZilniceTo" placeholder="Alege data..." readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Format export -->
+                    <label class="form-label fw-semibold mb-2">Format export</label>
+                    <div class="d-flex gap-2 mb-3">
+                        <div class="flex-fill">
+                            <input type="radio" class="btn-check format-btn-check" name="exportFormat" id="exportFormatXLSX" value="xlsx" autocomplete="off" checked>
+                            <label class="d-flex align-items-center justify-content-center gap-2 w-100 p-2 rounded format-btn-label" for="exportFormatXLSX">
+                                <i class="bi bi-file-earmark-excel text-success fs-5 d-flex align-items-center"></i>
+                                <span class="fw-medium d-flex align-items-center" style="margin-top: 2px;">XLSX</span>
+                            </label>
+                        </div>
+                        <div class="flex-fill">
+                            <input type="radio" class="btn-check format-btn-check" name="exportFormat" id="exportFormatPDF" value="pdf" autocomplete="off">
+                            <label class="d-flex align-items-center justify-content-center gap-2 w-100 p-2 rounded format-btn-label" for="exportFormatPDF">
+                                <i class="bi bi-file-earmark-pdf text-danger fs-5 d-flex align-items-center"></i>
+                                <span class="fw-medium d-flex align-items-center" style="margin-top: 2px;">PDF</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Buton descarca -->
+                    <button class="btn btn-primary w-100" type="button" id="btnExportReport">
+                        <i class="bi bi-download me-2"></i> Descarcă Raport
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Carduri de statistici si descarcare -->
+
+    <!-- START: Card cu echipamente -->
+    <div class="row">
+        <div class="col-12">
+             <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Contoare de energie termică instalate în Str. Unirii, Nr. 10, Ap. 3</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Serie Contor</th>
+                                <th scope="col">Amplasare</th>
+                                <th scope="col">Tip</th>
+                                <th scope="col">Ultima Citire</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Ultima Transmisie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ET-0051203</td>
+                                <td>Intrare apartament (hol scară)</td>
+                                <td><span class="equip-badge equip-termic"><i class="bi bi-fire"></i> Contor energie termică</span></td>
+                                <td>12.418 MWh</td>
+                                <td><span class="badge bg-success">OK</span></td>
+                                <td>17-11-2026, 00:05</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+        </div>
+    </div>
+    <!-- END: Card cu echipamente -->
+
+</div></main>
+
+<!-- START: Sectiune JavaScript -->
+<script>
+function initializeChartAndSlider() {
+
+    // Date demonstrative: 365 de zile cu consum zilnic de energie termica (MWh).
+    // Consumul urmeaza sezonul de incalzire (mare iarna, aproape zero vara).
+    // In ASP.NET aceste date vin de la server (vezi README.md).
+    const historicalData = [];
+    const today = new Date();
+    let index = 8.000; // index contor (MWh) la inceputul intervalului
+    for (let i = 365; i > 0; i--) {
+        const date = new Date();
+        date.setDate(today.getDate() - i + 1);
+        const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
+        const season = Math.max(0, Math.cos(2 * Math.PI * (dayOfYear - 15) / 365));
+        const consum = +(season * 0.035 + Math.random() * 0.01 * season).toFixed(3); // consum la nivel de apartament
+        const indexStart = index;
+        index = +(index + consum).toFixed(3);
+        historicalData.push({ date: date, energie: consum, indexStart: indexStart, indexEnd: index });
+    }
+
+    const ctx = document.getElementById('dailyConsumptionChart').getContext('2d');
+    const dailyChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: [], datasets: [ { label: 'Consum energie termică (MWh)', data: [], backgroundColor: 'rgba(249, 115, 22, 0.7)' } ] },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'Consum (MWh)' } }, x: { title: { display: true, text: 'Data' } } },
+            plugins: { legend: { position: 'top' }, tooltip: { mode: 'index', intersect: false } }
+        }
+    });
+
+    function updateChartAndStats(data) {
+        dailyChart.data.labels = data.map(item => item.date.toLocaleDateString('ro-RO', { day: '2-digit', month: 'short' }));
+        dailyChart.data.datasets[0].data = data.map(item => item.energie);
+        dailyChart.update();
+
+        const total = data.reduce((sum, item) => sum + item.energie, 0);
+        const average = data.length > 0 ? total / data.length : 0;
+
+        document.getElementById('totalConsumptionHeat').textContent = total.toFixed(3);
+        document.getElementById('averageConsumptionHeat').textContent = average.toFixed(3);
+        document.getElementById('indexStartHeat').textContent = data.length ? data[0].indexStart.toFixed(3) : '--';
+        document.getElementById('indexEndHeat').textContent = data.length ? data[data.length - 1].indexEnd.toFixed(3) : '--';
+    }
+
+    const dateSlider = document.getElementById('date-slider');
+    const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    const startIndex = historicalData.findIndex(d => d.date.getTime() >= firstDayOfMonth.getTime());
+    const endIndex = historicalData.length - 1;
+
+    noUiSlider.create(dateSlider, {
+        start: [startIndex, endIndex],
+        connect: true,
+        step: 1,
+        range: { 'min': 0, 'max': historicalData.length - 1 },
+        tooltips: [
+            { to: (value) => `De la ${historicalData[Math.round(value)].date.toLocaleDateString('ro-RO')}` },
+            { to: (value) => `Până la ${historicalData[Math.round(value)].date.toLocaleDateString('ro-RO')}` }
+        ],
+        pips: {
+            mode: 'steps',
+            density: 3,
+            filter: (value, type) => {
+                const date = historicalData[Math.round(value)].date;
+                return date.getDate() === 1 ? 1 : 0;
+            },
+            format: {
+                to: (value) => historicalData[Math.round(value)].date.toLocaleDateString('ro-RO', { month: 'short', year: '2-digit' })
+            }
+        }
+    });
+
+    dateSlider.noUiSlider.on('update', function (values, handle) {
+        const startIdx = Math.round(values[0]);
+        const endIdx = Math.round(values[1]);
+        updateChartAndStats(historicalData.slice(startIdx, endIdx + 1));
+    });
+}
+
+function initializeExportCard() {
+    const flatpickrOptions = {
+        locale: "ro",
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "d.m.Y"
+    };
+
+    if (typeof flatpickr !== 'undefined') {
+        flatpickr("#exportSingleDate", flatpickrOptions);
+        flatpickr("#exportDateFrom", flatpickrOptions);
+        flatpickr("#exportDateTo", flatpickrOptions);
+        flatpickr("#exportZilniceFrom", flatpickrOptions);
+        flatpickr("#exportZilniceTo", flatpickrOptions);
+        flatpickr("#exportConsumuriZilniceFrom", flatpickrOptions);
+        flatpickr("#exportConsumuriZilniceTo", flatpickrOptions);
+    }
+
+    // Mapare valoare radio -> ID wrapper
+    const wrapperMap = {
+        'date':              'wrapperDate',
+        'period':            'wrapperPeriod',
+        'zilnice':           'wrapperZilnice',
+        'consumuri_zilnice': 'wrapperConsumuriZilnice'
+    };
+    const allWrapperIds = Object.values(wrapperMap);
+
+    function showWrapper(activeValue) {
+        allWrapperIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+        const el = document.getElementById(wrapperMap[activeValue]);
+        if (el) el.style.display = 'block';
+    }
+
+    const checkedRadio = document.querySelector('input[name="exportReportType"]:checked');
+    if (checkedRadio) showWrapper(checkedRadio.value);
+
+    document.querySelectorAll('input[name="exportReportType"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            showWrapper(this.value);
+        });
+    });
+}
+
+function waitForDependencies() {
+    if (typeof Chart !== 'undefined' && typeof noUiSlider !== 'undefined' && typeof wNumb !== 'undefined' && typeof flatpickr !== 'undefined') {
+        initializeChartAndSlider();
+        initializeExportCard();
+    } else {
+        setTimeout(waitForDependencies, 50);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', waitForDependencies);
+</script>
+<!-- END: Sectiune JavaScript -->
+
+        </div>
+    </div>
+
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous" class="astro-vvvwv3sm"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
+    <script src="../../js/dashboard.js" class="astro-vvvwv3sm"></script>
+    <script src="../../js/onboarding.js"></script>
+</body>
+</html>

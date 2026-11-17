@@ -166,9 +166,14 @@
 
 <main class="main px-md-4"><div class="container-full-width">
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center gap-2 pt-3 pb-2 mb-3">
         <!-- Titlul paginii este specific bransamentului -->
         <h1>Raport citiri pentru: Str. Unirii, Nr. 10</h1>
+
+        <!-- Buton Inapoi: revine la pagina precedenta; fara istoric -> hub-ul Raport Citiri -->
+        <a href="../../page/citiri/index.html" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 text-nowrap flex-shrink-0" onclick="if (document.referrer && history.length > 1) { history.back(); return false; }">
+            <i class="bi bi-arrow-left"></i> Înapoi
+        </a>
     </div>
 
     <div class="row">
@@ -176,7 +181,10 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h5 class="card-title mb-4">Evoluția consumului zilnic</h5>
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                        <h5 class="card-title mb-0">Evoluția consumului zilnic</h5>
+                        <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                    </div>
                     
                     <div style="height: 400px;">
                         <canvas id="dailyConsumptionChart"></canvas>
@@ -217,6 +225,13 @@
                      <div class="d-flex justify-content-between align-items-center">
                         <p class="mb-0 text-danger">Consum mediu zilnic (apă caldă):</p>
                         <p class="mb-0 fw-bold fs-5 text-danger"><span id="averageConsumptionHot">--</span> m³ / zi</p>
+                    </div>
+                    <!-- Contoare pasante: sectiunea se afiseaza doar daca locul de masurare are contoare pasante.
+                         Randurile sunt generate din JS (pasantMeters) si se actualizeaza odata cu sliderul de perioada. -->
+                    <div id="pasantSection">
+                        <hr>
+                        <h6 class="text-muted small mb-2">CONTOARE PASANTE</h6>
+                        <div id="pasantSummary"></div>
                     </div>
                 </div>
             </div>
@@ -470,21 +485,34 @@
                 <div class="card-header">
                     <h5 class="mb-0">Locuri de consum în Str. Unirii, Nr. 10</h5>
                 </div>
+                <!-- Fiecare loc de consum are o singura utilitate, afisata sub/langa adresa (.equip-badge). -->
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Apartament 1
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <span class="me-1">Apartament 1</span>
+                            <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                        </div>
                         <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Apartament 2
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <span class="me-1">Apartament 2</span>
+                            <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                        </div>
                         <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Apartament 3
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <span class="me-1">Apartament 3</span>
+                            <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                        </div>
                         <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
                     </li>
-                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Apartament 4
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <span class="me-1">Apartament 4</span>
+                            <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                        </div>
                         <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
                     </li>
                 </ul>
@@ -511,6 +539,22 @@ function initializeChartAndSlider() {
             apaCalda: Math.floor(Math.random() * (10 - 2 + 1)) + 2
         });
     }
+
+    // Contoare pasante ale locului de masurare (lista goala => sectiunea nu se afiseaza)
+    const pasantMeters = [
+        { serie: 'P-AR-10211', nume: 'Scara A - apă rece',  sursa: 'apaRece',  pondere: 0.55, indexStart: 2140.50, cls: 'text-primary' },
+        { serie: 'P-AC-10212', nume: 'Scara A - apă caldă', sursa: 'apaCalda', pondere: 0.55, indexStart: 1235.20, cls: 'text-danger' },
+        { serie: 'P-AR-10213', nume: 'Scara B - apă rece',  sursa: 'apaRece',  pondere: 0.40, indexStart: 1618.75, cls: 'text-primary' },
+        { serie: 'P-AC-10214', nume: 'Scara B - apă caldă', sursa: 'apaCalda', pondere: 0.40, indexStart: 902.10,  cls: 'text-danger' }
+    ];
+
+    // Date demonstrative pentru contoarele pasante: fiecare inregistreaza o parte din consumul
+    // locului de masurare. In ASP.NET vin de la server (vezi README.md).
+    const pasantIndexRunning = pasantMeters.map(meter => meter.indexStart);
+    historicalData.forEach(item => {
+        item.pasanti = pasantMeters.map(meter => +(item[meter.sursa] * meter.pondere * (0.9 + Math.random() * 0.2)).toFixed(3));
+        item.pasantIndex = item.pasanti.map((v, m) => (pasantIndexRunning[m] += v));
+    });
 
     const ctx = document.getElementById('dailyConsumptionChart').getContext('2d');
     const dailyChart = new Chart(ctx, {
@@ -546,6 +590,21 @@ function initializeChartAndSlider() {
         document.getElementById('averageConsumptionHot').textContent = averageConsumptionHot.toFixed(2);
     }
 
+    // Contoare pasante: consum in perioada selectata + index la sfarsitul perioadei
+    function updatePasantSummary(startIdx, endIdx) {
+        const section = document.getElementById('pasantSection');
+        if (!pasantMeters.length) { section.style.display = 'none'; return; }
+        document.getElementById('pasantSummary').innerHTML = pasantMeters.map((meter, m) => {
+            let consum = 0;
+            for (let d = startIdx; d <= endIdx; d++) consum += historicalData[d].pasanti[m];
+            const index = historicalData[endIdx].pasantIndex[m];
+            return `<div class="d-flex justify-content-between align-items-start mb-2">
+                <p class="mb-0 ${meter.cls}">${meter.nume}<br><small class="text-muted">Serie ${meter.serie}</small></p>
+                <p class="mb-0 text-end"><span class="fw-bold ${meter.cls}">${consum.toFixed(2)} m³</span><br><small class="text-muted">Index: ${index.toFixed(2)} m³</small></p>
+            </div>`;
+        }).join('');
+    }
+
     const dateSlider = document.getElementById('date-slider');
     const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
     const startIndex = historicalData.findIndex(d => d.date.getTime() >= firstDayOfMonth.getTime());
@@ -578,6 +637,7 @@ function initializeChartAndSlider() {
         const endIdx = Math.round(values[1]);
         const filteredData = historicalData.slice(startIdx, endIdx + 1);
         updateChartAndStats(filteredData);
+        updatePasantSummary(startIdx, endIdx);
     });
 }
 

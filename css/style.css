@@ -1086,3 +1086,74 @@ a.fp-link {
     z-index: 99992 !important;
 }
 
+
+/* ==========================================================================
+   Tipuri de echipamente: contor apă / contor energie termică / repartitor costuri
+   O adresa are o singura utilitate; badge-ul se afiseaza sub adresa.
+   Vezi README.md -> "Tipuri de echipamente".
+   ========================================================================== */
+
+.equip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25em 0.65em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: 50rem;
+    vertical-align: middle;
+}
+
+/* Contor de apă (m³) */
+.equip-apa        { color: #154EC1; background-color: rgba(21, 78, 193, 0.08);  border-color: rgba(21, 78, 193, 0.25); }
+/* Contor de energie termică (MWh) */
+.equip-termic     { color: #c2410c; background-color: rgba(249, 115, 22, 0.10); border-color: rgba(249, 115, 22, 0.35); }
+/* Repartitor de costuri pentru căldură (adimensional) */
+.equip-repartitor { color: #6d28d9; background-color: rgba(124, 58, 237, 0.08); border-color: rgba(124, 58, 237, 0.30); }
+
+/* Culoarea valorilor din cardul "Sumar" pe rapoartele de energie termica / repartitoare */
+.equip-text-termic     { color: #c2410c !important; }
+.equip-text-repartitor { color: #6d28d9 !important; }
+
+/* Nota informativa pe paginile de raport repartitoare (Ordinul 7/2024) */
+.equip-note {
+    border-radius: 0.6rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+}
+.equip-note-repartitor { background: #fdf4ff; border-left: 3px solid #a855f7; color: #581c87; }
+
+/* Grila butoanelor "Tip raport" din cardul RAPOARTE CITIRI.
+   Paginile de apă au o copie inline (3 coloane); .cols-2 e folosit pentru 4 butoane. */
+.report-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.report-btn-grid.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+.report-btn-grid .btn-check + .btn {
+    width: 100%;
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+    padding: 0.45rem 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    min-height: 2.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 1399.98px) {
+    .report-btn-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767.98px) {
+    .report-btn-grid,
+    .report-btn-grid.cols-2 { grid-template-columns: 1fr; }
+}

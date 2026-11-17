@@ -166,9 +166,14 @@
 
 <main class="main px-md-4"><div class="container-full-width">
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center gap-2 pt-3 pb-2 mb-3">
         <!-- MODIFICARE: Titlul paginii a fost actualizat pentru apartament -->
         <h1>Raport citiri pentru: Str. Unirii, Nr. 10, Apartament 3</h1>
+
+        <!-- Buton Inapoi: revine la pagina precedenta; fara istoric -> hub-ul Raport Citiri -->
+        <a href="../../page/citiri/index.html" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 text-nowrap flex-shrink-0" onclick="if (document.referrer && history.length > 1) { history.back(); return false; }">
+            <i class="bi bi-arrow-left"></i> Înapoi
+        </a>
     </div>
 
     <div class="row">
@@ -178,9 +183,12 @@
 
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h5 class="card-title mb-0">Evoluția consumului zilnic</h5>
-                        <a href="../../page/citiri/citiri-orare.html" class="btn btn-sm btn-primary d-inline-flex align-items-center gap-1">
-                            <i class="bi bi-clock"></i> Consum orar
-                        </a>
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                            <a href="../../page/citiri/citiri-orare.html" class="btn btn-sm btn-primary d-inline-flex align-items-center gap-1 text-nowrap">
+                                <i class="bi bi-clock"></i> Consum orar
+                            </a>
+                        </div>
                     </div>
                     
                     <div style="height: 400px;">
