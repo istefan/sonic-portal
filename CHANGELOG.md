@@ -11,6 +11,38 @@ Documentația generală (inventarul paginilor, componente, ghid de conversie) es
 
 ---
 
+## 2026-11-18 – Raport Citiri regândit, ajustări rapoarte
+
+### Pagini MODIFICATE
+
+#### `page/citiri/index.html` (Raport Citiri) – **pagină regândită**
+Conținutul și funcțiile existente se păstrează (regiuni + raport regiune, locuri de măsurare + „Vezi citiri”, locuri de consum + „Vezi citiri”), dar sunt reorganizate:
+- **NOU** card de filtre:
+  - selectare regiune (butoane „pill” `name="regionFilter"`: „Toate”, câte unul pe regiune, „Fără regiune”, cu numărul de locuri de măsurare); rândul se ascunde automat dacă contul nu are regiuni;
+  - căutare instant după adresă, cod sau regiune (`#searchLocMasurare`);
+  - filtru pe utilitate (`#utilityFilter`).
+- **MODIFICAT** fosta coloană „Regiuni Curente” (carduri cu „Vezi Citiri”) este înlocuită de selectorul de regiune; raportul regiunii se deschide din butonul **„Vezi citiri regiune”** (`#btnRegionReport` → `zona.html`), afișat în antetul listei când este selectată o regiune.
+- **MODIFICAT** „Locuri de Măsurare Curente” devine lista „Locuri de măsurare” (`col-lg-7`): câte un rând `.loc-row` cu adresa, badge-ul utilității, cod și regiune, „Vezi citiri” și „Locuri de consum”. Număr de rezultate în antet, stare goală cu „Resetează filtrele”. Atributele `data-region`, `data-utility`, `data-search`, `data-apt-list` – vezi `readme.md`, secțiunea 6.
+- **MODIFICAT** „Locuri de Consum” devine panoul din dreapta (`col-lg-5`, fix la scroll pe desktop): adresa selectată + număr de apartamente, căutare apartament (`#searchApartament`), lista apartamentelor; stare inițială cu mesaj. Rândul selectat din listă e evidențiat (`.selected`).
+- **MODIFICAT** listele de apartamente sunt `<ul class="list-group list-group-flush loc-consum-lista" id="apt-{id}" data-address="…">`, câte una pe loc de măsurare.
+- **MODIFICAT** JS: funcția `showApartamente()` este înlocuită de un script care leagă filtrele și butoanele „Locuri de consum” (fără `onclick` în HTML).
+- Date demonstrative: 2 regiuni, 7 locuri de măsurare (inclusiv unul fără regiune).
+
+#### `page/citiri/bransament.html` și `page/citiri/energie-termica.html`
+- **MODIFICAT** titlul secțiunii „CONTOARE PASANTE” din cardul „Sumar” are acum același stil ca „RAPOARTE CITIRI”: `<h5 class="card-title mb-3">` (înainte `<h6 class="text-muted small">`).
+
+#### `page/citiri/repartitoare.html`
+- **MODIFICAT** culorile seriilor din grafic (încăperi) – nuanțe de mov cu contrast mare, ușor de distins și de persoanele cu deficiențe de vedere: Sufragerie `#3b0764`, Dormitor `#7c3aed`, Bucătărie `#c026d3`, Baie `#e9d5ff`; segmentele au contur alb de 1px (`borderColor: '#ffffff', borderWidth: 1`).
+
+#### `page/citiri/repartitoare.html` și `page/citiri/repartitoare-bransament.html`
+- **MODIFICAT** textul notei de sub titlu:
+  > **Despre valorile afișate:** repartitoarele de costuri înregistrează unități brute necorectate. Unitățile repartitoarelor de costuri se corectează cu factorii prevăzuți în **Ordinul 7/2024**, iar valoarea finală, corectată cu factorul de evaluare global, se eliberează sub formă de **raport lunar**.
+
+### CSS (`css/style.css`)
+- **NOU** secțiunea „Raport Citiri (hub)”: `.loc-row` (rând listă, hover), `.loc-row.selected` (fundal `#ECF6FF` + bară stânga în culoarea primară), `.region-count` (contor în butoanele de regiune), `.loc-consum-panel` (sticky pe desktop), `.loc-consum-scroll` (listă apartamente cu scroll). Nicio regulă existentă nu a fost modificată.
+
+---
+
 ## 2026-11-17 – Utilități multiple: apă, energie termică, repartitoare costuri
 
 ### Concept nou: o adresă = o singură utilitate

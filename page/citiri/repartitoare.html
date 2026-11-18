@@ -178,9 +178,9 @@
     <!-- Nota obligatorie: unitatile repartitoarelor si Ordinul 7/2024 -->
     <div class="equip-note equip-note-repartitor mb-4">
         <i class="bi bi-info-circle me-1"></i>
-        <strong>Despre valorile afișate:</strong> repartitoarele de costuri înregistrează unități adimensionale (fără unitate de măsură).
-        Unitățile repartitoarelor de costuri se corelează cu factorii prevăzuți în <strong>Ordinul 7/2024</strong>, iar valoarea finală,
-        corelată cu factorul de evaluare global, se eliberează sub formă de <strong>raport lunar</strong>.
+        <strong>Despre valorile afișate:</strong> repartitoarele de costuri înregistrează unități brute necorectate.
+        Unitățile repartitoarelor de costuri se corectează cu factorii prevăzuți în <strong>Ordinul 7/2024</strong>, iar valoarea finală,
+        corectată cu factorul de evaluare global, se eliberează sub formă de <strong>raport lunar</strong>.
     </div>
 
     <div class="row">
@@ -491,10 +491,11 @@ function initializeChartAndSlider() {
     // Valorile sunt adimensionale; urmeaza sezonul de incalzire.
     // In ASP.NET aceste date vin de la server (vezi README.md).
     const rooms = [
-        { key: 'sufragerie', label: 'Sufragerie', max: 14, color: 'rgba(124, 58, 237, 0.75)' },
-        { key: 'dormitor',   label: 'Dormitor',   max: 10, color: 'rgba(167, 139, 250, 0.75)' },
-        { key: 'bucatarie',  label: 'Bucătărie',  max: 6,  color: 'rgba(192, 132, 252, 0.75)' },
-        { key: 'baie',       label: 'Baie',       max: 4,  color: 'rgba(221, 214, 254, 0.95)' }
+        // Nuante de mov cu luminozitate foarte diferita (contrast mare, usor de distins si pentru deficiente de vedere)
+        { key: 'sufragerie', label: 'Sufragerie', max: 14, color: '#3b0764' },
+        { key: 'dormitor',   label: 'Dormitor',   max: 10, color: '#7c3aed' },
+        { key: 'bucatarie',  label: 'Bucătărie',  max: 6,  color: '#c026d3' },
+        { key: 'baie',       label: 'Baie',       max: 4,  color: '#e9d5ff' }
     ];
 
     const historicalData = [];
@@ -516,7 +517,7 @@ function initializeChartAndSlider() {
         type: 'bar',
         data: {
             labels: [],
-            datasets: rooms.map(room => ({ label: room.label, data: [], backgroundColor: room.color }))
+            datasets: rooms.map(room => ({ label: room.label, data: [], backgroundColor: room.color, borderColor: '#ffffff', borderWidth: 1 }))
         },
         options: {
             responsive: true,

@@ -1157,3 +1157,27 @@ a.fp-link {
     .report-btn-grid,
     .report-btn-grid.cols-2 { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   Raport Citiri (hub): lista locurilor de masurare + panoul locurilor de consum
+   ========================================================================== */
+.loc-row { padding: 0.85rem 1rem; transition: background-color 0.15s ease; }
+.loc-row:hover { background-color: #f8f9fa; }
+.loc-row.selected { background-color: #ECF6FF; box-shadow: inset 3px 0 0 var(--primary-color); }
+.region-count {
+    display: inline-block;
+    min-width: 1.4em;
+    margin-left: 0.25rem;
+    padding: 0 0.4em;
+    font-size: 0.75em;
+    font-weight: 600;
+    border-radius: 50rem;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+.loc-consum-panel { position: sticky; top: 70px; }
+.loc-consum-scroll { max-height: 520px; overflow-y: auto; }
+@media (max-width: 991.98px) {
+    .loc-consum-panel { position: static; }
+}
+.loc-row .min-w-0 { min-width: 0; }
+.loc-consum-panel .fs-2 .bi, #locEmptyState .fs-2 .bi { width: 1em; height: 1em; }

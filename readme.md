@@ -98,7 +98,7 @@ Coloana **Meniu activ** este elementul din sidebar marcat ca activ (în PHP: var
 | `page/setari-alerte/index.html` | Setări Alerte | Setări Alerte | Configurarea canalelor și tipurilor de alerte. |
 | `page/info-center/index.html` | Cum functioneaza portalul? | Info Center | Ghid de utilizare, FAQ, tipuri de alerte. |
 | `page/contact/index.html` | Contact | Contact | Formular de contact. |
-| `page/citiri/index.html` | Raport Citiri | Raport Citiri | Hub rapoarte: regiuni, locuri de măsurare și locuri de consum curente, fiecare cu **utilitatea sub adresă** și link către raportul utilității. |
+| `page/citiri/index.html` | Raport Citiri | Raport Citiri | Hub rapoarte: filtru pe regiune, căutare și filtru pe utilitate; lista locurilor de măsurare (utilitatea sub adresă) și panoul locurilor de consum ale locului selectat. Vezi secțiunea 6. |
 | `page/citiri/zona.html` | Raport citiri pentru: Zona A | Raport Citiri | Raport agregat apă pe regiune + lista locurilor de măsurare din regiune (utilitatea sub fiecare adresă). |
 | `page/citiri/bransament.html` | Raport citiri pentru: {adresă} | Raport Citiri | Raport **apă** pe loc de măsurare (apă rece / apă caldă, m³), contoare pasante în sumar, 6 tipuri de export, lista locurilor de consum. Buton „Înapoi”. |
 | `page/citiri/apartament.html` | Raport citiri pentru: {adresă}, Apartament N | Raport Citiri | Raport **apă** pe loc de consum + tabel contoare + buton „Consum orar”. Buton „Înapoi”. |
@@ -187,7 +187,7 @@ Markup-ul badge-ului (identic peste tot):
 4. Pe paginile de raport, utilitatea se vede în antetul cardului de grafic (badge) și în legenda graficului; în dreapta titlului există doar butonul **„Înapoi”**.
 5. Toate cele trei utilități au rapoarte atât pe **loc de măsurare** (bloc), cât și pe **loc de consum** (apartament). Contoarele de energie termică se montează în bloc, de regulă la intrarea în apartament – același regim de distribuție ca la contoarele de apă. Repartitoarele se montează câte unul pe calorifer/încăpere.
 
-**Repartitoare – text obligatoriu.** Paginile `repartitoare-bransament.html` și `repartitoare.html` trebuie să conțină nota (`.equip-note.equip-note-repartitor`) care precizează că unitățile repartitoarelor de costuri sunt adimensionale, se corelează cu factorii prevăzuți în **Ordinul 7/2024**, iar valoarea finală, corelată cu factorul de evaluare global, se eliberează sub formă de **raport lunar**. Valorile zilnice afișate sunt neponderate.
+**Repartitoare – text obligatoriu.** Paginile `repartitoare-bransament.html` și `repartitoare.html` trebuie să conțină nota (`.equip-note.equip-note-repartitor`) cu textul exact: „**Despre valorile afișate:** repartitoarele de costuri înregistrează unități brute necorectate. Unitățile repartitoarelor de costuri se corectează cu factorii prevăzuți în **Ordinul 7/2024**, iar valoarea finală, corectată cu factorul de evaluare global, se eliberează sub formă de **raport lunar**.” Valorile zilnice afișate sunt neponderate.
 
 ## 6. Paginile de raport citiri
 
@@ -205,16 +205,38 @@ Toate paginile de raport au aceeași anatomie (aceleași ID-uri, ușor de legat 
 
 | | Apă (`bransament`, `apartament`) | Energie termică (`energie-termica`, `energie-termica-apartament`) | Repartitoare (`repartitoare-bransament`, `repartitoare`) |
 |---|---|---|---|
-| Serii în grafic | 2: apă rece (albastru), apă caldă (roșu) | 1: energie termică (portocaliu) | loc de măsurare: 1 serie (total); loc de consum: câte una pe încăpere, **stacked** (nuanțe de mov) |
+| Serii în grafic | 2: apă rece (albastru), apă caldă (roșu) | 1: energie termică (portocaliu) | loc de măsurare: 1 serie (total); loc de consum: câte una pe încăpere, **stacked**, nuanțe de mov cu contrast mare (`#3b0764`, `#7c3aed`, `#c026d3`, `#e9d5ff`) separate cu contur alb |
 | Axa Y | `Consum (m³)` | `Consum (MWh)` | `Unități (adimensional)` |
 | Sumar | `#totalConsumptionCold`, `#totalConsumptionHot`, `#averageConsumptionCold`, `#averageConsumptionHot` | `#totalConsumptionHeat`, `#averageConsumptionHeat`, `#indexStartHeat`, `#indexEndHeat` | `#totalUnits`, `#averageUnits`; pe loc de consum și `#unitsPerRoom` (generat din JS) |
 | Tipuri export (`exportReportType`) | `date`, `period`, `arac_date`, `arac_period`, `zilnice`, `consumuri_zilnice` | `date`, `period`, `zilnice`, `consumuri_zilnice` | `date`, `period`, `zilnice`, `consumuri_zilnice` |
 | Citiri orare | da (buton „Consum orar” pe `apartament`) | **nu** (mesaj informativ sub grafic) | **nu** (mesaj informativ sub grafic) |
 | Extra | – | – | nota Ordinul 7/2024; card „Rapoarte lunare de repartizare” (luna, perioada, status `Emis`/`În curs`, descărcare PDF) |
 
+### Pagina Raport Citiri (hub) – `page/citiri/index.html`
+
+Structură (de sus în jos):
+
+1. **Card filtre**
+   - rând de regiuni (`#regionFilterGroup`): butoane radio `name="regionFilter"` în stil „pill” – „Toate”, câte unul pe regiune (`value` = id regiune, `data-region-name`), „Fără regiune” (`value="-"`); fiecare cu numărul de locuri de măsurare (`.region-count`). **Dacă contul nu are regiuni, rândul se ascunde automat** (rămân doar „Toate” și „Fără regiune”).
+   - căutare `#searchLocMasurare` (adresă, cod sau regiune – filtrare instant, fără buton);
+   - filtru utilitate `#utilityFilter` (`apa` / `termic` / `rep`).
+2. **Coloana stângă – „Locuri de măsurare”** (`#locMasurareList`): un rând `.loc-row` pe loc de măsurare cu adresa, badge-ul utilității, codul și regiunea, butoanele „Vezi citiri” (raportul utilității) și „Locuri de consum”. În antet: numărul de rezultate (`#locResultCount`) și, când este selectată o regiune, butonul „Vezi citiri regiune” (`#btnRegionReport` → `zona.html`). Stare goală `#locEmptyState` cu „Resetează filtrele”.
+3. **Coloana dreaptă – „Locuri de consum”** (`#locConsumPanel`, fixă la scroll pe desktop): după „Locuri de consum” afișează adresa selectată, numărul de apartamente, o căutare `#searchApartament` și lista apartamentelor (fiecare cu badge-ul utilității și „Vezi citiri” către raportul de loc de consum). Rândul selectat din stânga primește clasa `.selected`. Pe mobil panoul apare sub listă și pagina derulează automat la el.
+
+Atribute pe fiecare `.loc-row` (generate pe server în ASP.NET; scriptul paginii rămâne neschimbat):
+
+| Atribut | Valoare |
+|---|---|
+| `data-region` | id-ul regiunii sau `-` dacă nu are regiune |
+| `data-utility` | `apa` / `termic` / `rep` |
+| `data-search` | text în care se caută (adresă, cod, nume regiune), litere mici |
+| `data-apt-list` | id-ul listei de apartamente (`<ul class="loc-consum-lista" data-address="…">`) |
+
+Filtrarea se face în browser; pentru conturi cu foarte multe locuri de măsurare se poate muta pe server păstrând aceleași elemente.
+
 ### Contoare pasante (loc de măsurare – apă și energie termică)
 
-Pe `bransament.html` (apă) și `energie-termica.html` (energie termică), cardul „Sumar pentru perioada selectată” are la final secțiunea **CONTOARE PASANTE** (`#pasantSection` / `#pasantSummary`). Pentru fiecare contor pasant al locului de măsurare se afișează: denumirea (ex. „Scara A - apă rece”), seria, consumul în perioada selectată (bold, culoarea utilității) și indexul la sfârșitul perioadei. Rândurile se generează din JS și se actualizează odată cu sliderul (`updatePasantSummary(startIdx, endIdx)`). Dacă locul de măsurare nu are contoare pasante (`pasantMeters` gol), secțiunea nu se afișează. Pe paginile de loc de consum și pe repartitoare secțiunea nu există.
+Pe `bransament.html` (apă) și `energie-termica.html` (energie termică), cardul „Sumar pentru perioada selectată” are la final secțiunea **CONTOARE PASANTE** (`#pasantSection` / `#pasantSummary`), cu titlul în același stil ca „RAPOARTE CITIRI” (`<h5 class="card-title">`). Pentru fiecare contor pasant al locului de măsurare se afișează: denumirea (ex. „Scara A - apă rece”), seria, consumul în perioada selectată (bold, culoarea utilității) și indexul la sfârșitul perioadei. Rândurile se generează din JS și se actualizează odată cu sliderul (`updatePasantSummary(startIdx, endIdx)`). Dacă locul de măsurare nu are contoare pasante (`pasantMeters` gol), secțiunea nu se afișează. Pe paginile de loc de consum și pe repartitoare secțiunea nu există.
 
 Date de la server:
 
@@ -331,4 +353,4 @@ Lista detaliată a modificărilor aduse paginilor existente și a paginilor / co
 
 ---
 
-_Export HTML generat automat la data de 2026-11-17 09:57:17._
+_Export HTML generat automat la data de 2026-11-18 11:25:43._

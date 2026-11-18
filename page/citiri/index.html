@@ -169,378 +169,629 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <div>
             <h1>Raport Citiri</h1>
-            <p class="text-muted mb-0">Aici sunt afișate datele agregate pentru regiunile, locurile de măsurare (branșamente) și locurile de consum (apartamente) setate ca fiind curente.</p>
+            <p class="text-muted mb-0">Alegeți o regiune sau căutați un loc de măsurare (branșament), apoi deschideți raportul de citiri sau locurile de consum (apartamentele) aferente.</p>
         </div>
     </div>
 
+    <!-- START: Filtre (regiune, cautare, utilitate) -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <!-- Regiuni: "Toate", cate un buton pe regiune, "Fara regiune". Numarul = locuri de masurare.
+                 Daca utilizatorul nu are regiuni, randul se ascunde (raman doar cautarea si filtrul de utilitate). -->
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3" id="regionFilterGroup" role="group" aria-label="Filtru regiune">
+                <span class="text-muted small me-1"><i class="bi bi-bounding-box me-1"></i>Regiune:</span>
+                    <input type="radio" class="btn-check" name="regionFilter" id="regionAll" value="" autocomplete="off" checked>
+                    <label class="btn btn-sm btn-outline-primary rounded-pill" for="regionAll">Toate <span class="region-count">7</span></label>
+                    <input type="radio" class="btn-check" name="regionFilter" id="region-regiunea-a" value="regiunea-a" data-region-name="Regiunea A" autocomplete="off">
+                    <label class="btn btn-sm btn-outline-primary rounded-pill" for="region-regiunea-a">Regiunea A <span class="region-count">3</span></label>
+                    <input type="radio" class="btn-check" name="regionFilter" id="region-regiunea-b" value="regiunea-b" data-region-name="Regiunea B" autocomplete="off">
+                    <label class="btn btn-sm btn-outline-primary rounded-pill" for="region-regiunea-b">Regiunea B <span class="region-count">3</span></label>
+                    <input type="radio" class="btn-check" name="regionFilter" id="regionNone" value="-" autocomplete="off">
+                    <label class="btn btn-sm btn-outline-secondary rounded-pill" for="regionNone">Fără regiune <span class="region-count">1</span></label>
+            </div>
+            <div class="row g-2">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <input type="search" class="form-control" id="searchLocMasurare" placeholder="Caută după adresă, cod sau regiune..." autocomplete="off">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="utilityFilter" aria-label="Filtru utilitate">
+                        <option value="" selected>Toate utilitățile</option>
+                        <option value="apa">Contor apă</option>
+                        <option value="termic">Contor energie termică</option>
+                        <option value="rep">Repartitor costuri</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Filtre -->
+
     <div class="row">
-        
-        <!-- COLOANA 1: REGIUNI CURENTE -->
-        <div class="col-lg-4 mb-4">
-            <h5 class="mb-3">Regiuni Curente</h5>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h6 class="card-title">Regiunea A</h6>
-                    <a href="../../page/citiri/zona.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
+
+        <!-- COLOANA 1: LOCURI DE MASURARE (filtrate) -->
+        <div class="col-lg-7 mb-4">
+            <div class="card">
+                <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <div>
+                        <h5 class="mb-0">Locuri de măsurare</h5>
+                        <small class="text-muted fw-normal"><span id="locResultCount">7</span> rezultate<span id="locRegionLabel"></span></small>
+                    </div>
+                    <!-- Vizibil doar cand este selectata o regiune: raportul agregat al regiunii -->
+                    <a href="../../page/citiri/zona.html" class="btn btn-sm btn-primary d-none" id="btnRegionReport">
+                        <i class="bi bi-bar-chart-line me-1"></i>Vezi citiri regiune
+                    </a>
                 </div>
-            </div>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h6 class="card-title">Regiunea B</h6>
-                    <a href="../../page/citiri/zona.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
+                <div class="list-group list-group-flush" id="locMasurareList">
+                    <div class="list-group-item loc-row" data-region="regiunea-a" data-utility="apa" data-search="str. unirii, nr. 10 b10000001 regiunea a" data-apt-list="apt-unirii-10-apa">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                            <div class="min-w-0">
+                                <div class="fw-semibold">Str. Unirii, Nr. 10</div>
+                                <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                                    <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                                    <span class="text-muted small">Cod: B10000001 · Regiunea A</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 flex-shrink-0">
+                                <a href="../../page/citiri/bransament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 btn-locuri-consum">Locuri de consum <i class="bi bi-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item loc-row" data-region="regiunea-a" data-utility="termic" data-search="str. unirii, nr. 10 b10000002 regiunea a" data-apt-list="apt-unirii-10-termic">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                            <div class="min-w-0">
+                                <div class="fw-semibold">Str. Unirii, Nr. 10</div>
+                                <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                                    <span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span>
+                                    <span class="text-muted small">Cod: B10000002 · Regiunea A</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 flex-shrink-0">
+                                <a href="../../page/citiri/energie-termica.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 btn-locuri-consum">Locuri de consum <i class="bi bi-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item loc-row" data-region="regiunea-a" data-utility="rep" data-search="str. unirii, nr. 10 b10000003 regiunea a" data-apt-list="apt-unirii-10-rep">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                            <div class="min-w-0">
+                                <div class="fw-semibold">Str. Unirii, Nr. 10</div>
+                                <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                                    <span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span>
+                                    <span class="text-muted small">Cod: B10000003 · Regiunea A</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 flex-shrink-0">
+                                <a href="../../page/citiri/repartitoare-bransament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 btn-locuri-consum">Locuri de consum <i class="bi bi-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item loc-row" data-region="regiunea-b" data-utility="apa" data-search="bdul. libertății, bl. d5 b10000004 regiunea b" data-apt-list="apt-libertatii-d5">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                            <div class="min-w-0">
+                                <div class="fw-semibold">Bdul. Libertății, Bl. D5</div>
+                                <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                                    <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                                    <span class="text-muted small">Cod: B10000004 · Regiunea B</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 flex-shrink-0">
+                                <a href="../../page/citiri/bransament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 btn-locuri-consum">Locuri de consum <i class="bi bi-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item loc-row" data-region="regiunea-b" data-utility="apa" data-search="str. libertății, nr. 24, bloc c2 b12345678 regiunea b" data-apt-list="apt-libertatii-24-apa">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                            <div class="min-w-0">
+                                <div class="fw-semibold">Str. Libertății, Nr. 24, Bloc C2</div>
+                                <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                                    <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                                    <span class="text-muted small">Cod: B12345678 · Regiunea B</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 flex-shrink-0">
+                                <a href="../../page/citiri/bransament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 btn-locuri-consum">Locuri de consum <i class="bi bi-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item loc-row" data-region="regiunea-b" data-utility="termic" data-search="str. libertății, nr. 24, bloc c2 b12345679 regiunea b" data-apt-list="apt-libertatii-24-termic">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                            <div class="min-w-0">
+                                <div class="fw-semibold">Str. Libertății, Nr. 24, Bloc C2</div>
+                                <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                                    <span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span>
+                                    <span class="text-muted small">Cod: B12345679 · Regiunea B</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 flex-shrink-0">
+                                <a href="../../page/citiri/energie-termica.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 btn-locuri-consum">Locuri de consum <i class="bi bi-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item loc-row" data-region="-" data-utility="apa" data-search="aleea trandafirilor, nr. 5 b10000007 fără regiune" data-apt-list="apt-trandafirilor-5">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                            <div class="min-w-0">
+                                <div class="fw-semibold">Aleea Trandafirilor, Nr. 5</div>
+                                <div class="d-flex flex-wrap align-items-center gap-2 mt-1">
+                                    <span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span>
+                                    <span class="text-muted small">Cod: B10000007 · Fără regiune</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 flex-shrink-0">
+                                <a href="../../page/citiri/bransament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1 btn-locuri-consum">Locuri de consum <i class="bi bi-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Stare goala: niciun rezultat pentru filtrele alese -->
+                <div class="card-body text-center text-muted py-5 d-none" id="locEmptyState">
+                    <div class="fs-2 lh-1 mb-2"><i class="bi bi-search"></i></div>
+                    <p class="mb-3">Niciun loc de măsurare nu corespunde filtrelor alese.</p>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btnResetFilters">Resetează filtrele</button>
                 </div>
             </div>
         </div>
 
-        <!-- COLOANA 2: LOCURI DE MASURARE -->
-        <div class="col-lg-4 mb-4">
-            <h5 class="mb-3">Locuri de Măsurare Curente</h5>
-
-            <!-- O adresa = o singura utilitate. Aceeasi adresa apare de mai multe ori daca are mai multe utilitati. -->
-            <div id="bransament-card-1" class="card bransament-card mb-3">
-                <div class="card-body">
-                    <h6 class="card-title mb-1">Str. Unirii, Nr. 10</h6>
-                    <div class="mb-2"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                    <div class="mt-2">
-                        <a href="../../page/citiri/bransament.html" class="btn btn-sm btn-outline-primary me-1">Vezi Citiri</a>
-                        <button class="btn btn-sm btn-outline-secondary" onclick="showApartamente('bransament1-apartamente', 'bransament-card-1')">Locuri de Consum</button>
-                    </div>
+        <!-- COLOANA 2: LOCURI DE CONSUM ale locului de masurare selectat -->
+        <div class="col-lg-5 mb-4">
+            <div class="card loc-consum-panel" id="locConsumPanel">
+                <div class="card-header">
+                    <h5 class="mb-0">Locuri de consum</h5>
+                    <small class="text-muted fw-normal" id="locConsumAddress">Niciun loc de măsurare selectat</small>
                 </div>
-            </div>
-
-            <div id="bransament-card-2" class="card bransament-card mb-3">
-                <div class="card-body">
-                    <h6 class="card-title mb-1">Str. Unirii, Nr. 10</h6>
-                    <div class="mb-2"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                    <div class="mt-2">
-                        <a href="../../page/citiri/energie-termica.html" class="btn btn-sm btn-outline-primary me-1">Vezi Citiri</a>
-                        <button class="btn btn-sm btn-outline-secondary" onclick="showApartamente('bransament2-apartamente', 'bransament-card-2')">Locuri de Consum</button>
-                    </div>
+                <div class="card-body text-center text-muted py-5" id="locuriConsumDefault">
+                    <div class="fs-2 lh-1 mb-2"><i class="bi bi-house-door"></i></div>
+                    <p class="mb-0">Apăsați „Locuri de consum” la un loc de măsurare pentru a vedea apartamentele.</p>
                 </div>
-            </div>
-
-            <div id="bransament-card-3" class="card bransament-card mb-3">
-                <div class="card-body">
-                    <h6 class="card-title mb-1">Str. Unirii, Nr. 10</h6>
-                    <div class="mb-2"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                    <div class="mt-2">
-                        <a href="../../page/citiri/repartitoare-bransament.html" class="btn btn-sm btn-outline-primary me-1">Vezi Citiri</a>
-                        <button class="btn btn-sm btn-outline-secondary" onclick="showApartamente('bransament3-apartamente', 'bransament-card-3')">Locuri de Consum</button>
+                <div id="locConsumContent" class="d-none">
+                    <div class="p-3 border-bottom">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="search" class="form-control" id="searchApartament" placeholder="Caută apartament..." autocomplete="off">
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div id="bransament-card-4" class="card bransament-card mb-3">
-                <div class="card-body">
-                    <h6 class="card-title mb-1">Bdul. Libertății, Bl. D5</h6>
-                    <div class="mb-2"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                    <div class="mt-2">
-                        <a href="../../page/citiri/bransament.html" class="btn btn-sm btn-outline-primary me-1">Vezi Citiri</a>
-                        <button class="btn btn-sm btn-outline-secondary" onclick="showApartamente('bransament4-apartamente', 'bransament-card-4')">Locuri de Consum</button>
+                    <div class="loc-consum-scroll">
+                    <ul id="apt-unirii-10-apa" class="list-group list-group-flush loc-consum-lista" data-address="Str. Unirii, Nr. 10" data-utility="apa" style="display: none;">
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 1">
+                                <div>
+                                    <div>Ap. 1</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 2">
+                                <div>
+                                    <div>Ap. 2</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 3">
+                                <div>
+                                    <div>Ap. 3</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 4">
+                                <div>
+                                    <div>Ap. 4</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 5">
+                                <div>
+                                    <div>Ap. 5</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 6">
+                                <div>
+                                    <div>Ap. 6</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 7">
+                                <div>
+                                    <div>Ap. 7</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 8">
+                                <div>
+                                    <div>Ap. 8</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 9">
+                                <div>
+                                    <div>Ap. 9</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 10">
+                                <div>
+                                    <div>Ap. 10</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                    </ul>
+                    <ul id="apt-unirii-10-termic" class="list-group list-group-flush loc-consum-lista" data-address="Str. Unirii, Nr. 10" data-utility="termic" style="display: none;">
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 1">
+                                <div>
+                                    <div>Ap. 1</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 2">
+                                <div>
+                                    <div>Ap. 2</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 3">
+                                <div>
+                                    <div>Ap. 3</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 4">
+                                <div>
+                                    <div>Ap. 4</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 5">
+                                <div>
+                                    <div>Ap. 5</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 6">
+                                <div>
+                                    <div>Ap. 6</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 7">
+                                <div>
+                                    <div>Ap. 7</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 8">
+                                <div>
+                                    <div>Ap. 8</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 9">
+                                <div>
+                                    <div>Ap. 9</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 10">
+                                <div>
+                                    <div>Ap. 10</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                    </ul>
+                    <ul id="apt-unirii-10-rep" class="list-group list-group-flush loc-consum-lista" data-address="Str. Unirii, Nr. 10" data-utility="rep" style="display: none;">
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 1">
+                                <div>
+                                    <div>Ap. 1</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 2">
+                                <div>
+                                    <div>Ap. 2</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 3">
+                                <div>
+                                    <div>Ap. 3</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 4">
+                                <div>
+                                    <div>Ap. 4</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 5">
+                                <div>
+                                    <div>Ap. 5</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 6">
+                                <div>
+                                    <div>Ap. 6</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 7">
+                                <div>
+                                    <div>Ap. 7</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 8">
+                                <div>
+                                    <div>Ap. 8</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 9">
+                                <div>
+                                    <div>Ap. 9</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 10">
+                                <div>
+                                    <div>Ap. 10</div>
+                                    <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
+                                </div>
+                                <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                    </ul>
+                    <ul id="apt-libertatii-d5" class="list-group list-group-flush loc-consum-lista" data-address="Bdul. Libertății, Bl. D5" data-utility="apa" style="display: none;">
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 24">
+                                <div>
+                                    <div>Ap. 24</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 25">
+                                <div>
+                                    <div>Ap. 25</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                    </ul>
+                    <ul id="apt-libertatii-24-apa" class="list-group list-group-flush loc-consum-lista" data-address="Str. Libertății, Nr. 24, Bloc C2" data-utility="apa" style="display: none;">
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 1">
+                                <div>
+                                    <div>Ap. 1</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 2">
+                                <div>
+                                    <div>Ap. 2</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 3">
+                                <div>
+                                    <div>Ap. 3</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 4">
+                                <div>
+                                    <div>Ap. 4</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 5">
+                                <div>
+                                    <div>Ap. 5</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 6">
+                                <div>
+                                    <div>Ap. 6</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                    </ul>
+                    <ul id="apt-libertatii-24-termic" class="list-group list-group-flush loc-consum-lista" data-address="Str. Libertății, Nr. 24, Bloc C2" data-utility="termic" style="display: none;">
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 1">
+                                <div>
+                                    <div>Ap. 1</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 2">
+                                <div>
+                                    <div>Ap. 2</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 3">
+                                <div>
+                                    <div>Ap. 3</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 4">
+                                <div>
+                                    <div>Ap. 4</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 5">
+                                <div>
+                                    <div>Ap. 5</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 6">
+                                <div>
+                                    <div>Ap. 6</div>
+                                    <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
+                                </div>
+                                <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                    </ul>
+                    <ul id="apt-trandafirilor-5" class="list-group list-group-flush loc-consum-lista" data-address="Aleea Trandafirilor, Nr. 5" data-utility="apa" style="display: none;">
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 1">
+                                <div>
+                                    <div>Ap. 1</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 2">
+                                <div>
+                                    <div>Ap. 2</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 3">
+                                <div>
+                                    <div>Ap. 3</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center gap-2 apt-row" data-search="ap. 4">
+                                <div>
+                                    <div>Ap. 4</div>
+                                    <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
+                                </div>
+                                <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi citiri</a>
+                            </li>
+                    </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- COLOANA 3: LOCURI DE CONSUM -->
-        <div class="col-lg-4 mb-4">
-            <h5 class="mb-3">Locuri de Consum</h5>
-            <div class="card h-100">
-                <div class="card-body">
-                    <div id="locuriConsumDefault" class="text-muted mt-4">
-                        <p>Selectați un loc de măsurare pentru a vedea apartamentele.</p>
-                    </div>
-
-                    <!-- Locuri de consum - Str. Unirii, Nr. 10 (apa). Lista statica: exportul HTML nu suporta bucle PHP. -->
-                    <div id="bransament1-apartamente" class="loc-consum-lista" style="display: none;">
-                         <div style="max-height: 600px; overflow-y: auto;">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 1</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 2</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 3</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 4</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 5</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 6</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 7</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 8</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 9</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 10</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                            </ul>
-                         </div>
-                    </div>
-
-                    <!-- Locuri de consum - Str. Unirii, Nr. 10 (energie termica) -->
-                    <div id="bransament2-apartamente" class="loc-consum-lista" style="display: none;">
-                         <div style="max-height: 600px; overflow-y: auto;">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 1</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 2</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 3</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 4</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 5</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 6</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 7</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 8</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 9</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 10</div>
-                                        <div class="mt-1"><span class="equip-badge equip-termic" title="Contor de energie termică"><i class="bi bi-fire"></i> Contor energie termică</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/energie-termica-apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                            </ul>
-                         </div>
-                    </div>
-
-                    <!-- Locuri de consum - Str. Unirii, Nr. 10 (repartitoare costuri) -->
-                    <div id="bransament3-apartamente" class="loc-consum-lista" style="display: none;">
-                         <div style="max-height: 600px; overflow-y: auto;">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 1</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 2</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 3</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 4</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 5</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 6</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 7</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 8</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 9</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 10</div>
-                                        <div class="mt-1"><span class="equip-badge equip-repartitor" title="Repartitor de costuri pentru căldură"><i class="bi bi-thermometer-half"></i> Repartitor costuri</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/repartitoare.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                            </ul>
-                         </div>
-                    </div>
-
-                    <!-- Locuri de consum - Bdul. Libertatii, Bl. D5 (apa) -->
-                    <div id="bransament4-apartamente" class="loc-consum-lista" style="display: none;">
-                         <div style="max-height: 600px; overflow-y: auto;">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 24</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gap-2">
-                                    <div>
-                                        <div>Ap. 25</div>
-                                        <div class="mt-1"><span class="equip-badge equip-apa" title="Contor de apă"><i class="bi bi-droplet"></i> Contor apă</span></div>
-                                    </div>
-                                    <a href="../../page/citiri/apartament.html" class="btn btn-sm btn-outline-primary">Vezi Citiri</a>
-                                </li>
-                            </ul>
-                         </div>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div></main>
 
-<!-- JavaScript pentru evidentierea cardului si afisarea listei -->
+<!-- JavaScript: filtrare locuri de masurare (regiune / cautare / utilitate) si afisarea locurilor de consum.
+     In ASP.NET randurile se genereaza pe server cu aceleasi atribute data-*; scriptul ramane neschimbat. -->
 <script>
-function showApartamente(targetId, cardId) {
-    // 1. Reseteaza conturul (border) de la toate cardurile de bransament
-    document.querySelectorAll('.bransament-card').forEach(card => {
-        card.classList.remove('border-primary', 'border-2');
-    });
+document.addEventListener('DOMContentLoaded', function () {
+    const rows = Array.from(document.querySelectorAll('.loc-row'));
+    const searchInput = document.getElementById('searchLocMasurare');
+    const utilitySelect = document.getElementById('utilityFilter');
+    const regionGroup = document.getElementById('regionFilterGroup');
+    const btnRegionReport = document.getElementById('btnRegionReport');
 
-    // 2. Adauga conturul cardului care a fost selectat
-    const selectedCard = document.getElementById(cardId);
-    if (selectedCard) {
-        selectedCard.classList.add('border-primary', 'border-2');
+    // Fara regiuni pe cont => se ascunde randul de regiuni
+    if (regionGroup.querySelectorAll('input[name="regionFilter"]').length <= 2) {
+        regionGroup.classList.add('d-none');
     }
 
-    // 3. Ascunde mesajul initial
-    document.getElementById('locuriConsumDefault').style.display = 'none';
+    function applyFilters() {
+        const checked = document.querySelector('input[name="regionFilter"]:checked');
+        const region = checked ? checked.value : '';
+        const term = searchInput.value.trim().toLowerCase();
+        const utility = utilitySelect.value;
+        let visible = 0;
 
-    // 4. Ascunde toate listele de apartamente pentru a nu afisa mai multe simultan
-    document.querySelectorAll('.loc-consum-lista').forEach(function(lista) {
-        lista.style.display = 'none';
+        rows.forEach(row => {
+            const show = (!region || row.dataset.region === region)
+                && (!utility || row.dataset.utility === utility)
+                && (!term || row.dataset.search.includes(term));
+            row.classList.toggle('d-none', !show);
+            if (show) visible++;
+        });
+
+        document.getElementById('locResultCount').textContent = visible;
+        document.getElementById('locEmptyState').classList.toggle('d-none', visible > 0);
+        const isRealRegion = region && region !== '-';
+        document.getElementById('locRegionLabel').textContent = isRealRegion ? ' în ' + checked.dataset.regionName : (region === '-' ? ' fără regiune' : '');
+        btnRegionReport.classList.toggle('d-none', !isRealRegion);
+    }
+
+    regionGroup.addEventListener('change', applyFilters);
+    searchInput.addEventListener('input', applyFilters);
+    utilitySelect.addEventListener('change', applyFilters);
+    document.getElementById('btnResetFilters').addEventListener('click', function () {
+        document.getElementById('regionAll').checked = true;
+        searchInput.value = '';
+        utilitySelect.value = '';
+        applyFilters();
     });
 
-    // 5. Afiseaza doar lista corespunzatoare butonului pe care s-a dat click
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-        targetElement.style.display = 'block';
-    }
-}
+    // Locuri de consum pentru locul de masurare selectat
+    rows.forEach(row => {
+        row.querySelector('.btn-locuri-consum').addEventListener('click', function () {
+            rows.forEach(r => r.classList.remove('selected'));
+            row.classList.add('selected');
+
+            const list = document.getElementById(row.dataset.aptList);
+            document.querySelectorAll('.loc-consum-lista').forEach(l => l.style.display = 'none');
+            list.style.display = '';
+            document.getElementById('locConsumAddress').textContent = list.dataset.address + ' · ' + list.querySelectorAll('.apt-row').length + ' apartamente';
+            document.getElementById('locuriConsumDefault').classList.add('d-none');
+            document.getElementById('locConsumContent').classList.remove('d-none');
+            document.getElementById('searchApartament').value = '';
+            list.querySelectorAll('.apt-row').forEach(a => a.classList.remove('d-none'));
+
+            // Pe ecrane mici panoul este sub lista: il aducem in vizor
+            if (window.innerWidth < 992) {
+                document.getElementById('locConsumPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    document.getElementById('searchApartament').addEventListener('input', function () {
+        const term = this.value.trim().toLowerCase();
+        document.querySelectorAll('.loc-consum-lista .apt-row').forEach(a => {
+            a.classList.toggle('d-none', term && !a.dataset.search.includes(term) && !a.textContent.toLowerCase().includes(term));
+        });
+    });
+});
 </script>
 
         </div>
